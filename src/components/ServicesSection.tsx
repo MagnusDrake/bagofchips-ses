@@ -12,10 +12,13 @@ import {
   ArrowRight,
   Clock,
   Layers,
-  Code
+  Layout,
+  Tag,
+  UserCheck
 } from 'lucide-react';
 
 const SERVICE_ICONS: Record<string, React.ElementType> = {
+  Layout,
   Globe,
   Smartphone,
   Gamepad2,
@@ -35,15 +38,15 @@ export const ServicesSection: React.FC = () => {
           <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full border bg-white/5 backdrop-blur-md">
             <Layers className="w-3.5 h-3.5" style={{ color: themeConfig.primaryColor }} />
             <span className="text-xs font-mono font-bold tracking-wider uppercase text-slate-300">
-              Studio Capabilities
+              What We Build For You
             </span>
           </div>
 
           <h2 className="text-3xl sm:text-5xl font-black text-white tracking-tight theme-font-title">
-            Engineering solutions for <span style={{ color: themeConfig.primaryColor }}>every platform.</span>
+            Simple or custom, we’ve got <span style={{ color: themeConfig.primaryColor }}>your back.</span>
           </h2>
           <p className="text-slate-300 text-base sm:text-lg">
-            Whether you need a web app, a mobile companion, a 3D game, or an AI workflow — we bag complexity and ship rock-solid software.
+            From quick, budget-friendly business websites to full custom apps, games, and automation systems.
           </p>
         </div>
 
@@ -57,7 +60,7 @@ export const ServicesSection: React.FC = () => {
               <button
                 key={service.id}
                 onClick={() => setSelectedService(service)}
-                className={`px-4 py-2.5 rounded-2xl text-xs sm:text-sm font-bold flex items-center gap-2.5 transition-all duration-200 border ${
+                className={`px-4 py-2.5 rounded-2xl text-xs sm:text-sm font-bold flex items-center gap-2.5 transition-all duration-200 border cursor-pointer ${
                   isSelected
                     ? 'bg-white/15 text-white border-white/30 shadow-lg scale-102'
                     : 'bg-white/5 text-slate-400 border-white/10 hover:text-slate-200 hover:bg-white/10'
@@ -71,6 +74,11 @@ export const ServicesSection: React.FC = () => {
                   style={{ color: isSelected ? themeConfig.primaryColor : undefined }}
                 />
                 <span>{service.title.split('&')[0]}</span>
+                {service.category === 'starter-web' && (
+                  <span className="px-1.5 py-0.2 rounded text-[10px] font-mono bg-emerald-500/20 text-emerald-300 border border-emerald-500/30">
+                    $490
+                  </span>
+                )}
               </button>
             );
           })}
@@ -88,8 +96,8 @@ export const ServicesSection: React.FC = () => {
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
             {/* Left Info Area */}
             <div className="lg:col-span-7 space-y-6">
-              <div className="space-y-2">
-                <div className="flex items-center gap-2">
+              <div className="space-y-3">
+                <div className="flex flex-wrap items-center gap-2">
                   <span
                     className="text-xs font-mono font-bold uppercase tracking-widest px-2.5 py-0.5 rounded-md"
                     style={{
@@ -97,11 +105,11 @@ export const ServicesSection: React.FC = () => {
                       color: themeConfig.primaryColor,
                     }}
                   >
-                    {selectedService.category.toUpperCase()} SOLUTIONS
+                    {selectedService.category === 'starter-web' ? 'AFFORDABLE STARTER' : selectedService.category.toUpperCase()}
                   </span>
                   <span className="text-slate-500">•</span>
-                  <span className="text-xs text-slate-400 font-mono flex items-center gap-1">
-                    <Clock className="w-3 h-3" /> {selectedService.typicalTimeline} typical
+                  <span className="text-xs text-slate-300 font-mono flex items-center gap-1">
+                    <Clock className="w-3.5 h-3.5" style={{ color: themeConfig.primaryColor }} /> {selectedService.typicalTimeline} turnaround
                   </span>
                 </div>
 
@@ -113,10 +121,19 @@ export const ServicesSection: React.FC = () => {
                 </p>
               </div>
 
+              {/* Best For Box */}
+              <div className="bg-white/5 border border-white/10 rounded-2xl p-3.5 flex items-start gap-2.5">
+                <UserCheck className="w-4 h-4 shrink-0 mt-0.5" style={{ color: themeConfig.primaryColor }} />
+                <div className="text-xs text-slate-200">
+                  <span className="font-bold text-white">Ideal for: </span>
+                  {selectedService.bestFor}
+                </div>
+              </div>
+
               {/* Feature Highlights Grid */}
               <div className="space-y-2 pt-2">
                 <h4 className="text-xs font-mono font-bold uppercase tracking-wider text-slate-400">
-                  Included Capabilities:
+                  What’s Included:
                 </h4>
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
                   {selectedService.features.map((feat, idx) => (
@@ -130,37 +147,23 @@ export const ServicesSection: React.FC = () => {
                   ))}
                 </div>
               </div>
-
-              {/* Tech Stack Badges */}
-              <div className="space-y-2 pt-2">
-                <h4 className="text-xs font-mono font-bold uppercase tracking-wider text-slate-400 flex items-center gap-1.5">
-                  <Code className="w-3.5 h-3.5" /> Battle-Tested Tech Stack:
-                </h4>
-                <div className="flex flex-wrap gap-2">
-                  {selectedService.techStack.map((tech) => (
-                    <span
-                      key={tech}
-                      className="px-2.5 py-1 rounded-lg text-xs font-mono bg-white/5 border border-white/10 text-slate-300"
-                    >
-                      {tech}
-                    </span>
-                  ))}
-                </div>
-              </div>
             </div>
 
             {/* Right Card Callout & Pricing Box */}
             <div className="lg:col-span-5">
               <div className="bg-white/5 border border-white/10 rounded-3xl p-6 sm:p-8 space-y-6 text-center lg:text-left">
                 <div className="space-y-1">
-                  <span className="text-xs font-mono uppercase text-slate-400 tracking-wider">
-                    Starting Investment
-                  </span>
-                  <div className="text-3xl sm:text-4xl font-black text-white font-mono">
-                    {selectedService.startingPrice}
+                  <div className="flex items-center gap-1.5 justify-center lg:justify-start">
+                    <Tag className="w-4 h-4" style={{ color: themeConfig.primaryColor }} />
+                    <span className="text-xs font-mono uppercase text-slate-400 tracking-wider">
+                      Fixed Price Package
+                    </span>
                   </div>
-                  <p className="text-xs text-slate-400">
-                    Transparent milestone-based delivery with zero hidden retainers.
+                  <div className="text-3xl sm:text-4xl font-black text-white font-mono">
+                    Starts at {selectedService.startingPrice}
+                  </div>
+                  <p className="text-xs text-slate-300">
+                    Transparent milestone pricing with zero surprise extra charges.
                   </p>
                 </div>
 
@@ -171,13 +174,13 @@ export const ServicesSection: React.FC = () => {
                 <div className="space-y-3">
                   <button
                     onClick={() => openConfiguratorWithCategory(selectedService.category as ProjectCategory)}
-                    className="w-full py-3.5 px-6 rounded-2xl text-sm font-extrabold text-slate-950 flex items-center justify-center gap-2 shadow-xl hover:scale-102 active:scale-98 transition-all"
+                    className="w-full py-3.5 px-6 rounded-2xl text-sm font-extrabold text-slate-950 flex items-center justify-center gap-2 shadow-xl hover:scale-102 active:scale-98 transition-all cursor-pointer"
                     style={{
                       backgroundColor: themeConfig.primaryColor,
                       boxShadow: `0 0 25px ${themeConfig.primaryColor}44`,
                     }}
                   >
-                    <span>Configure {selectedService.category.toUpperCase()} Project</span>
+                    <span>Price & Customize this Solution</span>
                     <ArrowRight className="w-4 h-4" />
                   </button>
 
@@ -185,7 +188,7 @@ export const ServicesSection: React.FC = () => {
                     href="#portfolio"
                     className="block text-center text-xs font-semibold text-slate-400 hover:text-white transition-colors"
                   >
-                    View sample case studies for this category →
+                    View real examples & results →
                   </a>
                 </div>
               </div>

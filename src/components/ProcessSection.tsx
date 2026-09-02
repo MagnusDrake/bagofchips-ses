@@ -1,6 +1,6 @@
 import React from 'react';
 import { useStudio } from '../context/StudioContext';
-import { Workflow, CheckCircle2, Terminal, Code2, ShieldCheck, Rocket } from 'lucide-react';
+import { Workflow, CheckCircle2, MessageSquare, Laptop, ThumbsUp, Rocket } from 'lucide-react';
 
 export const ProcessSection: React.FC = () => {
   const { themeConfig } = useStudio();
@@ -8,50 +8,50 @@ export const ProcessSection: React.FC = () => {
   const steps = [
     {
       step: '01',
-      title: 'Scoop the Scope',
-      badge: '24-HOUR BLUEPRINT',
-      icon: Terminal,
-      desc: 'We unpack your vision, identify technical edge cases, and deliver a razor-sharp specification doc with guaranteed milestones.',
+      title: 'Tell Us What You Need',
+      badge: 'QUICK & SIMPLE',
+      icon: MessageSquare,
+      desc: 'Fill out our quick 2-minute builder or send us a message. We’ll give you a clear, fixed price quote within 24 hours with zero technical jargon.',
       points: [
-        'Zero ambiguous tech jargon',
-        'Transparent fixed pricing',
-        'Clear architectural roadmap'
+        'Plain English, zero confusing tech talk',
+        'Guaranteed fixed price (no hidden bills)',
+        'Clear delivery date before we start'
       ]
     },
     {
       step: '02',
-      title: 'The Crunch Cycle',
-      badge: 'RAPID AGILE SPRINTS',
-      icon: Code2,
-      desc: 'Focused engineering execution. You receive private staging access and live interactive video demos every single week.',
+      title: 'We Build It & Check In',
+      badge: 'WEEKLY DEMOS',
+      icon: Laptop,
+      desc: 'We start building immediately. You get private access and video check-ins every week so you always see exactly how your project is coming along.',
       points: [
-        'Weekly playable/testable builds',
-        'Direct Slack/Discord channel access',
-        'Real-time milestone progress board'
+        'Clickable preview links you can test on your phone',
+        'Direct text / email / WhatsApp communication',
+        'Live progress bar tracking every milestone'
       ]
     },
     {
       step: '03',
-      title: 'The Taste Test',
-      badge: 'BATTLE-HARDENED QA',
-      icon: ShieldCheck,
-      desc: 'We stress-test performance, audit security vulnerabilities, and verify UX flow across every mobile device and browser.',
+      title: 'You Test & We Polish',
+      badge: 'MADE JUST FOR YOU',
+      icon: ThumbsUp,
+      desc: 'You test the website or app, tell us what you like, and we tweak colors, words, and features until you are 100% happy with how it looks and works.',
       points: [
-        'Sub-second speed benchmarking',
-        'Cross-browser & mobile device matrix',
-        'Client revision & refinement rounds'
+        'Stress-tested on iPhones, Androids, and laptops',
+        'Fast loading with zero annoying lag',
+        'Included revision rounds to get it perfect'
       ]
     },
     {
       step: '04',
-      title: 'Hot Delivery & Handover',
-      badge: 'PRODUCTION READY',
+      title: 'We Launch It For You',
+      badge: '100% YOURS',
       icon: Rocket,
-      desc: 'Smooth production launch. You receive 100% source code IP, automated CI/CD deployment pipelines, and documentation.',
+      desc: 'We connect your custom domain (.com), launch your website or submit your app to the App Stores, hand you the full keys, and give you 30 days of support.',
       points: [
-        '100% full intellectual property ownership',
-        'One-click automated cloud deployments',
-        '30-day post-launch warranty'
+        'You own 100% of everything (no hostage fees)',
+        'We connect your .com and professional email',
+        '30-day post-launch warranty & free support'
       ]
     }
   ];
@@ -64,15 +64,15 @@ export const ProcessSection: React.FC = () => {
           <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full border bg-white/5 backdrop-blur-md">
             <Workflow className="w-3.5 h-3.5" style={{ color: themeConfig.primaryColor }} />
             <span className="text-xs font-mono font-bold tracking-wider uppercase text-slate-300">
-              The bagOfchips Experience
+              How It Works
             </span>
           </div>
 
           <h2 className="text-3xl sm:text-5xl font-black text-white tracking-tight theme-font-title">
-            From idea to deployed software in <span style={{ color: themeConfig.primaryColor }}>4 seamless steps.</span>
+            From idea to launched in <span style={{ color: themeConfig.primaryColor }}>4 simple steps.</span>
           </h2>
           <p className="text-slate-300 text-base sm:text-lg">
-            We removed the bloated agency meetings and endless red tape. Just pure, focused software engineering velocity.
+            No endless boring meetings. No surprise invoices. Just straightforward, reliable software built right.
           </p>
         </div>
 

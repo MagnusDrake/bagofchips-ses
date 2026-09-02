@@ -30,10 +30,25 @@ import {
   Clock,
   DollarSign,
   SendHorizontal,
-  Check
+  Check,
+  Layout,
+  MapPin,
+  Calendar,
+  Star,
+  Image,
+  Share2,
+  MessageSquare,
+  Sparkles
 } from 'lucide-react';
 
 const ICON_MAP: Record<string, React.ElementType> = {
+  Layout,
+  MapPin,
+  Calendar,
+  Star,
+  Image,
+  Share2,
+  MessageSquare,
   Lock,
   Database,
   CreditCard,
@@ -55,25 +70,33 @@ const ICON_MAP: Record<string, React.ElementType> = {
   Smartphone,
   Gamepad2,
   Cpu,
+  Sparkles,
 };
 
 export const ProjectConfigurator: React.FC = () => {
-  const { themeConfig, addTicket } = useStudio();
+  const { themeConfig, addTicket, activeCategoryFilter } = useStudio();
 
-  const [selectedCategory, setSelectedCategory] = useState<ProjectCategory>('web');
-  const [selectedFeatures, setSelectedFeatures] = useState<string[]>(['auth', 'database', 'responsive-ui']);
-  const [selectedUrgency, setSelectedUrgency] = useState<'chill' | 'standard' | 'turbo'>('standard');
+  const [selectedCategory, setSelectedCategory] = useState<ProjectCategory>(() => {
+    return activeCategoryFilter !== 'all' ? activeCategoryFilter : 'starter-web';
+  });
+
+  const [selectedFeatures, setSelectedFeatures] = useState<string[]>([
+    'contact-whatsapp',
+    'google-maps-seo',
+    'domain-email'
+  ]);
+  const [selectedUrgency, setSelectedUrgency] = useState<'chill' | 'standard' | 'turbo'>('chill');
 
   // Contact / Project details form
   const [projectTitle, setProjectTitle] = useState('');
   const [clientName, setClientName] = useState('');
   const [clientEmail, setClientEmail] = useState('');
-  const [company, setCompany] = useState('');
   const [projectDescription, setProjectDescription] = useState('');
   const [submittedTicketCode, setSubmittedTicketCode] = useState<string | null>(null);
+  const [formError, setFormError] = useState<string | null>(null);
 
   const currentPreset = CATEGORY_PRESETS.find((c) => c.id === selectedCategory) || CATEGORY_PRESETS[0];
-  const currentUrgency = TIMELINE_URGENCIES.find((u) => u.id === selectedUrgency) || TIMELINE_URGENCIES[1];
+  const currentUrgency = TIMELINE_URGENCIES.find((u) => u.id === selectedUrgency) || TIMELINE_URGENCIES[0];
 
   // Calculate dynamic pricing and days
   const baseCost = currentPreset.baseCost;
@@ -90,7 +113,7 @@ export const ProjectConfigurator: React.FC = () => {
   }, 0);
 
   const totalRawCost = Math.round((baseCost + featuresCost) * currentUrgency.multiplier);
-  const totalRawDays = Math.max(7, Math.round((baseDays + featuresDays * 0.5) * currentUrgency.timeMultiplier));
+  const totalRawDays = Math.max(3, Math.round((baseDays + featuresDays * 0.5) * currentUrgency.timeMultiplier));
   const totalWeeks = Math.max(1, Math.round(totalRawDays / 7));
 
   const handleCategorySelect = (cat: ProjectCategory) => {
@@ -107,18 +130,16 @@ export const ProjectConfigurator: React.FC = () => {
     );
   };
 
-  const [formError, setFormError] = useState<string | null>(null);
-
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     if (!clientName.trim() || !clientEmail.trim()) {
-      setFormError('Please enter your name and email to generate your project brief.');
+      setFormError('Please enter your name and email so we can send you the quote.');
       return;
     }
     setFormError(null);
 
-    const title = projectTitle.trim() || `${currentPreset.name} Solution`;
-    const desc = projectDescription.trim() || `Custom engineering request for ${currentPreset.name} with ${selectedFeatures.length} architectural modules.`;
+    const title = projectTitle.trim() || `${currentPreset.name}`;
+    const desc = projectDescription.trim() || `Project request for ${currentPreset.name} with ${selectedFeatures.length} selected features.`;
 
     const newTicket = addTicket({
       title,
@@ -126,7 +147,6 @@ export const ProjectConfigurator: React.FC = () => {
       priority: selectedUrgency === 'turbo' ? 'urgent' : selectedUrgency === 'standard' ? 'high' : 'standard',
       clientName: clientName.trim(),
       clientEmail: clientEmail.trim(),
-      company: company.trim(),
       description: desc,
       selectedFeatures,
       estimatedCost: totalRawCost,
@@ -158,15 +178,15 @@ export const ProjectConfigurator: React.FC = () => {
           <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full border bg-white/5 backdrop-blur-md">
             <Calculator className="w-3.5 h-3.5" style={{ color: themeConfig.primaryColor }} />
             <span className="text-xs font-mono font-bold tracking-wider uppercase text-slate-300">
-              Interactive Chip Builder
+              Interactive Price & Scope Calculator
             </span>
           </div>
 
           <h2 className="text-3xl sm:text-5xl font-black text-white tracking-tight theme-font-title">
-            Scope your solution in <span style={{ color: themeConfig.primaryColor }}>under 2 minutes.</span>
+            Build your project & get an <span style={{ color: themeConfig.primaryColor }}>instant price.</span>
           </h2>
           <p className="text-slate-300 text-base sm:text-lg">
-            Pick your solution category, select your architectural modules, and get an instant preliminary budget & timeline estimate.
+            Choose what you need below, see the exact estimate update in real-time, and get started with zero guesswork.
           </p>
         </div>
 
@@ -184,7 +204,7 @@ export const ProjectConfigurator: React.FC = () => {
                   >
                     1
                   </span>
-                  <h3 className="text-lg font-bold text-white">Select Solution Type</h3>
+                  <h3 className="text-lg font-bold text-white">Choose What You Want Built</h3>
                 </div>
                 <span className="text-xs font-mono text-slate-400">Step 1 of 3</span>
               </div>
@@ -199,7 +219,7 @@ export const ProjectConfigurator: React.FC = () => {
                       key={preset.id}
                       type="button"
                       onClick={() => handleCategorySelect(preset.id)}
-                      className={`p-4 rounded-2xl border text-left transition-all duration-200 relative group flex flex-col justify-between ${
+                      className={`p-4 rounded-2xl border text-left transition-all duration-200 relative group flex flex-col justify-between cursor-pointer ${
                         isSelected
                           ? 'bg-white/10 border-white/40 shadow-xl scale-[1.02]'
                           : 'bg-white/5 border-white/10 hover:bg-white/10 hover:border-white/20'
@@ -241,7 +261,7 @@ export const ProjectConfigurator: React.FC = () => {
                       </div>
 
                       <div className="mt-3 pt-2 border-t border-white/10 flex items-center justify-between text-xs font-mono">
-                        <span className="text-slate-400">Base Scope:</span>
+                        <span className="text-slate-400">Starts At:</span>
                         <span className="font-bold text-white">${preset.baseCost.toLocaleString()}</span>
                       </div>
                     </button>
@@ -250,7 +270,7 @@ export const ProjectConfigurator: React.FC = () => {
               </div>
             </div>
 
-            {/* STEP 2: Pick Architectural Features (Chips) */}
+            {/* STEP 2: Pick Features (Chips) */}
             <div className="space-y-4 bg-white/5 border border-white/10 rounded-3xl p-6 backdrop-blur-xl">
               <div className="flex items-center justify-between">
                 <div className="flex items-center gap-3">
@@ -261,8 +281,8 @@ export const ProjectConfigurator: React.FC = () => {
                     2
                   </span>
                   <div>
-                    <h3 className="text-lg font-bold text-white">Select Features & Ingredients</h3>
-                    <p className="text-xs text-slate-300">Choose the architectural modules your project requires</p>
+                    <h3 className="text-lg font-bold text-white">Pick Your Features & Add-ons</h3>
+                    <p className="text-xs text-slate-300">Click to add or remove any features you need</p>
                   </div>
                 </div>
                 <span className="text-xs font-mono text-slate-400">
@@ -280,7 +300,7 @@ export const ProjectConfigurator: React.FC = () => {
                       key={feat.id}
                       type="button"
                       onClick={() => toggleFeature(feat.id)}
-                      className={`p-3.5 rounded-2xl border text-left transition-all duration-200 flex items-start gap-3 relative ${
+                      className={`p-3.5 rounded-2xl border text-left transition-all duration-200 flex items-start gap-3 relative cursor-pointer ${
                         isSelected
                           ? 'bg-white/10 border-white/30 shadow-md'
                           : 'bg-white/5 border-white/5 hover:bg-white/10 hover:border-white/15'
@@ -328,7 +348,7 @@ export const ProjectConfigurator: React.FC = () => {
               </div>
             </div>
 
-            {/* STEP 3: Urgency / Sprint Velocity */}
+            {/* STEP 3: Urgency / Pace */}
             <div className="space-y-4 bg-white/5 border border-white/10 rounded-3xl p-6 backdrop-blur-xl">
               <div className="flex items-center justify-between">
                 <div className="flex items-center gap-3">
@@ -338,7 +358,7 @@ export const ProjectConfigurator: React.FC = () => {
                   >
                     3
                   </span>
-                  <h3 className="text-lg font-bold text-white">Choose Sprint Velocity</h3>
+                  <h3 className="text-lg font-bold text-white">Choose Your Timeline & Delivery Pace</h3>
                 </div>
                 <span className="text-xs font-mono text-slate-400">Step 3 of 3</span>
               </div>
@@ -351,7 +371,7 @@ export const ProjectConfigurator: React.FC = () => {
                       key={urg.id}
                       type="button"
                       onClick={() => setSelectedUrgency(urg.id as any)}
-                      className={`p-4 rounded-2xl border text-left transition-all ${
+                      className={`p-4 rounded-2xl border text-left transition-all cursor-pointer ${
                         isSelected
                           ? 'bg-white/15 border-white/40 shadow-lg scale-102'
                           : 'bg-white/5 border-white/10 hover:bg-white/10'
@@ -381,7 +401,7 @@ export const ProjectConfigurator: React.FC = () => {
             </div>
           </div>
 
-          {/* Right Column: Live Estimate & Instant Brief Generator */}
+          {/* Right Column: Live Estimate & Instant Quote Generator */}
           <div className="lg:col-span-4 sticky top-28 space-y-6">
             <div
               className="rounded-3xl p-6 border backdrop-blur-2xl shadow-2xl relative overflow-hidden"
@@ -395,7 +415,7 @@ export const ProjectConfigurator: React.FC = () => {
               <div className="flex items-center justify-between pb-4 border-b border-white/10">
                 <div>
                   <span className="text-[10px] font-mono uppercase tracking-widest text-slate-400">
-                    Preliminary Scope
+                    Your Estimate
                   </span>
                   <h3 className="text-lg font-bold text-white">{currentPreset.name}</h3>
                 </div>
@@ -412,31 +432,31 @@ export const ProjectConfigurator: React.FC = () => {
                 <div className="bg-white/5 border border-white/10 rounded-2xl p-3.5">
                   <div className="flex items-center gap-1.5 text-xs text-slate-400 mb-1">
                     <DollarSign className="w-3.5 h-3.5" style={{ color: themeConfig.primaryColor }} />
-                    <span>Est. Investment</span>
+                    <span>Estimated Total</span>
                   </div>
                   <div className="text-2xl font-black text-white font-mono tracking-tight">
                     ${totalRawCost.toLocaleString()}
                   </div>
-                  <span className="text-[10px] text-slate-400">Fixed-price milestone basis</span>
+                  <span className="text-[10px] text-slate-400">Clear fixed price</span>
                 </div>
 
                 <div className="bg-white/5 border border-white/10 rounded-2xl p-3.5">
                   <div className="flex items-center gap-1.5 text-xs text-slate-400 mb-1">
                     <Clock className="w-3.5 h-3.5" style={{ color: themeConfig.accentColor }} />
-                    <span>Est. Timeline</span>
+                    <span>Estimated Time</span>
                   </div>
                   <div className="text-2xl font-black text-white font-mono tracking-tight">
-                    ~{totalWeeks} {totalWeeks === 1 ? 'Week' : 'Weeks'}
+                    {totalRawDays <= 7 ? `${totalRawDays} Days` : `~${totalWeeks} Weeks`}
                   </div>
-                  <span className="text-[10px] text-slate-400">~{totalRawDays} working days</span>
+                  <span className="text-[10px] text-slate-400">Fast delivery</span>
                 </div>
               </div>
 
               {/* Selected Modules Summary */}
               <div className="py-4 border-b border-white/10 space-y-2">
                 <div className="flex items-center justify-between text-xs text-slate-300">
-                  <span className="font-medium">Selected Modules:</span>
-                  <span className="font-mono">{selectedFeatures.length} features</span>
+                  <span className="font-medium">Selected Features:</span>
+                  <span className="font-mono">{selectedFeatures.length} chosen</span>
                 </div>
                 <div className="flex flex-wrap gap-1.5 max-h-24 overflow-y-auto">
                   {selectedFeatures.map((id) => {
@@ -458,7 +478,7 @@ export const ProjectConfigurator: React.FC = () => {
               {/* Intake Submission Form */}
               <form onSubmit={handleSubmit} className="pt-4 space-y-3">
                 <p className="text-xs font-semibold text-slate-300">
-                  Ready to crunch this solution? Send to studio:
+                  Ready to get this built? Send your request:
                 </p>
 
                 <div className="space-y-2">
@@ -473,28 +493,21 @@ export const ProjectConfigurator: React.FC = () => {
                   <input
                     type="email"
                     required
-                    placeholder="Your Work Email *"
+                    placeholder="Your Email Address *"
                     value={clientEmail}
                     onChange={(e) => setClientEmail(e.target.value)}
                     className="w-full bg-black/40 border border-white/15 rounded-xl px-3 py-2 text-xs text-white placeholder-slate-500 focus:outline-none focus:border-amber-400"
                   />
                   <input
                     type="text"
-                    placeholder="Company / Org Name (Optional)"
-                    value={company}
-                    onChange={(e) => setCompany(e.target.value)}
-                    className="w-full bg-black/40 border border-white/15 rounded-xl px-3 py-2 text-xs text-white placeholder-slate-500 focus:outline-none focus:border-amber-400"
-                  />
-                  <input
-                    type="text"
-                    placeholder="Project Name / Working Title (Optional)"
+                    placeholder="Business / Project Name (Optional)"
                     value={projectTitle}
                     onChange={(e) => setProjectTitle(e.target.value)}
                     className="w-full bg-black/40 border border-white/15 rounded-xl px-3 py-2 text-xs text-white placeholder-slate-500 focus:outline-none focus:border-amber-400"
                   />
                   <textarea
                     rows={2}
-                    placeholder="Brief problem description or goals (Optional)..."
+                    placeholder="Tell us a little about your business or what you want (Optional)..."
                     value={projectDescription}
                     onChange={(e) => setProjectDescription(e.target.value)}
                     className="w-full bg-black/40 border border-white/15 rounded-xl px-3 py-2 text-xs text-white placeholder-slate-500 focus:outline-none focus:border-amber-400 resize-none"
@@ -510,7 +523,7 @@ export const ProjectConfigurator: React.FC = () => {
                   }}
                 >
                   <SendHorizontal className="w-4 h-4" />
-                  <span>Submit Request & Generate Ticket</span>
+                  <span>Send Request & Lock In Your Price</span>
                 </button>
 
                 {formError && (
@@ -521,12 +534,12 @@ export const ProjectConfigurator: React.FC = () => {
 
                 {submittedTicketCode && (
                   <div className="bg-emerald-950/60 border border-emerald-500/40 rounded-xl p-2.5 text-center text-xs text-emerald-300 mt-2">
-                    ✓ Ticket <span className="font-mono font-bold">{submittedTicketCode}</span> created! Redirecting to your live tracker...
+                    ✓ Request <span className="font-mono font-bold">{submittedTicketCode}</span> received! Taking you to the live tracker...
                   </div>
                 )}
 
                 <p className="text-[10px] text-slate-400 text-center font-mono">
-                  ⚡ 4-hour studio response time guarantee
+                  ⚡ We’ll reply in under 4 hours with your blueprint.
                 </p>
               </form>
             </div>

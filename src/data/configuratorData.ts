@@ -13,246 +13,294 @@ export interface CategoryPreset {
 
 export const CATEGORY_PRESETS: CategoryPreset[] = [
   {
+    id: 'starter-web',
+    name: 'Simple Business Website',
+    badge: 'STARTER • BEST VALUE',
+    tagline: 'Clean, fast website that looks awesome on phones and gets you customers',
+    baseCost: 490,
+    baseDays: 4,
+    iconName: 'Layout',
+    suggestedFeatures: ['contact-whatsapp', 'google-maps-seo', 'domain-email']
+  },
+  {
     id: 'web',
-    name: 'Web Application / SaaS',
-    badge: 'HIGH DEMAND',
-    tagline: 'Modern, fast, responsive web platform or client-facing SaaS',
-    baseCost: 2490,
+    name: 'Web App & Customer Portal',
+    badge: 'GROWTH',
+    tagline: 'Interactive website with user logins, online bookings, or client dashboards',
+    baseCost: 1890,
     baseDays: 14,
     iconName: 'Globe',
-    suggestedFeatures: ['auth', 'database', 'payments', 'responsive-ui']
+    suggestedFeatures: ['auth', 'database', 'payments', 'admin-portal']
   },
   {
     id: 'mobile',
-    name: 'Mobile App (iOS & Android)',
-    badge: 'CROSS-PLATFORM',
-    tagline: 'Smooth native-feel mobile app on App Store & Google Play',
-    baseCost: 3890,
+    name: 'Mobile App (iPhone & Android)',
+    badge: 'MOBILE',
+    tagline: 'Custom app for your customers with notifications on the App Store & Google Play',
+    baseCost: 2990,
     baseDays: 21,
     iconName: 'Smartphone',
     suggestedFeatures: ['auth', 'push-notifications', 'offline-sync', 'app-store-launch']
   },
   {
-    id: 'game',
-    name: 'Game / 3D Web Experience',
-    badge: 'INTERACTIVE',
-    tagline: '2D/3D WebGL game, gamified tool, or physics-driven showcase',
-    baseCost: 4200,
-    baseDays: 28,
-    iconName: 'Gamepad2',
-    suggestedFeatures: ['physics-engine', 'leaderboard', 'spatial-audio', '3d-shaders']
-  },
-  {
     id: 'custom',
-    name: 'Custom Software & Automation',
-    badge: 'EFFICIENCY BOOST',
-    tagline: 'Internal tools, API microservices, and automated data pipelines',
-    baseCost: 3150,
-    baseDays: 18,
+    name: 'Business Automation & Custom Tool',
+    badge: 'SAVE TIME',
+    tagline: 'Automate repetitive spreadsheet tasks, sync invoices, and save weekly hours',
+    baseCost: 1450,
+    baseDays: 10,
     iconName: 'Cpu',
-    suggestedFeatures: ['api-integrations', 'database', 'admin-portal', 'cloud-devops']
+    suggestedFeatures: ['api-integrations', 'database', 'admin-portal']
   },
   {
     id: 'ai',
-    name: 'AI System / Smart Agents',
-    badge: 'AI-POWERED',
-    tagline: 'RAG knowledge engine, custom autonomous bots, or smart automation',
-    baseCost: 3400,
-    baseDays: 16,
+    name: 'Smart AI Helper & Chatbot',
+    badge: 'AI ASSISTANT',
+    tagline: '24/7 website chatbot that answers customer questions using your business info',
+    baseCost: 1650,
+    baseDays: 10,
     iconName: 'Sparkles',
-    suggestedFeatures: ['llm-rag', 'semantic-search', 'agent-workflows', 'api-integrations']
+    suggestedFeatures: ['llm-rag', 'contact-whatsapp', 'agent-workflows']
+  },
+  {
+    id: 'game',
+    name: 'Playable Web Game / 3D Fun',
+    badge: 'INTERACTIVE',
+    tagline: '2D/3D browser game or interactive visual experience for brand marketing',
+    baseCost: 3200,
+    baseDays: 24,
+    iconName: 'Gamepad2',
+    suggestedFeatures: ['physics-engine', 'leaderboard', 'spatial-audio']
   }
 ];
 
 export const FEATURE_OPTIONS: FeatureOption[] = [
+  // Affordable Small Business Essentials
+  {
+    id: 'contact-whatsapp',
+    name: 'Contact Form & 1-Click WhatsApp Button',
+    description: 'Let customers call, text on WhatsApp, or send inquiries straight to your inbox.',
+    category: 'all',
+    baseCost: 75,
+    timeDays: 1,
+    popular: true,
+    iconName: 'MessageSquare'
+  },
+  {
+    id: 'google-maps-seo',
+    name: 'Google Maps Location & Local SEO',
+    description: 'Interactive map and search setup so local customers can easily find you on Google.',
+    category: 'all',
+    baseCost: 95,
+    timeDays: 1,
+    popular: true,
+    iconName: 'MapPin'
+  },
+  {
+    id: 'booking-calendar',
+    name: 'Appointment & Booking Calendar',
+    description: 'Customers can pick a date and time for consultations, tables, or appointments.',
+    category: 'all',
+    baseCost: 180,
+    timeDays: 2,
+    popular: true,
+    iconName: 'Calendar'
+  },
+  {
+    id: 'reviews-testimonials',
+    name: 'Customer Reviews & Star Ratings',
+    description: 'Highlight real client testimonials, Google reviews, and build instant trust.',
+    category: 'all',
+    baseCost: 80,
+    timeDays: 1,
+    iconName: 'Star'
+  },
+  {
+    id: 'photo-gallery-menu',
+    name: 'Photo Gallery, Food Menu or Price List',
+    description: 'Beautiful image showcase or easy-to-read list of your services and prices.',
+    category: 'all',
+    baseCost: 90,
+    timeDays: 1,
+    popular: true,
+    iconName: 'Image'
+  },
+  {
+    id: 'domain-email',
+    name: 'Custom Domain (.com) & Email Connection',
+    description: 'We connect your website to your custom web address and professional email.',
+    category: 'all',
+    baseCost: 85,
+    timeDays: 1,
+    popular: true,
+    iconName: 'Globe'
+  },
+  {
+    id: 'social-feed',
+    name: 'Instagram / Social Media Feed',
+    description: 'Show your latest Instagram posts or social updates directly on your website.',
+    category: 'all',
+    baseCost: 75,
+    timeDays: 1,
+    iconName: 'Share2'
+  },
+
+  // Advanced Web & App Features
   {
     id: 'auth',
-    name: 'User Auth & Role Permissions',
-    description: 'Email/password, Google/OAuth, JWT session management, and RBAC admin roles.',
-    category: 'all',
-    baseCost: 450,
+    name: 'Member Accounts & Secure Login',
+    description: 'Password login, Google Sign-In, and private account pages for your customers.',
+    category: 'web',
+    baseCost: 350,
     timeDays: 3,
     popular: true,
     iconName: 'Lock'
   },
   {
-    id: 'database',
-    name: 'Database Architecture & API',
-    description: 'PostgreSQL/Supabase schema design, automated migrations, and optimized queries.',
-    category: 'all',
-    baseCost: 550,
-    timeDays: 4,
-    popular: true,
-    iconName: 'Database'
-  },
-  {
     id: 'payments',
-    name: 'Stripe & Subscription Payments',
-    description: 'Credit card checkout, recurring tier billing, customer portal, and invoice receipts.',
+    name: 'Credit Card & Online Payments (Stripe)',
+    description: 'Accept card payments, setup recurring subscriptions, and email receipts.',
     category: 'web',
-    baseCost: 650,
-    timeDays: 4,
+    baseCost: 450,
+    timeDays: 3,
     popular: true,
     iconName: 'CreditCard'
   },
   {
     id: 'admin-portal',
-    name: 'Admin Command Center',
-    description: 'Internal dashboard to manage users, inspect system analytics, and edit content.',
+    name: 'Simple Admin Dashboard',
+    description: 'Easy control panel where you can view leads, update prices, or edit text.',
     category: 'all',
-    baseCost: 750,
-    timeDays: 5,
+    baseCost: 490,
+    timeDays: 4,
     popular: true,
     iconName: 'LayoutDashboard'
   },
   {
-    id: 'responsive-ui',
-    name: 'Custom UI/UX & Micro-Animations',
-    description: 'Pixel-perfect responsive design with dark mode, fluid gestures, and brand identity.',
-    category: 'web',
-    baseCost: 600,
-    timeDays: 4,
-    popular: true,
-    iconName: 'Palette'
+    id: 'database',
+    name: 'Customer Database & Storage',
+    description: 'Organized database to keep all your customer records, files, and orders safe.',
+    category: 'all',
+    baseCost: 380,
+    timeDays: 3,
+    iconName: 'Database'
   },
+
+  // Mobile App Features
   {
     id: 'push-notifications',
-    name: 'Push Notifications & Alerts',
-    description: 'Automated engagement push alerts, segmented messaging, and badge counts.',
+    name: 'Push Notifications (Alert Customers)',
+    description: 'Send alerts, discounts, and updates directly to your users’ phone lock screens.',
     category: 'mobile',
-    baseCost: 450,
-    timeDays: 3,
+    baseCost: 320,
+    timeDays: 2,
     popular: true,
     iconName: 'Bell'
   },
   {
     id: 'offline-sync',
-    name: 'Offline-First Local Storage',
-    description: 'Full functionality without internet, automatic conflict resolution on reconnect.',
+    name: 'Offline Mode (Works without WiFi)',
+    description: 'Your app stays fully functional even when internet connection drops.',
     category: 'mobile',
-    baseCost: 700,
-    timeDays: 5,
+    baseCost: 450,
+    timeDays: 3,
     iconName: 'WifiOff'
   },
   {
     id: 'app-store-launch',
-    name: 'App Store & Play Store Publishing',
-    description: 'Screenshots, metadata, privacy compliance, and end-to-end store review approval.',
+    name: 'Apple App Store & Google Play Publishing',
+    description: 'We handle all the store rules, screenshots, and launch approval for you.',
     category: 'mobile',
-    baseCost: 500,
-    timeDays: 3,
+    baseCost: 350,
+    timeDays: 2,
+    popular: true,
     iconName: 'Rocket'
   },
-  {
-    id: 'physics-engine',
-    name: 'Physics & Collision Mechanics',
-    description: 'Realistic gravity, rigid body physics, collision responses, and particle sparks.',
-    category: 'game',
-    baseCost: 800,
-    timeDays: 6,
-    popular: true,
-    iconName: 'Zap'
-  },
-  {
-    id: 'leaderboard',
-    name: 'Global Real-time Leaderboards',
-    description: 'Live high score tracking, anti-cheat validation, and friend rankings.',
-    category: 'game',
-    baseCost: 450,
-    timeDays: 3,
-    iconName: 'Trophy'
-  },
-  {
-    id: 'spatial-audio',
-    name: 'Dynamic WebAudio & SFX',
-    description: 'Adaptive soundtrack, spatial 3D audio, and punchy interactive sound effects.',
-    category: 'game',
-    baseCost: 400,
-    timeDays: 2,
-    iconName: 'Volume2'
-  },
-  {
-    id: '3d-shaders',
-    name: 'Custom 3D Shaders & Lighting',
-    description: 'GLSL custom post-processing, bloom, reflections, and hologram effects.',
-    category: 'game',
-    baseCost: 850,
-    timeDays: 6,
-    iconName: 'Eye'
-  },
+
+  // AI & Automation Features
   {
     id: 'llm-rag',
-    name: 'Custom RAG / Vector Knowledge Base',
-    description: 'Ingest company PDFs, docs, and URLs for hallucination-free AI answers.',
+    name: 'AI Chatbot Trained on Your Business',
+    description: 'Answers customer questions 24/7 with 100% accurate info from your menu or docs.',
     category: 'ai',
-    baseCost: 950,
-    timeDays: 6,
-    popular: true,
-    iconName: 'BrainCircuit'
-  },
-  {
-    id: 'agent-workflows',
-    name: 'Autonomous Agent Workflows',
-    description: 'Multi-step AI actions (fetching data, generating reports, emailing results).',
-    category: 'ai',
-    baseCost: 900,
-    timeDays: 5,
+    baseCost: 550,
+    timeDays: 4,
     popular: true,
     iconName: 'Bot'
   },
   {
-    id: 'semantic-search',
-    name: 'Semantic & Vector Search Engine',
-    description: 'Find records by intent and concept rather than exact keyword matches.',
+    id: 'agent-workflows',
+    name: 'Automated Tasks (Auto-Reply & Reports)',
+    description: 'Let software automatically draft emails, send quotes, or sync spreadsheets.',
     category: 'ai',
-    baseCost: 650,
-    timeDays: 4,
-    iconName: 'Search'
+    baseCost: 490,
+    timeDays: 3,
+    iconName: 'Zap'
   },
   {
     id: 'api-integrations',
-    name: '3rd-Party API & Webhook Integrations',
-    description: 'Connect to Salesforce, Slack, HubSpot, QuickBooks, Shopify, or custom APIs.',
+    name: 'Connect Existing Software Tools',
+    description: 'Link your website to QuickBooks, Slack, Google Sheets, Mailchimp, or Shopify.',
     category: 'custom',
-    baseCost: 550,
+    baseCost: 380,
     timeDays: 3,
     popular: true,
     iconName: 'Workflow'
   },
+
+  // Interactive & Game Features
   {
-    id: 'cloud-devops',
-    name: 'Cloud Infrastructure & CI/CD Pipeline',
-    description: 'Docker containerization, AWS/GCP automated deployments, and SSL certs.',
-    category: 'all',
-    baseCost: 500,
-    timeDays: 3,
-    iconName: 'Cloud'
+    id: 'physics-engine',
+    name: 'Interactive Physics & Touch Controls',
+    description: 'Smooth game mechanics, fun gravity, and responsive touch/mouse controls.',
+    category: 'game',
+    baseCost: 650,
+    timeDays: 5,
+    iconName: 'Gamepad2'
+  },
+  {
+    id: 'leaderboard',
+    name: 'Player High Scores & Leaderboard',
+    description: 'Display top scores and let players compete with friends.',
+    category: 'game',
+    baseCost: 350,
+    timeDays: 2,
+    iconName: 'Trophy'
+  },
+  {
+    id: 'spatial-audio',
+    name: 'Fun Sound Effects & Music',
+    description: 'Catchy audio, clicks, and background music that bring the experience to life.',
+    category: 'game',
+    baseCost: 280,
+    timeDays: 2,
+    iconName: 'Volume2'
   }
 ];
 
 export const TIMELINE_URGENCIES = [
   {
     id: 'chill',
-    name: 'Standard Sprint',
-    description: 'Steady, budget-optimized agile progression.',
+    name: 'Standard Pace',
+    description: 'Steady, budget-friendly delivery.',
     multiplier: 1.0,
     timeMultiplier: 1.0,
-    badge: 'BALANCED'
+    badge: 'BEST VALUE'
   },
   {
     id: 'standard',
-    name: 'Priority Sprint',
-    description: 'Dedicated focus with weekly milestone demos.',
-    multiplier: 1.15,
+    name: 'Priority Pace',
+    description: 'Dedicated focus with frequent demo check-ins.',
+    multiplier: 1.12,
     timeMultiplier: 0.8,
     badge: 'RECOMMENDED'
   },
   {
     id: 'turbo',
-    name: 'Crunch Mode (Turbo)',
-    description: 'Max engineering velocity for tight launch deadlines.',
-    multiplier: 1.35,
+    name: 'Rush / Express Delivery',
+    description: 'Fast-tracked engineering for tight deadlines.',
+    multiplier: 1.25,
     timeMultiplier: 0.55,
-    badge: 'SPEEDRUN'
+    badge: 'FAST TRACK'
   }
 ];

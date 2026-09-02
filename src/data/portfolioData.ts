@@ -2,133 +2,133 @@ import type { PortfolioItem } from '../types';
 
 export const PORTFOLIO_DATA: PortfolioItem[] = [
   {
-    id: 'orbit-ops',
-    title: 'OrbitOps — Real-time Fleet Logistics Engine',
-    category: 'custom',
-    categoryLabel: 'Enterprise Cloud System',
-    tagline: 'Autonomous route optimization & live telemetry for 1,200+ delivery vehicles.',
-    description: 'A ground-up custom software solution solving severe delivery latency and driver scheduling headaches for a nationwide logistics provider.',
-    clientType: 'Logistics & Supply Chain Co.',
-    tags: ['Real-time WebSockets', 'Route Optimization', 'Microservices', 'React + Go'],
+    id: 'rustico-bakery',
+    title: 'Rustico Bakery & Café — Modern Local Business Site',
+    category: 'starter-web',
+    categoryLabel: 'Simple Business Website',
+    tagline: 'Fresh mobile-friendly website with digital menu, Google Maps & 1-click WhatsApp orders.',
+    description: 'A clean, fast website for a family-owned bakery that needed to get found on Google, show daily fresh specials, and take catering inquiries easily.',
+    clientType: 'Local Bakery & Café',
+    tags: ['Mobile First', 'Google Maps SEO', 'WhatsApp Orders', 'Digital Menu'],
     metrics: [
-      { label: 'Dispatch Latency', value: '-68%' },
-      { label: 'Fuel Cost Savings', value: '$240k/yr' },
-      { label: 'Uptime Reliability', value: '99.98%' }
+      { label: 'Weekly Catering Inquiries', value: '+310%' },
+      { label: 'Google Search Clicks', value: '4.8k/mo' },
+      { label: 'Turnaround Time', value: '4 Days' }
     ],
-    image: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=1200&q=80',
+    image: 'https://images.unsplash.com/photo-1509440159596-0249088772ff?auto=format&fit=crop&w=1200&q=80',
     highlights: [
-      'Engineered sub-50ms live vehicle telemetry mapping with WebGL canvas',
-      'Automated dispatch matching algorithm reducing empty truck miles by 31%',
-      'Integrated SMS/WhatsApp dispatch triggers for drivers with zero app friction'
+      'Built in 4 days for under $700 with zero headache for the owner',
+      'One-tap WhatsApp button letting customers pre-order fresh bread and pastries',
+      'Optimized Google Maps profile integration driving local neighbourhood foot traffic'
     ],
-    problem: 'The client was losing hours daily manually assigning freight routes on outdated spreadsheets, resulting in frequent missed delivery windows.',
-    solution: 'Engineered an automated real-time dispatch dashboard with algorithmic route pairing, live driver tracking, and instant automated customer notifications.',
-    impact: 'Reduced dispatch labor by 75% and eliminated 92% of missed delivery disputes within the first 60 days.',
-    techList: ['Go', 'React', 'Tailwind CSS', 'PostgreSQL', 'Redis', 'WebSockets', 'Docker'],
+    problem: 'The bakery only had an old Facebook page that was hard to navigate, and they were losing catering orders to nearby chains.',
+    solution: 'Engineered a modern, blazing-fast one-page website with their full menu, customer reviews, photo gallery, and instant WhatsApp chat ordering.',
+    impact: 'Catering orders tripled in the first month and weekend foot traffic increased by 45%.',
+    techList: ['React', 'Vite', 'Tailwind CSS', 'WhatsApp Business API', 'Google Maps API'],
+    demoType: 'case-study'
+  },
+  {
+    id: 'vault-flow',
+    title: 'VaultFlow — Smart Online Invoicing & Cashflow',
+    category: 'web',
+    categoryLabel: 'Web App & Portal',
+    tagline: 'Simple invoice creation, credit card payments, and automatic customer reminders.',
+    description: 'A straightforward web app enabling service businesses to create branded invoices in 30 seconds and get paid online instantly.',
+    clientType: 'Service Business / Contractors',
+    tags: ['Stripe Payments', 'Customer Portal', 'Automatic Reminders', 'Next.js'],
+    metrics: [
+      { label: 'Time-to-Get-Paid', value: '-14 Days' },
+      { label: 'Saved Admin Time', value: '18 hrs/mo' },
+      { label: 'Client Satisfaction', value: '99%' }
+    ],
+    image: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=1200&q=80',
+    highlights: [
+      'Customers can pay invoices online via Credit Card or Apple Pay in 1 click',
+      'Automated polite email reminders that eliminate awkward payment chasing',
+      'Clean overview showing which invoices are paid and which are pending'
+    ],
+    problem: 'Small contractors were losing over 15 hours a month writing paper invoices and chasing late client checks.',
+    solution: 'Built an easy online portal where contractors click one button to text/email an invoice and get paid directly to their bank.',
+    impact: 'Cut average payment collection times in half and stopped unpaid invoices from slipping through the cracks.',
+    techList: ['Next.js', 'TypeScript', 'Tailwind CSS', 'Stripe Payments', 'PostgreSQL'],
     demoType: 'case-study'
   },
   {
     id: 'pulse-health',
-    title: 'PulseSync — AI Health & Biometric Companion',
+    title: 'PulseSync — Mobile Health & Habit Companion',
     category: 'mobile',
-    categoryLabel: 'Cross-Platform Mobile App',
-    tagline: '120fps mobile companion tracking sleep, nutrition, and biomarker trends.',
-    description: 'A frictionless iOS and Android mobile app designed to convert complex wearable sensor data into actionable daily recovery recommendations.',
-    clientType: 'Digital Health Startup',
-    tags: ['React Native', 'HealthKit / Google Fit', 'On-device ML', 'FastAPI'],
+    categoryLabel: 'iPhone & Android Mobile App',
+    tagline: 'Simple daily habit tracker with smartwatch syncing and gentle reminders.',
+    description: 'A friendly mobile app that helps everyday people track water, sleep, and workouts with zero confusing charts.',
+    clientType: 'Health & Fitness Startup',
+    tags: ['iOS & Android', 'Apple Health', 'Offline Mode', 'Push Alerts'],
     metrics: [
       { label: 'App Store Rating', value: '4.9 ★' },
-      { label: 'Active Retention', value: '74% D30' },
-      { label: 'Sync Latency', value: '< 200ms' }
+      { label: 'Daily Active Users', value: '45,000+' },
+      { label: 'Sync Speed', value: 'Instant' }
     ],
     image: 'https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?auto=format&fit=crop&w=1200&q=80',
     highlights: [
-      'Bi-directional sync with Apple Watch, Oura, and Garmin health APIs',
-      'Offline-first SQLite architecture ensuring snappy instant feedback',
-      'Smart micro-habits engine using lightweight on-device ML'
+      'Simple, friendly design anyone can figure out in 10 seconds',
+      'Works completely offline with automatic sync when connected',
+      'Gentle motivational push notifications that encourage daily streaks'
     ],
-    problem: 'Users were overwhelmed by raw health metrics from multiple wearables without clear guidance on what to actually do next.',
-    solution: 'Designed a calm, gamified mobile experience aggregating multi-device streams into a single "Daily Readiness Score" with 3 personalized micro-actions.',
-    impact: 'Grew from 0 to 45,000 active monthly users in 4 months with over 500,000 completed health habits.',
-    techList: ['React Native', 'TypeScript', 'Apple HealthKit', 'Google Fit', 'FastAPI', 'Supabase'],
+    problem: 'Most health apps were too complicated with scientific graphs that discouraged regular everyday users.',
+    solution: 'Created a calm, colorful mobile app focused on 3 simple daily wins with a one-tap check-in.',
+    impact: 'Reached over 45,000 active users in 4 months with a 4.9-star average review rating.',
+    techList: ['React Native', 'TypeScript', 'Apple HealthKit', 'Google Fit', 'Supabase'],
+    demoType: 'case-study'
+  },
+  {
+    id: 'orbit-ops',
+    title: 'OrbitOps — Simple Route & Delivery Dispatcher',
+    category: 'custom',
+    categoryLabel: 'Business Tool & Automation',
+    tagline: 'Automatic driver route planning and live text message delivery updates.',
+    description: 'A custom tool replacing messy driver spreadsheets with an easy map showing delivery locations and auto-assigning drivers.',
+    clientType: 'Delivery & Logistics Co.',
+    tags: ['Automated Routing', 'SMS Alerts', 'Live Map', 'Spreadsheet Sync'],
+    metrics: [
+      { label: 'Fuel Cost Savings', value: '$240k/yr' },
+      { label: 'Driver Delay Reduction', value: '-68%' },
+      { label: 'Time to Plan Routes', value: '5 mins' }
+    ],
+    image: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=1200&q=80',
+    highlights: [
+      'Turned 3 hours of daily manual spreadsheet scheduling into a 5-minute automated click',
+      'Automatically sends SMS text alerts to customers when the driver is 10 minutes away',
+      'Simple touch interface that drivers can easily read on their phone'
+    ],
+    problem: 'The business owner spent every morning stressing over paper maps and spreadsheets to assign 40+ deliveries by hand.',
+    solution: 'Engineered an easy web dashboard where they upload addresses and click "Optimize Routes" to auto-dispatch drivers.',
+    impact: 'Saved $20,000+ monthly in driver overtime and fuel while eliminating customer complaints.',
+    techList: ['Go', 'React', 'Tailwind CSS', 'PostgreSQL', 'Twilio SMS API', 'Docker'],
     demoType: 'case-study'
   },
   {
     id: 'cyber-runner-3d',
-    title: 'ChipCrush 3D — WebGL Interactive Arcade',
+    title: 'ChipCrush 3D — Playable Browser Arcade Game',
     category: 'game',
-    categoryLabel: 'Interactive 3D Web Game',
-    tagline: 'High-speed arcade WebGL game running at 60fps directly in the browser.',
-    description: 'An interactive 3D web game engineered for a viral marketing campaign, turning semiconductor supply chain concepts into hyper-engaging gameplay.',
-    clientType: 'Tech Brand Viral Campaign',
-    tags: ['Three.js', 'WebGL', 'GLSL Shaders', 'WebAudio API', 'Leaderboards'],
+    categoryLabel: 'Interactive Web Game',
+    tagline: 'High-speed 3D arcade game running instantly in the web browser.',
+    description: 'An interactive mini-game engineered for an online product launch, generating massive viral engagement on social media.',
+    clientType: 'Brand Marketing Campaign',
+    tags: ['No Install Needed', 'Mobile & Desktop', 'Leaderboard', 'Fun Audio'],
     metrics: [
-      { label: 'Avg Play Time', value: '8.4 mins' },
+      { label: 'Avg Time Played', value: '8.4 mins' },
       { label: 'Viral Shares', value: '38,000+' },
-      { label: 'Frame Rate', value: '60 FPS on Mobile' }
+      { label: 'Smooth FPS', value: '60 FPS' }
     ],
     image: 'https://images.unsplash.com/photo-1550745165-9bc0b252726f?auto=format&fit=crop&w=1200&q=80',
     highlights: [
-      'Custom procedural racetrack generation with glowing neon PCB aesthetics',
-      'Optimized 3D geometry and compressed textures loading under 2.5MB total',
-      'Anti-cheat global multiplayer leaderboard with instant replay sharing'
+      'Opens immediately in any browser with zero app installation or signup required',
+      'Addictive arcade gameplay with catchy retro sound effects',
+      'Global scoreboard that encouraged friendly competition and viral sharing'
     ],
-    problem: 'The client needed an unconventional, show-stopping interactive campaign to engage developers and tech enthusiasts for their hardware launch.',
-    solution: 'Built an instant-loading, addictive 3D arcade runner requiring no installation, complete with retro chip synth audio and global bragging rights.',
-    impact: 'Generated 140,000 unique game sessions in the first 2 weeks, driving a 340% increase in product waitlist signups.',
-    techList: ['Three.js', 'Vite', 'TypeScript', 'GLSL', 'Howler.js', 'Node.js'],
+    problem: 'The brand wanted an exciting, memorable way to get people talking about their new launch instead of standard boring ads.',
+    solution: 'Engineered a retro 3D chip runner game where visitors dodge obstacles and share their high scores online.',
+    impact: 'Generated 140,000+ game plays in the first 2 weeks, driving a 340% increase in product signups.',
+    techList: ['Three.js', 'Vite', 'TypeScript', 'GLSL', 'Howler.js'],
     demoType: 'interactive'
-  },
-  {
-    id: 'vault-flow',
-    title: 'VaultFlow — Next-Gen Treasury & Invoice SaaS',
-    category: 'web',
-    categoryLabel: 'Full-Stack Web SaaS',
-    tagline: 'Modern B2B invoice financing & cash flow forecasting platform.',
-    description: 'A lightning-fast financial workspace enabling SMBs to automate invoice chasing, connect bank accounts, and simulate runway scenarios.',
-    clientType: 'FinTech Startup',
-    tags: ['Next.js 14', 'Tailwind CSS', 'Stripe Billing', 'Plaid API', 'PostgreSQL'],
-    metrics: [
-      { label: 'Processed Volume', value: '$12M+' },
-      { label: 'Time-to-Pay', value: '-14 Days' },
-      { label: 'Client Net Promoter', value: '+78 NPS' }
-    ],
-    image: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=1200&q=80',
-    highlights: [
-      'Integrated Plaid bank feeds and automated Stripe invoice reconciliation',
-      'Interactive visual cash flow projection simulator with real-time recalculations',
-      'Enterprise-grade RBAC security and automatic PDF invoice generation'
-    ],
-    problem: 'Small business owners were losing up to 20 hours a month chasing overdue client invoices and calculating tax reserves by hand.',
-    solution: 'Constructed an automated finance hub with 1-click invoice links, smart automated reminder workflows, and live tax estimates.',
-    impact: 'Clients reduced unpaid invoice collection delays by 42% on average and eliminated spreadsheet manual entry.',
-    techList: ['Next.js', 'TypeScript', 'Tailwind CSS', 'Plaid', 'Stripe', 'Prisma', 'PostgreSQL'],
-    demoType: 'case-study'
-  },
-  {
-    id: 'nexus-doc-ai',
-    title: 'DocuMind — Enterprise RAG & Contract Intelligence',
-    category: 'ai',
-    categoryLabel: 'AI & Knowledge Engine',
-    tagline: 'Automated legal & technical document analysis with cited source attribution.',
-    description: 'Custom AI intelligence tool that digests 5,000+ page enterprise contract archives and answers natural language queries with verifiable line-item citations.',
-    clientType: 'Legal & Procurement Firm',
-    tags: ['LangChain', 'FastAPI', 'ChromaDB', 'Vector Search', 'React'],
-    metrics: [
-      { label: 'Review Speed', value: '12x Faster' },
-      { label: 'Citation Accuracy', value: '99.2%' },
-      { label: 'Doc Ingestion', value: '100 pgs/min' }
-    ],
-    image: 'https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&w=1200&q=80',
-    highlights: [
-      'Hybrid semantic vector search + keyword BM25 retrieval for zero hallucinations',
-      'Side-by-side PDF previewer with highlighted text span verification',
-      'Granular data privacy controls with on-premise LLM support'
-    ],
-    problem: 'Attorneys spent days manually cross-referencing multi-hundred-page compliance guidelines against vendor contracts.',
-    solution: 'Built an enterprise document analyzer that extracts clauses, red-flags indemnification risks, and suggests standardized wording.',
-    impact: 'Cut average contract vetting turnaround from 4 days to under 45 minutes.',
-    techList: ['Python', 'FastAPI', 'LangChain', 'OpenAI/Gemini', 'ChromaDB', 'React', 'Tailwind'],
-    demoType: 'live'
   }
 ];

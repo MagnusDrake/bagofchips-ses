@@ -14,7 +14,7 @@ export interface ThemeConfig {
   description: string;
 }
 
-export type ProjectCategory = 'web' | 'mobile' | 'game' | 'custom' | 'ai';
+export type ProjectCategory = 'starter-web' | 'web' | 'mobile' | 'game' | 'custom' | 'ai';
 
 export interface FeatureOption {
   id: string;
@@ -40,6 +40,7 @@ export interface ServiceItem {
   startingPrice: string;
   typicalTimeline: string;
   flavorQuote: string;
+  bestFor: string;
 }
 
 export interface PortfolioItem {

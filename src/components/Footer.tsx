@@ -47,14 +47,15 @@ export const Footer: React.FC = () => {
           {/* Quick Links: Capabilities */}
           <div className="space-y-3">
             <h4 className="text-xs font-mono font-bold uppercase tracking-wider text-slate-300">
-              Capabilities
+              What We Build
             </h4>
             <ul className="space-y-2 text-xs text-slate-400">
-              <li><a href="#services" className="hover:text-white transition-colors">Web Apps & SaaS</a></li>
-              <li><a href="#services" className="hover:text-white transition-colors">iOS & Android Apps</a></li>
-              <li><a href="#services" className="hover:text-white transition-colors">3D Games & WebGL</a></li>
-              <li><a href="#services" className="hover:text-white transition-colors">Custom Automation</a></li>
-              <li><a href="#services" className="hover:text-white transition-colors">AI & RAG Systems</a></li>
+              <li><a href="#services" className="hover:text-white transition-colors">Simple Websites ($490+)</a></li>
+              <li><a href="#services" className="hover:text-white transition-colors">Web Apps & Portals</a></li>
+              <li><a href="#services" className="hover:text-white transition-colors">iPhone & Android Apps</a></li>
+              <li><a href="#services" className="hover:text-white transition-colors">Business Automation</a></li>
+              <li><a href="#services" className="hover:text-white transition-colors">Smart AI Chatbots</a></li>
+              <li><a href="#services" className="hover:text-white transition-colors">Playable Web Games</a></li>
             </ul>
           </div>
 
@@ -64,11 +65,11 @@ export const Footer: React.FC = () => {
               Studio Portal
             </h4>
             <ul className="space-y-2 text-xs text-slate-400">
-              <li><a href="#configurator" className="hover:text-white transition-colors">Chip Solution Builder</a></li>
-              <li><a href="#portfolio" className="hover:text-white transition-colors">Portfolio & Case Studies</a></li>
-              <li><a href="#process" className="hover:text-white transition-colors">The Crunch Cycle</a></li>
+              <li><a href="#configurator" className="hover:text-white transition-colors">Instant Price Builder</a></li>
+              <li><a href="#portfolio" className="hover:text-white transition-colors">Real Work Examples</a></li>
+              <li><a href="#process" className="hover:text-white transition-colors">How It Works</a></li>
               <li><a href="#client-hub" className="hover:text-white transition-colors">Live Client Tracker</a></li>
-              <li><a href="#contact" className="hover:text-white transition-colors">Direct Consultation</a></li>
+              <li><a href="#contact" className="hover:text-white transition-colors">Friendly Consultation</a></li>
             </ul>
           </div>
 

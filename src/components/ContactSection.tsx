@@ -1,239 +1,255 @@
 import React, { useState } from 'react';
 import { useStudio } from '../context/StudioContext';
-import {
-  MessageSquare,
-  Send,
-  HelpCircle,
-  ChevronDown,
-  ChevronUp,
-  ShieldCheck,
-  Zap
-} from 'lucide-react';
+import { HelpCircle, Send, ShieldCheck, ChevronDown, CheckCircle2, Clock, Mail } from 'lucide-react';
 
 export const ContactSection: React.FC = () => {
   const { themeConfig } = useStudio();
+  const [openFaq, setOpenFaq] = useState<number | null>(0);
+  const [formSubmitted, setFormSubmitted] = useState(false);
 
-  // Contact form state
+  // Form State
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
-  const [serviceNeed, setServiceNeed] = useState('Full Web Application');
-  const [budget, setBudget] = useState('$3k - $7k');
+  const [category, setCategory] = useState('starter-web');
+  const [budget, setBudget] = useState('490-1200');
   const [message, setMessage] = useState('');
-  const [sentSuccess, setSentSuccess] = useState(false);
-
-  // FAQ state
-  const [openFaqIndex, setOpenFaqIndex] = useState<number | null>(0);
 
   const faqs = [
     {
-      q: 'How does bagOfchips handle intellectual property (IP)?',
-      a: 'You own 100% of the intellectual property, code, designs, and architecture upon milestone completion. We do not lock you in with proprietary license fees.'
+      q: 'Do I really own 100% of my website or software?',
+      a: 'Yes, 100%. Once your project is completed, all code, designs, and domain assets belong entirely to you. We never charge recurring proprietary license fees or hold your website hostage.'
     },
     {
-      q: 'How fast can we start and launch an MVP?',
-      a: 'We kick off projects within 48 hours of scope approval. Most MVPs (Web, Mobile, Game, or Custom AI automation) are fully tested and deployed in 2 to 4 weeks.'
+      q: 'How much does a simple business website cost and how fast is it?',
+      a: 'Our simple business websites start at just $490 and are typically completed and launched in 3 to 5 business days. This includes mobile responsiveness, Google Maps location setup, WhatsApp/email contact buttons, and custom domain connection.'
     },
     {
-      q: 'How do you structure payments and milestones?',
-      a: 'We work on transparent fixed-price milestones (typically 30% upfront kickoff, 40% functional beta milestone, 30% final deployment & handover). No surprise hourly billings.'
+      q: 'What if I am not technical? Will I be able to manage things?',
+      a: 'Don’t worry at all! We set everything up so you don’t need to touch a line of code. We can provide an easy admin panel or handle all future updates for you with our friendly support.'
     },
     {
-      q: 'Can bagOfchips take over an existing legacy codebase?',
-      a: 'Yes! We frequently refactor, optimize, and scale existing codebases (React, Next.js, React Native, Python, Go, Node.js) eliminating bugs and bottlenecks.'
+      q: 'How do payments and milestones work?',
+      a: 'We work on transparent, fixed-price milestones (usually a 50% deposit to begin and 50% upon your final review and launch). You always know the exact price upfront with zero hidden surprises.'
+    },
+    {
+      q: 'Can you fix, improve, or take over an existing website or app?',
+      a: 'Yes! If you have an existing website or messy codebase that needs bug fixes, speed optimization, redesign, or new features, we can audit it and get it running smoothly.'
     }
   ];
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    setSentSuccess(true);
+    setFormSubmitted(true);
     setTimeout(() => {
       setName('');
       setEmail('');
       setMessage('');
-    }, 2000);
+    }, 1000);
   };
 
   return (
     <section id="contact" className="py-24 relative overflow-hidden bg-circuit-pattern">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12">
           {/* Left Column: Direct Consultation Form */}
-          <div className="lg:col-span-7 space-y-8">
-            <div className="space-y-4">
+          <div className="lg:col-span-6 space-y-6">
+            <div className="space-y-3">
               <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full border bg-white/5 backdrop-blur-md">
-                <MessageSquare className="w-3.5 h-3.5" style={{ color: themeConfig.primaryColor }} />
+                <Mail className="w-3.5 h-3.5" style={{ color: themeConfig.primaryColor }} />
                 <span className="text-xs font-mono font-bold tracking-wider uppercase text-slate-300">
-                  Direct Studio Access
+                  Friendly Consultation
                 </span>
               </div>
 
-              <h2 className="text-3xl sm:text-5xl font-black text-white tracking-tight theme-font-title">
-                Let's crunch your <span style={{ color: themeConfig.primaryColor }}>next software build.</span>
+              <h2 className="text-3xl sm:text-4xl font-black text-white tracking-tight theme-font-title">
+                Let’s talk about your <span style={{ color: themeConfig.primaryColor }}>next project.</span>
               </h2>
-              <p className="text-slate-300 text-base">
-                Have a project in mind or an unsolved technical challenge? Send us a quick note and our lead engineers will respond within 4 hours.
+              <p className="text-slate-300 text-sm sm:text-base leading-relaxed">
+                Have a question or want to discuss what you need built? Send us a quick note and our lead engineer will reply in under 4 hours.
               </p>
             </div>
 
-            {/* Form Box */}
+            {/* Consultation Card */}
             <div
-              className="rounded-3xl border p-6 sm:p-8 backdrop-blur-2xl shadow-2xl relative"
+              className="p-6 sm:p-8 rounded-3xl border backdrop-blur-2xl transition-all duration-500 shadow-2xl relative"
               style={{
-                backgroundColor: `${themeConfig.bgHex}F0`,
+                backgroundColor: `${themeConfig.bgHex}F2`,
                 borderColor: themeConfig.primaryColor,
               }}
             >
-              <form onSubmit={handleSubmit} className="space-y-4">
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                  <div>
-                    <label className="block text-xs font-mono text-slate-400 mb-1">Your Name *</label>
-                    <input
-                      type="text"
+              {formSubmitted ? (
+                <div className="text-center py-10 space-y-3">
+                  <div
+                    className="w-14 h-14 rounded-full mx-auto flex items-center justify-center text-black shadow-lg"
+                    style={{ backgroundColor: themeConfig.primaryColor }}
+                  >
+                    <CheckCircle2 className="w-8 h-8" />
+                  </div>
+                  <h3 className="text-xl font-bold text-white">Message Received!</h3>
+                  <p className="text-xs text-slate-300 max-w-sm mx-auto">
+                    Thanks for reaching out! We’re reviewing your project and will email you back within 4 hours with recommendations.
+                  </p>
+                  <button
+                    onClick={() => setFormSubmitted(false)}
+                    className="text-xs font-mono font-bold text-amber-300 underline pt-2 cursor-pointer"
+                  >
+                    Send another inquiry
+                  </button>
+                </div>
+              ) : (
+                <form onSubmit={handleSubmit} className="space-y-4">
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    <div className="space-y-1.5">
+                      <label className="text-xs font-mono text-slate-300">Your Name *</label>
+                      <input
+                        type="text"
+                        required
+                        value={name}
+                        onChange={(e) => setName(e.target.value)}
+                        placeholder="e.g. John Doe"
+                        className="w-full bg-black/40 border border-white/15 rounded-xl px-3.5 py-2.5 text-xs text-white placeholder-slate-500 focus:outline-none focus:border-amber-400"
+                      />
+                    </div>
+
+                    <div className="space-y-1.5">
+                      <label className="text-xs font-mono text-slate-300">Email Address *</label>
+                      <input
+                        type="email"
+                        required
+                        value={email}
+                        onChange={(e) => setEmail(e.target.value)}
+                        placeholder="john@example.com"
+                        className="w-full bg-black/40 border border-white/15 rounded-xl px-3.5 py-2.5 text-xs text-white placeholder-slate-500 focus:outline-none focus:border-amber-400"
+                      />
+                    </div>
+                  </div>
+
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    <div className="space-y-1.5">
+                      <label className="text-xs font-mono text-slate-300">What are you looking for?</label>
+                      <select
+                        value={category}
+                        onChange={(e) => setCategory(e.target.value)}
+                        className="w-full bg-black/80 border border-white/15 rounded-xl px-3 py-2.5 text-xs text-white focus:outline-none focus:border-amber-400"
+                      >
+                        <option value="starter-web">Simple Business Website ($490+)</option>
+                        <option value="web">Web App / Client Portal ($1,890+)</option>
+                        <option value="mobile">iPhone & Android Mobile App ($2,990+)</option>
+                        <option value="custom">Business Automation & Tools ($1,450+)</option>
+                        <option value="ai">Smart AI Chatbot ($1,650+)</option>
+                        <option value="game">Playable Web Game ($3,200+)</option>
+                      </select>
+                    </div>
+
+                    <div className="space-y-1.5">
+                      <label className="text-xs font-mono text-slate-300">Target Budget</label>
+                      <select
+                        value={budget}
+                        onChange={(e) => setBudget(e.target.value)}
+                        className="w-full bg-black/80 border border-white/15 rounded-xl px-3 py-2.5 text-xs text-white focus:outline-none focus:border-amber-400"
+                      >
+                        <option value="490-1200">$490 – $1,200 (Simple Starter Site)</option>
+                        <option value="1200-3000">$1,200 – $3,000 (Growth Site / Automation)</option>
+                        <option value="3000-6000">$3,000 – $6,000 (Custom Web/Mobile App)</option>
+                        <option value="6000+">$6,000+ (Full Platform / Game)</option>
+                      </select>
+                    </div>
+                  </div>
+
+                  <div className="space-y-1.5">
+                    <label className="text-xs font-mono text-slate-300">Tell us what you want to achieve *</label>
+                    <textarea
                       required
-                      placeholder="Alex Mercer"
-                      value={name}
-                      onChange={(e) => setName(e.target.value)}
-                      className="w-full bg-black/40 border border-white/15 rounded-xl px-4 py-2.5 text-xs sm:text-sm text-white placeholder-slate-500 focus:outline-none focus:border-amber-400"
+                      rows={3}
+                      value={message}
+                      onChange={(e) => setMessage(e.target.value)}
+                      placeholder="Tell us a little about your business or the problem you're trying to solve..."
+                      className="w-full bg-black/40 border border-white/15 rounded-xl px-3.5 py-2.5 text-xs text-white placeholder-slate-500 focus:outline-none focus:border-amber-400 resize-none"
                     />
                   </div>
-                  <div>
-                    <label className="block text-xs font-mono text-slate-400 mb-1">Email Address *</label>
-                    <input
-                      type="email"
-                      required
-                      placeholder="alex@company.com"
-                      value={email}
-                      onChange={(e) => setEmail(e.target.value)}
-                      className="w-full bg-black/40 border border-white/15 rounded-xl px-4 py-2.5 text-xs sm:text-sm text-white placeholder-slate-500 focus:outline-none focus:border-amber-400"
-                    />
-                  </div>
+
+                  <button
+                    type="submit"
+                    className="w-full py-3.5 px-6 rounded-2xl text-xs font-extrabold text-slate-950 flex items-center justify-center gap-2 shadow-xl hover:scale-102 active:scale-98 transition-all cursor-pointer"
+                    style={{
+                      backgroundColor: themeConfig.primaryColor,
+                      boxShadow: `0 0 25px ${themeConfig.primaryColor}55`,
+                    }}
+                  >
+                    <Send className="w-4 h-4" />
+                    <span>Send Message & Get Blueprint</span>
+                  </button>
+                </form>
+              )}
+
+              {/* Guarantees */}
+              <div className="mt-6 pt-4 border-t border-white/10 flex flex-col sm:flex-row items-center justify-between gap-3 text-[11px] text-slate-300">
+                <div className="flex items-center gap-1.5">
+                  <ShieldCheck className="w-4 h-4 text-emerald-400" />
+                  <span>100% Confidential & No Spam</span>
                 </div>
-
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                  <div>
-                    <label className="block text-xs font-mono text-slate-400 mb-1">Solution Category</label>
-                    <select
-                      value={serviceNeed}
-                      onChange={(e) => setServiceNeed(e.target.value)}
-                      className="w-full bg-black/40 border border-white/15 rounded-xl px-4 py-2.5 text-xs sm:text-sm text-white focus:outline-none focus:border-amber-400"
-                    >
-                      <option value="Full Web Application">Web Application / SaaS</option>
-                      <option value="Mobile App (iOS/Android)">Mobile App (iOS & Android)</option>
-                      <option value="Game or 3D Experience">Game / 3D Experience</option>
-                      <option value="Custom Internal Automation">Bespoke Software / Automation</option>
-                      <option value="AI Agent / RAG Engine">AI System / LLM Integration</option>
-                    </select>
-                  </div>
-                  <div>
-                    <label className="block text-xs font-mono text-slate-400 mb-1">Target Budget Range</label>
-                    <select
-                      value={budget}
-                      onChange={(e) => setBudget(e.target.value)}
-                      className="w-full bg-black/40 border border-white/15 rounded-xl px-4 py-2.5 text-xs sm:text-sm text-white focus:outline-none focus:border-amber-400"
-                    >
-                      <option value="$2.5k - $5k">$2,500 – $5,000 (Sprint MVP)</option>
-                      <option value="$5k - $10k">$5,000 – $10,000 (Full Production)</option>
-                      <option value="$10k - $25k+">$10,000 – $25,000+ (Enterprise System)</option>
-                      <option value="Flexible">Flexible / Needs Consultation</option>
-                    </select>
-                  </div>
+                <div className="flex items-center gap-1.5">
+                  <Clock className="w-4 h-4 text-amber-400" />
+                  <span>Reply in under 4 hours</span>
                 </div>
-
-                <div>
-                  <label className="block text-xs font-mono text-slate-400 mb-1">Project Details & Objectives *</label>
-                  <textarea
-                    rows={4}
-                    required
-                    placeholder="Tell us what you're building or the real-life problem you're trying to solve..."
-                    value={message}
-                    onChange={(e) => setMessage(e.target.value)}
-                    className="w-full bg-black/40 border border-white/15 rounded-xl px-4 py-2.5 text-xs sm:text-sm text-white placeholder-slate-500 focus:outline-none focus:border-amber-400 resize-none"
-                  />
-                </div>
-
-                <button
-                  type="submit"
-                  className="w-full py-4 px-6 rounded-xl text-sm font-extrabold text-slate-950 flex items-center justify-center gap-2 shadow-2xl hover:scale-102 active:scale-98 transition-all"
-                  style={{
-                    backgroundColor: themeConfig.primaryColor,
-                    boxShadow: `0 0 25px ${themeConfig.primaryColor}55`,
-                  }}
-                >
-                  <Send className="w-4 h-4" />
-                  <span>Send Studio Inquiry</span>
-                </button>
-
-                {sentSuccess && (
-                  <div className="bg-emerald-950/60 border border-emerald-500/40 rounded-xl p-3 text-center text-xs sm:text-sm text-emerald-300">
-                    ✓ Message received! We'll review your specs and contact you within 4 hours.
-                  </div>
-                )}
-              </form>
+              </div>
             </div>
           </div>
 
-          {/* Right Column: Studio FAQ & Trust Points */}
-          <div className="lg:col-span-5 space-y-8">
-            <div className="space-y-4">
+          {/* Right Column: FAQ Accordion */}
+          <div className="lg:col-span-6 space-y-6">
+            <div className="space-y-3">
               <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full border bg-white/5 backdrop-blur-md">
                 <HelpCircle className="w-3.5 h-3.5" style={{ color: themeConfig.primaryColor }} />
                 <span className="text-xs font-mono font-bold tracking-wider uppercase text-slate-300">
                   Frequently Asked Questions
                 </span>
               </div>
-              <h3 className="text-2xl sm:text-3xl font-black text-white">
-                Straight answers, zero fluff.
-              </h3>
+
+              <h2 className="text-3xl sm:text-4xl font-black text-white tracking-tight theme-font-title">
+                Straight answers, <span style={{ color: themeConfig.primaryColor }}>zero fluff.</span>
+              </h2>
+              <p className="text-slate-300 text-sm sm:text-base leading-relaxed">
+                Everything you need to know about working with bagOfchips Software Engineering Studio.
+              </p>
             </div>
 
-            {/* FAQ Accordion */}
             <div className="space-y-3">
-              {faqs.map((faq, index) => {
-                const isOpen = openFaqIndex === index;
+              {faqs.map((faq, idx) => {
+                const isOpen = openFaq === idx;
                 return (
                   <div
-                    key={index}
-                    className="rounded-2xl border bg-white/5 backdrop-blur-md overflow-hidden transition-all"
+                    key={idx}
+                    className={`rounded-2xl border transition-all duration-200 overflow-hidden ${
+                      isOpen
+                        ? 'bg-white/10 border-white/30 shadow-lg'
+                        : 'bg-white/5 border-white/10 hover:border-white/20'
+                    }`}
                     style={{
-                      borderColor: isOpen ? themeConfig.primaryColor : 'rgba(255,255,255,0.1)',
+                      borderColor: isOpen ? themeConfig.primaryColor : undefined,
                     }}
                   >
                     <button
-                      onClick={() => setOpenFaqIndex(isOpen ? null : index)}
-                      className="w-full p-4 sm:p-5 text-left flex items-center justify-between gap-3 text-sm font-bold text-white hover:text-amber-300 transition-colors"
+                      onClick={() => setOpenFaq(isOpen ? null : idx)}
+                      className="w-full px-5 py-4 text-left flex items-center justify-between gap-4 cursor-pointer"
                     >
-                      <span>{faq.q}</span>
-                      {isOpen ? (
-                        <ChevronUp className="w-4 h-4 shrink-0 text-slate-400" />
-                      ) : (
-                        <ChevronDown className="w-4 h-4 shrink-0 text-slate-400" />
-                      )}
+                      <span className="text-sm font-bold text-white">{faq.q}</span>
+                      <ChevronDown
+                        className={`w-4 h-4 text-slate-400 shrink-0 transition-transform duration-300 ${
+                          isOpen ? 'rotate-180 text-white' : ''
+                        }`}
+                        style={{ color: isOpen ? themeConfig.primaryColor : undefined }}
+                      />
                     </button>
+
                     {isOpen && (
-                      <div className="px-4 sm:px-5 pb-5 text-xs sm:text-sm text-slate-300 leading-relaxed border-t border-white/5 pt-3">
+                      <div className="px-5 pb-5 pt-1 text-xs sm:text-sm text-slate-300 leading-relaxed border-t border-white/5">
                         {faq.a}
                       </div>
                     )}
                   </div>
                 );
               })}
-            </div>
-
-            {/* Guarantees Box */}
-            <div className="bg-white/5 border border-white/10 rounded-3xl p-6 space-y-3">
-              <h4 className="text-xs font-mono font-bold uppercase tracking-wider text-slate-400">
-                The bagOfchips Guarantee:
-              </h4>
-              <div className="space-y-2">
-                <div className="flex items-center gap-2.5 text-xs text-slate-300">
-                  <ShieldCheck className="w-4 h-4" style={{ color: themeConfig.primaryColor }} />
-                  <span>Confidential NDA protection on all initial inquiries</span>
-                </div>
-                <div className="flex items-center gap-2.5 text-xs text-slate-300">
-                  <Zap className="w-4 h-4" style={{ color: themeConfig.accentColor }} />
-                  <span>Guaranteed fixed sprint timelines with weekly live demos</span>
-                </div>
-              </div>
             </div>
           </div>
         </div>

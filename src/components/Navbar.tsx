@@ -19,8 +19,8 @@ export const Navbar: React.FC = () => {
   const navLinks = [
     { name: 'Services', href: '#services', icon: Layers },
     { name: 'Portfolio', href: '#portfolio', icon: FolderKanban },
-    { name: 'Chip Builder', href: '#configurator', icon: Sparkles, highlight: true },
-    { name: 'Process', href: '#process', icon: Workflow },
+    { name: 'Instant Price Builder', href: '#configurator', icon: Sparkles, highlight: true },
+    { name: 'How It Works', href: '#process', icon: Workflow },
     { name: 'Client Hub', href: '#client-hub', icon: Activity, badge: tickets.length.toString() },
     { name: 'Contact', href: '#contact', icon: Cpu },
   ];

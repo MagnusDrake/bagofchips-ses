@@ -1,6 +1,6 @@
 import React from 'react';
 import { useStudio } from '../context/StudioContext';
-import { Sparkles, ArrowRight, ShieldCheck, Code2, Rocket, Layers, CheckCircle2 } from 'lucide-react';
+import { Sparkles, ArrowRight, Rocket, Layers, CheckCircle2, Tag, HeartHandshake } from 'lucide-react';
 import { THEMES } from '../data/themesData';
 
 export const Hero: React.FC = () => {
@@ -18,7 +18,7 @@ export const Hero: React.FC = () => {
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-center">
-          {/* Left Column: Studio Pitch & Actions */}
+          {/* Left Column: Friendly Studio Pitch */}
           <div className="lg:col-span-7 space-y-8 text-center lg:text-left">
             {/* Top Studio Badge */}
             <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full border bg-white/5 backdrop-blur-md shadow-sm">
@@ -27,15 +27,15 @@ export const Hero: React.FC = () => {
                 {themeConfig.badge}
               </span>
               <span className="text-slate-500">•</span>
-              <span className="text-xs font-medium text-slate-300">
-                Taking On Q3/Q4 Engineering Builds
+              <span className="text-xs font-medium text-amber-300 flex items-center gap-1">
+                <Tag className="w-3 h-3" /> Starter Websites from $490
               </span>
             </div>
 
             {/* Main Headline */}
-            <div className="space-y-3">
+            <div className="space-y-4">
               <h1 className="text-4xl sm:text-6xl xl:text-7xl font-black tracking-tight text-white leading-[1.08] theme-font-title">
-                Software engineering,{' '}
+                Software solutions,{' '}
                 <span
                   className="bg-clip-text text-transparent transition-all duration-500"
                   style={{
@@ -46,27 +46,39 @@ export const Hero: React.FC = () => {
                 </span>
               </h1>
               <p className="text-lg sm:text-xl text-slate-300 max-w-2xl mx-auto lg:mx-0 font-normal leading-relaxed">
-                We craft high-performance <span className="text-white font-semibold">websites</span>,{' '}
-                <span className="text-white font-semibold">mobile apps</span>,{' '}
-                <span className="text-white font-semibold">games</span>, and{' '}
-                <span className="text-white font-semibold">custom software solutions</span> that solve real-life problems.
-                Snack-sized friction, full-stack crunch.
+                Need a <span className="text-white font-semibold">simple business website</span>, an{' '}
+                <span className="text-white font-semibold">app for your customers</span>, a{' '}
+                <span className="text-white font-semibold">playable web game</span>, or a{' '}
+                <span className="text-white font-semibold">tool to automate everyday busywork</span>?
+                We make getting software easy, painless, and affordable.
               </p>
             </div>
 
             {/* Value Checkmarks */}
             <div className="grid grid-cols-2 sm:grid-cols-3 gap-3 pt-2 max-w-xl mx-auto lg:mx-0">
-              <div className="flex items-center gap-2 text-xs font-medium text-slate-300">
+              <div className="flex items-center gap-2 text-xs sm:text-sm font-medium text-slate-200">
                 <CheckCircle2 className="w-4 h-4 shrink-0" style={{ color: themeConfig.primaryColor }} />
-                <span>100% Code IP Ownership</span>
+                <span>Starter Sites from $490</span>
               </div>
-              <div className="flex items-center gap-2 text-xs font-medium text-slate-300">
+              <div className="flex items-center gap-2 text-xs sm:text-sm font-medium text-slate-200">
                 <CheckCircle2 className="w-4 h-4 shrink-0" style={{ color: themeConfig.primaryColor }} />
-                <span>2-4 Week Fast MVP Sprints</span>
+                <span>Fast 3–5 Day Delivery</span>
               </div>
-              <div className="flex items-center gap-2 text-xs font-medium text-slate-300">
+              <div className="flex items-center gap-2 text-xs sm:text-sm font-medium text-slate-200">
                 <CheckCircle2 className="w-4 h-4 shrink-0" style={{ color: themeConfig.primaryColor }} />
-                <span>Direct Engineer Access</span>
+                <span>100% You Own Everything</span>
+              </div>
+              <div className="flex items-center gap-2 text-xs sm:text-sm font-medium text-slate-200">
+                <CheckCircle2 className="w-4 h-4 shrink-0" style={{ color: themeConfig.primaryColor }} />
+                <span>Zero Confusing Jargon</span>
+              </div>
+              <div className="flex items-center gap-2 text-xs sm:text-sm font-medium text-slate-200">
+                <CheckCircle2 className="w-4 h-4 shrink-0" style={{ color: themeConfig.primaryColor }} />
+                <span>Mobile & Google Maps Ready</span>
+              </div>
+              <div className="flex items-center gap-2 text-xs sm:text-sm font-medium text-slate-200">
+                <CheckCircle2 className="w-4 h-4 shrink-0" style={{ color: themeConfig.primaryColor }} />
+                <span>Friendly Human Support</span>
               </div>
             </div>
 
@@ -74,23 +86,23 @@ export const Hero: React.FC = () => {
             <div className="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4 pt-4">
               <a
                 href="#configurator"
-                className="w-full sm:w-auto inline-flex items-center justify-center gap-3 px-8 py-4 rounded-2xl text-base font-extrabold text-slate-950 shadow-2xl transition-all duration-300 hover:scale-105 active:scale-95 group"
+                className="w-full sm:w-auto inline-flex items-center justify-center gap-3 px-8 py-4 rounded-2xl text-base font-extrabold text-slate-950 shadow-2xl transition-all duration-300 hover:scale-105 active:scale-95 group cursor-pointer"
                 style={{
                   backgroundColor: themeConfig.primaryColor,
                   boxShadow: `0 0 30px ${themeConfig.primaryColor}55`,
                 }}
               >
                 <Sparkles className="w-5 h-5 transition-transform group-hover:rotate-45" />
-                <span>Build & Scope Your Project</span>
+                <span>Build & Price Your Project</span>
                 <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
               </a>
 
               <a
                 href="#portfolio"
-                className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 py-4 rounded-2xl text-sm font-bold text-slate-200 bg-white/5 hover:bg-white/10 border border-white/10 hover:border-white/25 transition-all duration-200 backdrop-blur-md"
+                className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 py-4 rounded-2xl text-sm font-bold text-slate-200 bg-white/5 hover:bg-white/10 border border-white/10 hover:border-white/25 transition-all duration-200 backdrop-blur-md cursor-pointer"
               >
                 <Layers className="w-4 h-4 opacity-70" />
-                <span>Explore Live Showcase</span>
+                <span>See Real Examples</span>
               </a>
             </div>
 
@@ -104,7 +116,7 @@ export const Hero: React.FC = () => {
                   <button
                     key={t.id}
                     onClick={() => setTheme(t.id)}
-                    className={`px-2.5 py-1 rounded-lg text-xs font-semibold flex items-center gap-1.5 transition-all duration-200 ${
+                    className={`px-2.5 py-1 rounded-lg text-xs font-semibold flex items-center gap-1.5 transition-all duration-200 cursor-pointer ${
                       theme === t.id
                         ? 'bg-white/20 text-white shadow-md border border-white/30 scale-105'
                         : 'text-slate-400 hover:text-slate-200 hover:bg-white/5'
@@ -118,7 +130,7 @@ export const Hero: React.FC = () => {
             </div>
           </div>
 
-          {/* Right Column: Hero Graphic / Interactive Bag Presentation */}
+          {/* Right Column: Hero Graphic */}
           <div className="lg:col-span-5 flex justify-center relative">
             <div className="relative w-full max-w-md">
               {/* Outer Glow Halo */}
@@ -165,24 +177,24 @@ export const Hero: React.FC = () => {
                   </div>
                 </div>
 
-                {/* Floating Microchips / Stats Under Graphic */}
+                {/* Friendly Benefits Under Graphic */}
                 <div className="grid grid-cols-3 gap-2 mt-3 pt-1">
                   <div className="bg-white/5 border border-white/10 rounded-xl p-2.5 text-center">
-                    <Code2 className="w-4 h-4 mx-auto mb-1 opacity-80" style={{ color: themeConfig.primaryColor }} />
-                    <div className="text-xs font-extrabold text-white font-mono">Clean Code</div>
-                    <div className="text-[9px] text-slate-400">Zero Technical Debt</div>
+                    <Tag className="w-4 h-4 mx-auto mb-1 opacity-80" style={{ color: themeConfig.primaryColor }} />
+                    <div className="text-xs font-extrabold text-white">Fair Pricing</div>
+                    <div className="text-[9px] text-slate-400">Starts at $490</div>
                   </div>
 
                   <div className="bg-white/5 border border-white/10 rounded-xl p-2.5 text-center">
                     <Rocket className="w-4 h-4 mx-auto mb-1 opacity-80" style={{ color: themeConfig.accentColor }} />
-                    <div className="text-xs font-extrabold text-white font-mono">Fast Sprints</div>
-                    <div className="text-[9px] text-slate-400">Weekly Demos</div>
+                    <div className="text-xs font-extrabold text-white">Fast Turnaround</div>
+                    <div className="text-[9px] text-slate-400">Days, Not Months</div>
                   </div>
 
                   <div className="bg-white/5 border border-white/10 rounded-xl p-2.5 text-center">
-                    <ShieldCheck className="w-4 h-4 mx-auto mb-1 opacity-80" style={{ color: themeConfig.primaryColor }} />
-                    <div className="text-xs font-extrabold text-white font-mono">Rock Solid</div>
-                    <div className="text-[9px] text-slate-400">Battle Tested</div>
+                    <HeartHandshake className="w-4 h-4 mx-auto mb-1 opacity-80" style={{ color: themeConfig.primaryColor }} />
+                    <div className="text-xs font-extrabold text-white">100% Yours</div>
+                    <div className="text-[9px] text-slate-400">Full Ownership</div>
                   </div>
                 </div>
               </div>

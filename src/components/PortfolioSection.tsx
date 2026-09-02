@@ -11,12 +11,12 @@ export const PortfolioSection: React.FC = () => {
   const [activeModalItem, setActiveModalItem] = useState<PortfolioItem | null>(null);
 
   const filterTabs = [
-    { id: 'all', label: 'All Creations' },
-    { id: 'web', label: 'Web & SaaS' },
+    { id: 'all', label: 'All Projects' },
+    { id: 'starter-web', label: 'Simple Business Sites' },
+    { id: 'web', label: 'Web Apps & Portals' },
     { id: 'mobile', label: 'Mobile Apps' },
-    { id: 'game', label: '3D Games' },
-    { id: 'custom', label: 'Cloud Automations' },
-    { id: 'ai', label: 'AI Engines' },
+    { id: 'custom', label: 'Business Automation' },
+    { id: 'game', label: 'Playable Games' },
   ];
 
   const filteredItems = activeFilter === 'all'
@@ -31,15 +31,15 @@ export const PortfolioSection: React.FC = () => {
           <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full border bg-white/5 backdrop-blur-md">
             <FolderKanban className="w-3.5 h-3.5" style={{ color: themeConfig.primaryColor }} />
             <span className="text-xs font-mono font-bold tracking-wider uppercase text-slate-300">
-              Proven Track Record
+              Real Work & Results
             </span>
           </div>
 
           <h2 className="text-3xl sm:text-5xl font-black text-white tracking-tight theme-font-title">
-            Real solutions solving <span style={{ color: themeConfig.primaryColor }}>real problems.</span>
+            Simple websites to custom apps — <span style={{ color: themeConfig.primaryColor }}>see our work.</span>
           </h2>
           <p className="text-slate-300 text-base sm:text-lg">
-            A small taste of the high-impact software, mobile products, and interactive engines we've engineered.
+            See how we help local business owners, startups, and creators get software that solves real problems.
           </p>
         </div>
 
@@ -51,7 +51,7 @@ export const PortfolioSection: React.FC = () => {
               <button
                 key={tab.id}
                 onClick={() => setActiveFilter(tab.id)}
-                className={`px-4 py-2 rounded-xl text-xs font-bold transition-all duration-200 border ${
+                className={`px-4 py-2 rounded-xl text-xs font-bold transition-all duration-200 border cursor-pointer ${
                   isSelected
                     ? 'bg-white/20 text-white border-white/40 shadow-md scale-105'
                     : 'bg-white/5 text-slate-400 border-white/10 hover:text-white hover:bg-white/10'
@@ -140,7 +140,7 @@ export const PortfolioSection: React.FC = () => {
                   className="text-xs font-bold flex items-center gap-1 group-hover:translate-x-1 transition-transform"
                   style={{ color: themeConfig.primaryColor }}
                 >
-                  View Case →
+                  See Story →
                 </span>
               </div>
             </div>
