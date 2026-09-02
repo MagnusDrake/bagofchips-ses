@@ -17,11 +17,15 @@ Visitors can dynamically switch the entire visual identity, typography, glowing 
 3. 💎 **Matte Minimal**: Industrial slate precision, frosted glass, and razor-sharp geometric typography.
 4. ⚡ **Midnight Gold**: Studio dark signature with obsidian hardware, 24K silicon circuitry, and emerald accents.
 
-### 🛠️ Interactive Project Configurator ("Chip Builder")
-- **Solution Categories**: Web Apps & SaaS, Mobile Apps (iOS/Android), 3D WebGL Games, Custom Software & Automations, AI & RAG Systems.
-- **Architectural Modules**: Auth, Database Schema, Stripe Payments, Admin Dashboard, 3D Shaders, Push Notifications, Offline-first Sync, Vector Knowledge Base, and CI/CD DevOps.
-- **Sprint Multipliers**: Balanced Standard Sprint, Priority Sprint, or Turbo Crunch Mode.
-- **Instant Estimation**: Calculates real-time investment and turnaround weeks, generates an active client ticket with celebratory confetti, and directs clients to the live milestone roadmap.
+### 🛠️ Interactive Instant Price Builder
+- **Solution Categories**:
+  - 🚀 **Simple Business Websites ($490+)**: Fast 3–5 day delivery for local shops, contractors, restaurants, and freelancers.
+  - 🌐 **Web Apps & Portals ($1,890+)**: Member logins, booking systems, and customer dashboards.
+  - 📱 **Mobile Apps ($2,990+)**: Custom iOS & Android apps with push notifications and offline mode.
+  - ⚙️ **Business Automation ($1,450+)**: Connect existing tools, replace messy spreadsheets, and save weekly hours.
+  - ✨ **Smart AI Chatbots ($1,650+)**: 24/7 assistants trained on your business documents.
+  - 🎮 **Playable Web Games ($3,200+)**: Engaging 2D/3D browser games for marketing and entertainment.
+- **Everyday Practical Modules**: Contact & WhatsApp buttons, Google Maps location & SEO, Appointment booking calendars, Customer reviews, Menus/galleries, Member logins, and Stripe payments.
 
 ### 📊 Real-Time Client Hub & Sprint Tracker
 - Track active tickets through stages: `Scoping`, `In Active Sprint`, `QA Testing`, `Deployed`.
