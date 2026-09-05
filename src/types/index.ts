@@ -15,18 +15,17 @@ export interface ThemeConfig {
 }
 
 export type ProjectCategory = 
-  | 'fullstack-web'
-  | 'mobile-app'
-  | 'internal-tooling'
-  | 'ai-systems'
-  | 'interactive-engine';
+  | 'growth-website'
+  | 'customer-portal'
+  | 'workflow-automation'
+  | 'mobile-app';
 
 export interface ArchitecturalModule {
   id: string;
   name: string;
   category: ProjectCategory | 'all';
   description: string;
-  technicalSpecs: string;
+  businessImpact: string;
   baseCost: number;
   timeDays: number;
   popular?: boolean;
@@ -41,13 +40,14 @@ export interface ServiceItem {
   shortDesc: string;
   fullDesc: string;
   iconName: string;
-  architecturalHighlights: string[];
+  priceRange: string;
+  typicalTimeline: string;
+  idealFor: string;
+  keyOutcomes: string[];
   deliverablesIncluded: string[];
   techStack: string[];
   startingPrice: string;
-  typicalTimeline: string;
-  idealFor: string;
-  slaNotes: string;
+  slaNotes?: string;
 }
 
 export interface PortfolioItem {
@@ -60,11 +60,15 @@ export interface PortfolioItem {
   tags: string[];
   metrics: { label: string; value: string }[];
   image: string;
-  technicalChallenge: string;
-  architectureAndStack: string;
-  engineeringImpact: string;
+  businessChallenge: string;
+  solutionDelivered: string;
+  businessImpact: string;
   techList: string[];
-  architectureDiagram?: string[];
+  clientQuote?: {
+    quote: string;
+    author: string;
+    role: string;
+  };
 }
 
 export interface Milestone {
@@ -97,7 +101,7 @@ export interface ClientTicket {
 export interface ConfiguratorSelection {
   category: ProjectCategory;
   selectedModules: string[];
-  velocityTier: 'standard' | 'accelerated' | 'turbo';
+  velocityTier: 'standard' | 'priority' | 'rush';
   title: string;
   description: string;
   clientName: string;

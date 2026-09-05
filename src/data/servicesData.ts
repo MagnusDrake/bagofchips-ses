@@ -2,148 +2,115 @@ import type { ServiceItem } from '../types';
 
 export const SERVICES_DATA: ServiceItem[] = [
   {
-    id: 'fullstack-web',
-    title: 'Full-Stack Web Platforms & Scalable MVPs',
-    category: 'fullstack-web',
-    tagline: 'Production-ready web applications architected for scale, performance, and maintainability.',
-    shortDesc: 'End-to-end web platforms engineered with Next.js, TypeScript, PostgreSQL, and containerized cloud deployments.',
-    fullDesc: 'We architect and build full-stack web platforms and investor-ready MVPs built to scale from day one. Our systems leverage modern server-side rendering, strict end-to-end TypeScript validation, relational data modeling with automated migrations, and enterprise-grade role-based access control (RBAC). Every build includes fully automated CI/CD pipelines, staging environments, and zero technical debt.',
+    id: 'growth-website',
+    title: 'Business Growth Website',
+    category: 'growth-website',
+    tagline: 'Complete custom website built to convert local visitors into phone calls and quote requests.',
+    shortDesc: 'Modern, high-converting website engineered to turn traffic into paying clients with local SEO and instant lead capture.',
+    fullDesc: 'We design and build custom, conversion-focused websites that position your business as the premier choice in your market. Built from the ground up for speed, Google search visibility, and mobile phones, your new site makes it effortless for potential customers to call, request a quote, or book your services. Includes an easy visual editor so your staff can update content anytime with zero coding knowledge.',
     iconName: 'Globe',
-    architecturalHighlights: [
-      'Next.js (App Router) with React Server Components & Streaming SSR',
-      'Relational PostgreSQL architecture with Prisma/Drizzle ORM & connection pooling',
-      'Enterprise Authentication: OAuth 2.0, Magic Links, MFA & session revocation',
-      'Stripe integration with idempotent webhook processing & billing ledgers',
-      'Containerized Docker deployment with automated GitHub Actions CI/CD',
-      'Strict TypeScript type boundaries from database schema to client components'
+    priceRange: '$1,200 – $1,800',
+    typicalTimeline: '2–3 Weeks',
+    idealFor: 'Contractors, local service providers, medical clinics, boutique firms, and retail shops.',
+    keyOutcomes: [
+      'Top Google PageSpeed scores (95+) for maximum local search ranking',
+      'Instant SMS/Email notifications sent directly to your phone when a quote is requested',
+      'Visual content management system for painless text and photo updates',
+      'Mobile-first layout optimized for click-to-call and map directions'
     ],
     deliverablesIncluded: [
-      '100% Source Code & Intellectual Property Handover',
-      'Production AWS/GCP Infrastructure as Code (Terraform / Docker)',
-      'Automated Test Suite (Vitest unit tests & Playwright E2E)',
-      'Comprehensive Architecture & API Documentation',
-      '30-Day Post-Launch Engineering SLA & Hypercare'
+      '100% Code & Domain Ownership (Zero platform lock-in fees)',
+      'Google Maps, Google Business Profile & Local Schema SEO Setup',
+      'High-Converting Quote & Contact Forms with spam protection',
+      'Bank-Grade SSL Security & Custom Domain Routing',
+      '30 Days of Complimentary Post-Launch Support & Staff Training'
     ],
-    techStack: ['Next.js', 'React', 'TypeScript', 'Tailwind CSS', 'Node.js', 'PostgreSQL', 'Prisma', 'Redis', 'Docker', 'AWS'],
-    startingPrice: '$3,500',
+    techStack: ['React 19', 'Next.js', 'Tailwind CSS', 'TypeScript', 'Vercel / Cloudflare Edge'],
+    startingPrice: '$1,200',
+    slaNotes: '95+ Google Lighthouse mobile performance guarantee, zero recurring agency licensing fees.'
+  },
+  {
+    id: 'customer-portal',
+    title: 'Customer Portal & Online Booking',
+    category: 'customer-portal',
+    tagline: 'Streamline appointments, client accounts, invoices, and online credit card payments.',
+    shortDesc: 'Give your clients a seamless self-service portal to book appointments, review estimates, and pay invoices online.',
+    fullDesc: 'Stop playing phone tag and chasing paper checks. We engineer intuitive customer portals that let your clients schedule appointments in real-time, view upcoming service visits, inspect past work reports, and securely pay via credit card or Apple Pay. Your back office gets a clean administrative dashboard that syncs schedules across your entire team.',
+    iconName: 'Smartphone',
+    priceRange: '$2,800 – $4,500',
+    typicalTimeline: '3–5 Weeks',
+    idealFor: 'Field service contractors, health & dental clinics, consulting practices, and commercial services.',
+    keyOutcomes: [
+      'Eliminate 10+ hours per week of manual phone scheduling and billing follow-up',
+      'Cut invoice payment cycles from weeks to under 24 hours with online payments',
+      'Automated 2-way SMS reminders that cut customer no-shows by up to 40%',
+      'Centralized client dashboard for estimates, contracts, and service histories'
+    ],
+    deliverablesIncluded: [
+      'Secure Client Portal with passwordless login or magic links',
+      'Real-Time Interactive Booking Calendar with staff availability rules',
+      'Stripe Integration for credit cards, deposits, and Apple/Google Pay',
+      'Automated 2-Way SMS & Email Confirmation Sequences',
+      'Full Database & Admin Management Console'
+    ],
+    techStack: ['Next.js', 'PostgreSQL / Supabase', 'Stripe API', 'Twilio SMS', 'Tailwind CSS'],
+    startingPrice: '$2,800',
+    slaNotes: 'PCI-compliant payment architecture, 99.9% booking system uptime guarantee.'
+  },
+  {
+    id: 'workflow-automation',
+    title: 'Workflow Automation & Custom Tools',
+    category: 'workflow-automation',
+    tagline: 'Automate daily repetitive operations, sync accounting systems, and eliminate spreadsheets.',
+    shortDesc: 'Connect your favorite business tools to eliminate manual data entry, streamline dispatching, and automate reviews.',
+    fullDesc: 'Replace messy spreadsheets and hours of manual copy-pasting with reliable custom software. We connect your website, customer inquiries, QuickBooks/Xero accounting software, Google Sheets, and CRM tools into one smooth, automated workflow. Invoices create themselves, dispatched team members receive instant job details on their phones, and 5-star Google review requests go out automatically after every completed job.',
+    iconName: 'Cpu',
+    priceRange: '$1,800 – $3,200',
     typicalTimeline: '2–3 Weeks',
-    idealFor: 'Funded founders, SaaS startups, and scaling platforms needing a robust core product.',
-    slaNotes: 'Sub-100ms p95 API response times, 99.9% uptime architecture baseline.'
+    idealFor: 'Growing operations, delivery fleets, trade contractors, property managers, and busy offices.',
+    keyOutcomes: [
+      'Save 15+ hours every week by eliminating manual data entry between apps',
+      'Automatically request 5-star Google reviews after service completion',
+      'Sync customer orders and payments directly into QuickBooks or Xero without duplicates',
+      'Instant job notifications dispatched to team members via SMS or Slack'
+    ],
+    deliverablesIncluded: [
+      'Custom Operational Web Dashboard or Admin Tool',
+      'QuickBooks / Xero Bi-Directional Accounting Sync',
+      'Automated Google Review Collection Sequence',
+      'Lead Routing & Instant SMS Dispatch Alerts',
+      'Detailed Video Walkthrough & Staff Onboarding Guide'
+    ],
+    techStack: ['Node.js', 'Python', 'PostgreSQL', 'QuickBooks API', 'Google APIs', 'Twilio'],
+    startingPrice: '$1,800',
+    slaNotes: 'Transactional data consistency, zero lost leads guarantee.'
   },
   {
     id: 'mobile-app',
-    title: 'Cross-Platform Mobile Applications',
+    title: 'Custom Mobile App (iOS & Android)',
     category: 'mobile-app',
-    tagline: 'Native-feel iOS and Android applications engineered for speed, offline resilience, and hardware integration.',
-    shortDesc: 'High-performance mobile apps built with React Native and Flutter, featuring offline sync, background tasks, and native device APIs.',
-    fullDesc: 'We engineer cross-platform mobile applications that deliver native 120fps fluidity, biometric security, and flawless offline capabilities. Using a unified modern codebase (React Native or Flutter), we interface with native device hardware (cameras, Bluetooth LE sensors, Apple HealthKit, biometric keychains) and implement conflict-free offline synchronization so your app works seamlessly in low-connectivity environments.',
+    tagline: 'Dedicated iOS & Android app for repeat customer engagement, scheduling, and push notifications.',
+    shortDesc: 'A native mobile app published to the App Store and Google Play that keeps your business on your clients’ home screens.',
+    fullDesc: 'Put your brand directly into your customers’ pockets. We build fast, beautiful cross-platform mobile apps for iOS and Android that drive repeat business, loyalty rewards, real-time job status tracking, and direct push notifications. Ideal for field service technicians, fitness & wellness clubs, repeat ordering, or multi-location businesses looking to build deep customer loyalty.',
     iconName: 'Smartphone',
-    architecturalHighlights: [
-      'Unified React Native / Flutter codebase targeting iOS & Android simultaneously',
-      'Offline-First architecture with local SQLite/WatermelonDB & optimistic sync',
-      'Hardware integration: Biometrics, BLE sensors, HealthKit, Push Notifications',
-      'Secure token storage using iOS Keychain and Android Keystore',
-      'Over-the-air (OTA) updates and automated staging release channels',
-      'Sub-60ms cold start optimization and memory leak profiling'
-    ],
-    deliverablesIncluded: [
-      'Native iOS & Android Production Application Bundles',
-      'Complete App Store Connect & Google Play Console Submission Handling',
-      'Backend Edge API Sync Layer & Push Notification Microservice',
-      'Design System Components & Mobile UX Specification',
-      'Full Source Code & Build Configuration Pipelines'
-    ],
-    techStack: ['React Native', 'Expo', 'TypeScript', 'Flutter', 'SQLite', 'Supabase', 'Apple HealthKit', 'Firebase FCM'],
-    startingPrice: '$4,800',
-    typicalTimeline: '3–5 Weeks',
-    idealFor: 'Digital health, consumer fintech, logistics, and on-demand field services.',
-    slaNotes: 'App Store review guarantee, 60fps+ render cadence across iOS & Android test matrices.'
-  },
-  {
-    id: 'internal-tooling',
-    title: 'Internal Tooling, ETL Pipelines & Workflow Automation',
-    category: 'internal-tooling',
-    tagline: 'Bespoke operational software and automated pipelines that eliminate operational bottlenecks.',
-    shortDesc: 'Custom operational dashboards, asynchronous background workers, and multi-service data orchestration.',
-    fullDesc: 'Eliminate brittle spreadsheets, manual data entry, and fragmented operations. We build tailored internal command centers, automated ETL pipelines, and resilient webhook orchestrators that connect your legacy systems, ERPs, CRM databases, and financial providers. Built with background worker queues and idempotent transaction handling, our automation engines run reliably 24/7 without human intervention.',
-    iconName: 'Cpu',
-    architecturalHighlights: [
-      'Distributed background task processing via BullMQ / Celery & Redis brokers',
-      'Idempotent webhook ingestion with automatic retry backoff and dead-letter queues',
-      'High-throughput ETL pipelines converting unstructured feeds into relational data',
-      'Executive operational dashboards with fine-grained audit logs & RBAC',
-      'Two-way synchronization with Salesforce, QuickBooks, Stripe, and custom APIs',
-      'Automated PDF invoice generation, data validation, and real-time alerts'
-    ],
-    deliverablesIncluded: [
-      'Dedicated Internal Web Command Center',
-      'Automated Worker Service Infrastructure (Dockerized microservices)',
-      'Data Integrity & Reconciliation Verification Engine',
-      'Telemetry Monitoring with Sentry & OpenTelemetry alerts',
-      'Admin Training & API Integration Guides'
-    ],
-    techStack: ['Python', 'FastAPI', 'Node.js', 'PostgreSQL', 'Redis', 'BullMQ', 'Docker', 'AWS ECS', 'Tailwind CSS'],
-    startingPrice: '$3,200',
-    typicalTimeline: '2–3 Weeks',
-    idealFor: 'Operations-heavy businesses, logistics fleets, e-commerce scale-ups, and agencies.',
-    slaNotes: 'Zero data duplication, transactional consistency, automated error alerting.'
-  },
-  {
-    id: 'ai-systems',
-    title: 'Custom AI & Production RAG Knowledge Systems',
-    category: 'ai-systems',
-    tagline: 'Private, grounded enterprise intelligence engines with vector search, semantic chunking, and verifiable citations.',
-    shortDesc: 'Production-grade Retrieval-Augmented Generation (RAG) and intelligent autonomous workflows with strict zero-hallucination boundaries.',
-    fullDesc: 'We move beyond superficial chatbot wrappers to architect real enterprise intelligence engines. We build proprietary RAG systems that ingest thousands of internal technical manuals, contracts, medical records, or codebase repositories, index them using state-of-the-art vector embeddings (pgvector/Pinecone), and execute hybrid dense-sparse retrieval with reranking. Our architectures enforce strict context boundaries, token-budget optimization, and citation provenance.',
-    iconName: 'Sparkles',
-    architecturalHighlights: [
-      'Semantic document parsing & recursive chunking for PDFs, docs, and codebases',
-      'Hybrid Retrieval: Dense vector embeddings combined with BM25 keyword search',
-      'Cross-encoder reranking (Cohere / BGE) to ensure top-1 precision',
-      'Hallucination prevention with strict contextual grounding and citation anchors',
-      'Private cloud deployment: Zero customer data training or external leakage',
-      'Low-latency streaming response protocol with time-to-first-token under 600ms'
-    ],
-    deliverablesIncluded: [
-      'Complete Retrieval & Ingestion Pipeline with Document Watchers',
-      'Vector Database Cluster Configuration (pgvector / Pinecone / Qdrant)',
-      'Embeddable Studio UI & Developer REST/WebSocket APIs',
-      'Evaluation Benchmark Suite measuring precision and hallucination rates',
-      'Full Infrastructure Deployment with Latency & Cost Monitoring'
-    ],
-    techStack: ['Python', 'FastAPI', 'pgvector', 'PostgreSQL', 'LangChain', 'LlamaIndex', 'Pinecone', 'Docker', 'Claude / Gemini API'],
-    startingPrice: '$4,500',
-    typicalTimeline: '2–4 Weeks',
-    idealFor: 'Legal tech, medical devices, enterprise customer intelligence, and complex B2B knowledge bases.',
-    slaNotes: '98%+ retrieval precision benchmarks, private tenant data isolation guaranteed.'
-  },
-  {
-    id: 'interactive-engine',
-    title: 'High-Performance Interactive 3D & Simulation Engines',
-    category: 'interactive-engine',
-    tagline: 'Sub-millisecond interactive web simulations, 3D product visualizers, and WebGL experiences.',
-    shortDesc: 'Shader-driven 3D web engines and immersive graphics running smoothly at 60fps in any browser without plugins.',
-    fullDesc: 'We engineer rich, real-time 3D web applications and technical simulations that run at a locked 60fps across mobile and desktop browsers. Leveraging Three.js, WebGL2, and custom GLSL vertex/fragment shaders, we build interactive product configurators, engineering telemetry simulations, and engaging gamified experiences with zero installation overhead.',
-    iconName: 'Gamepad2',
-    architecturalHighlights: [
-      'Optimized Three.js / WebGL2 rendering pipeline with GPU instancing',
-      'Custom GLSL vertex & fragment shaders for dynamic lighting, physics, and particles',
-      'Real-time bi-directional telemetry visualization via binary WebSockets',
-      'Web Worker offloading for complex physics calculations to prevent main-thread jank',
-      'Asset compression via Draco and KTX2 texture optimization',
-      'Responsive touch, trackpad, and gyroscope navigation integration'
-    ],
-    deliverablesIncluded: [
-      'Production WebGL Interactive Application Engine',
-      'Optimized 3D Asset Pipeline & Shader Libraries',
-      'Real-Time Telemetry / Input Control Layer',
-      'Cross-Browser & Low-Power Mobile Device Compatibility Guarantee',
-      'Full Source Code & Build Configuration'
-    ],
-    techStack: ['Three.js', 'WebGL2', 'GLSL', 'TypeScript', 'Vite', 'WebSockets', 'Web Workers', 'Web Audio API'],
-    startingPrice: '$5,500',
+    priceRange: '$4,500 – $8,000+',
     typicalTimeline: '4–6 Weeks',
-    idealFor: 'Hardware manufacturers, automotive & aerospace visualization, viral marketing, and technical training.',
-    slaNotes: 'Consistent 60fps render loop target, memory leak profiling for sustained browser sessions.'
+    idealFor: 'Established service companies, specialty retail, wellness studios, and logistics teams.',
+    keyOutcomes: [
+      'Direct-to-lockscreen push notifications with 90%+ open rates for announcements & offers',
+      'Seamless mobile booking, loyalty points, and one-tap re-ordering',
+      'Offline-capable field access for technicians working in low-signal basements or remote sites',
+      'Biometric Face ID / Touch ID login for instantaneous user access'
+    ],
+    deliverablesIncluded: [
+      'Native iOS (Apple App Store) & Android (Google Play Store) Applications',
+      'Complete App Store Submission, Certification & Review Handling',
+      'Push Notification Management Dashboard',
+      'Secure Customer Authentication with Biometric Support',
+      '100% Codebase Ownership & App Store Account Setup'
+    ],
+    techStack: ['React Native', 'Expo', 'TypeScript', 'Supabase', 'Apple APNs', 'Firebase FCM'],
+    startingPrice: '$4,500',
+    slaNotes: 'Guaranteed App Store & Google Play approval, 30 days of post-launch submission support.'
   }
 ];

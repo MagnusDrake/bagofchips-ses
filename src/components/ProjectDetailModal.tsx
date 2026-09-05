@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import type { PortfolioItem } from '../types';
 import { useStudio } from '../context/StudioContext';
-import { X, ArrowRight, GitBranch } from 'lucide-react';
+import { X, ArrowRight, Quote } from 'lucide-react';
 
 interface ProjectDetailModalProps {
   item: PortfolioItem;
@@ -26,7 +26,7 @@ export const ProjectDetailModal: React.FC<ProjectDetailModalProps> = ({ item, on
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6 overflow-y-auto backdrop-blur-md bg-black/80 animate-in fade-in duration-200">
       <div
-        className="relative w-full max-w-4xl rounded-3xl border bg-[#0b0f19] shadow-2xl overflow-hidden my-8 max-h-[90vh] flex flex-col"
+        className="relative w-full max-w-4xl rounded-3xl border bg-[#0b1120] shadow-2xl overflow-hidden my-8 max-h-[90vh] flex flex-col"
         style={{ borderColor: 'rgba(255, 255, 255, 0.15)' }}
       >
         {/* Header Bar */}
@@ -42,8 +42,8 @@ export const ProjectDetailModal: React.FC<ProjectDetailModalProps> = ({ item, on
               {item.categoryLabel}
             </span>
             <span className="text-slate-500">•</span>
-            <span className="text-xs font-mono text-slate-400">
-              Client: {item.clientType}
+            <span className="text-xs font-semibold text-slate-300">
+              {item.clientType}
             </span>
           </div>
 
@@ -57,13 +57,13 @@ export const ProjectDetailModal: React.FC<ProjectDetailModalProps> = ({ item, on
         </div>
 
         {/* Scrollable Content Body */}
-        <div className="p-6 sm:p-8 space-y-8 overflow-y-auto">
+        <div className="p-6 sm:p-8 space-y-7 overflow-y-auto">
           {/* Title & Tagline */}
           <div className="space-y-2">
             <h2 className="text-2xl sm:text-3xl font-black text-white">
               {item.title}
             </h2>
-            <p className="text-sm sm:text-base text-slate-300 leading-relaxed">
+            <p className="text-sm sm:text-base text-slate-300 leading-relaxed font-medium">
               {item.tagline}
             </p>
           </div>
@@ -77,74 +77,67 @@ export const ProjectDetailModal: React.FC<ProjectDetailModalProps> = ({ item, on
               >
                 <div
                   className="text-2xl font-black font-mono"
-                  style={{ color: idx === 0 ? themeConfig.primaryColor : '#ffffff' }}
+                  style={{ color: idx === 0 ? themeConfig.accentColor : '#ffffff' }}
                 >
                   {metric.value}
                 </div>
-                <div className="text-xs text-slate-400 mt-1 font-mono">{metric.label}</div>
+                <div className="text-xs text-slate-300 mt-1 font-semibold">{metric.label}</div>
               </div>
             ))}
           </div>
 
-          {/* Architecture Pipeline Flow (if provided) */}
-          {item.architectureDiagram && (
-            <div className="p-4 rounded-2xl bg-black/60 border border-white/10 space-y-3">
-              <div className="text-xs font-mono font-bold uppercase tracking-wider text-slate-400 flex items-center gap-2">
-                <GitBranch className="w-3.5 h-3.5 text-amber-400" />
-                <span>Architectural Event Flow Pipeline</span>
-              </div>
-              <div className="flex flex-wrap items-center gap-2 text-xs font-mono">
-                {item.architectureDiagram.map((node, nIdx) => (
-                  <React.Fragment key={nIdx}>
-                    <span className="px-2.5 py-1.5 rounded-lg bg-white/5 border border-white/10 text-slate-200">
-                      {node}
-                    </span>
-                    {nIdx < item.architectureDiagram!.length - 1 && (
-                      <span className="text-slate-600 font-bold">→</span>
-                    )}
-                  </React.Fragment>
-                ))}
+          {/* Client Testimonial Quote */}
+          {item.clientQuote && (
+            <div className="p-5 rounded-2xl bg-blue-950/30 border border-blue-500/25 relative flex items-start gap-3">
+              <Quote className="w-6 h-6 text-blue-400 shrink-0 mt-0.5 opacity-80" />
+              <div className="space-y-2">
+                <p className="text-xs sm:text-sm text-slate-200 italic leading-relaxed">
+                  "{item.clientQuote.quote}"
+                </p>
+                <div className="text-xs font-semibold text-white">
+                  {item.clientQuote.author} <span className="text-slate-400 font-normal">• {item.clientQuote.role}</span>
+                </div>
               </div>
             </div>
           )}
 
-          {/* Three Technical Pillars: Challenge, Architecture, Impact */}
+          {/* Three Project Pillars: Challenge, Solution, Impact */}
           <div className="grid grid-cols-1 gap-4">
-            {/* Technical Challenge */}
+            {/* Business Challenge */}
             <div className="p-5 rounded-2xl bg-rose-950/20 border border-rose-500/20 space-y-2">
-              <div className="text-xs font-mono font-bold uppercase tracking-wider text-rose-400 flex items-center gap-2">
-                <span>01. The Technical Challenge & System Bottlenecks</span>
+              <div className="text-xs font-semibold uppercase tracking-wider text-rose-400 flex items-center gap-2">
+                <span>01. The Problem & Business Bottleneck</span>
               </div>
               <p className="text-xs sm:text-sm text-slate-200 leading-relaxed">
-                {item.technicalChallenge}
+                {item.businessChallenge}
               </p>
             </div>
 
-            {/* Architecture & Stack */}
+            {/* Solution Delivered */}
             <div className="p-5 rounded-2xl bg-sky-950/20 border border-sky-500/20 space-y-2">
-              <div className="text-xs font-mono font-bold uppercase tracking-wider text-sky-400 flex items-center gap-2">
-                <span>02. Architecture, Infrastructure & Technology Stack</span>
+              <div className="text-xs font-semibold uppercase tracking-wider text-sky-400 flex items-center gap-2">
+                <span>02. The Solution & Custom Features Built</span>
               </div>
               <p className="text-xs sm:text-sm text-slate-200 leading-relaxed">
-                {item.architectureAndStack}
+                {item.solutionDelivered}
               </p>
             </div>
 
-            {/* Engineering Impact */}
+            {/* Business Impact */}
             <div className="p-5 rounded-2xl bg-emerald-950/20 border border-emerald-500/20 space-y-2">
-              <div className="text-xs font-mono font-bold uppercase tracking-wider text-emerald-400 flex items-center gap-2">
-                <span>03. Verifiable Engineering & Business Impact</span>
+              <div className="text-xs font-semibold uppercase tracking-wider text-emerald-400 flex items-center gap-2">
+                <span>03. Measurable Revenue & Time-Saved Results</span>
               </div>
               <p className="text-xs sm:text-sm text-slate-200 leading-relaxed">
-                {item.engineeringImpact}
+                {item.businessImpact}
               </p>
             </div>
           </div>
 
           {/* Verified Tech List */}
-          <div className="space-y-2 pt-2">
-            <h4 className="text-xs font-mono font-bold uppercase tracking-wider text-slate-400">
-              Deployed Technologies & Cloud Services:
+          <div className="space-y-2 pt-1">
+            <h4 className="text-xs font-semibold uppercase tracking-wider text-slate-400">
+              Integrations & Tools Deployed:
             </h4>
             <div className="flex flex-wrap gap-2">
               {item.techList.map((tech, idx) => (
@@ -161,18 +154,18 @@ export const ProjectDetailModal: React.FC<ProjectDetailModalProps> = ({ item, on
 
         {/* Footer Action */}
         <div className="p-6 border-t border-white/10 bg-white/5 flex flex-col sm:flex-row items-center justify-between gap-4">
-          <div className="text-xs text-slate-400 font-mono">
-            Need similar architecture engineered for your company?
+          <div className="text-xs text-slate-300 font-medium">
+            Ready to get similar results for your business?
           </div>
           <button
             onClick={() => {
               onClose();
               openConfiguratorWithCategory(item.category);
             }}
-            className="w-full sm:w-auto py-2.5 px-5 rounded-xl text-xs font-bold text-slate-950 flex items-center justify-center gap-2 transition-all hover:scale-102 cursor-pointer"
+            className="w-full sm:w-auto py-2.5 px-5 rounded-xl text-xs font-bold text-white flex items-center justify-center gap-2 transition-all hover:scale-102 cursor-pointer"
             style={{ backgroundColor: themeConfig.primaryColor }}
           >
-            <span>Scope a Similar Solution</span>
+            <span>Estimate a Similar Project</span>
             <ArrowRight className="w-3.5 h-3.5" />
           </button>
         </div>

@@ -14,7 +14,7 @@ import { Footer } from './components/Footer';
 
 export const AppContent: React.FC = () => {
   return (
-    <div className="min-h-screen flex flex-col selection:bg-amber-500 selection:text-black">
+    <div className="min-h-screen flex flex-col selection:bg-blue-600 selection:text-white">
       {/* Top Navbar */}
       <Navbar />
 

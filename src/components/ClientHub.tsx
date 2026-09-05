@@ -9,7 +9,7 @@ import {
   Sparkles,
   Plus,
   Info,
-  Terminal
+  Calendar
 } from 'lucide-react';
 
 export const ClientHub: React.FC = () => {
@@ -19,8 +19,8 @@ export const ClientHub: React.FC = () => {
 
   // New ticket quick form
   const [newTitle, setNewTitle] = useState('');
-  const [newCategory, setNewCategory] = useState<ProjectCategory>('fullstack-web');
-  const [newPriority, setNewPriority] = useState<'standard' | 'high' | 'urgent'>('high');
+  const [newCategory, setNewCategory] = useState<ProjectCategory>('growth-website');
+  const [newPriority, setNewPriority] = useState<'standard' | 'high' | 'urgent'>('standard');
   const [newClientName, setNewClientName] = useState('');
   const [newClientEmail, setNewClientEmail] = useState('');
   const [newDescription, setNewDescription] = useState('');
@@ -31,7 +31,7 @@ export const ClientHub: React.FC = () => {
   const handleQuickSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     if (!newTitle.trim() || !newClientName.trim() || !newClientEmail.trim()) {
-      setQuickFormError('Please enter project title, client name, and work email.');
+      setQuickFormError('Please enter project title, your name, and email.');
       return;
     }
     setQuickFormError(null);
@@ -42,10 +42,10 @@ export const ClientHub: React.FC = () => {
       priority: newPriority,
       clientName: newClientName.trim(),
       clientEmail: newClientEmail.trim(),
-      description: newDescription.trim() || 'Simulated engineering sprint ticket created via client portal demo.',
-      selectedModules: ['auth-rbac', 'relational-db', 'ci-cd-cloud'],
-      estimatedCost: 4500,
-      estimatedWeeks: 3,
+      description: newDescription.trim() || 'Simulated project milestone tracker created via client portal demo.',
+      selectedModules: ['sms-reminders', 'accounting-sync'],
+      estimatedCost: newCategory === 'growth-website' ? 1500 : newCategory === 'customer-portal' ? 3200 : 2400,
+      estimatedWeeks: newCategory === 'growth-website' ? 2 : 3,
     });
 
     setSelectedTicketId(created.id);
@@ -61,28 +61,29 @@ export const ClientHub: React.FC = () => {
         <div className="max-w-3xl mb-10 space-y-4">
           <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full border bg-white/5 backdrop-blur-md">
             <Activity className="w-3.5 h-3.5" style={{ color: themeConfig.primaryColor }} />
-            <span className="text-xs font-mono font-bold tracking-wider uppercase text-slate-300">
-              Interactive Sprint Simulator
+            <span className="text-xs font-semibold tracking-wider uppercase text-slate-300">
+              Interactive Client Portal Simulator
             </span>
           </div>
 
           <h2 className="text-3xl sm:text-5xl font-black text-white tracking-tight theme-font-title">
-            Transparent sprints. <span style={{ color: themeConfig.primaryColor }}>Live telemetry.</span>
+            Transparent milestones.{' '}
+            <span style={{ color: themeConfig.primaryColor }}>Live project progress.</span>
           </h2>
           <p className="text-slate-300 text-base sm:text-lg leading-relaxed">
-            Every client gets a dedicated engineering dashboard showing real-time sprint velocity, verifiable test builds, code staging links, and automated CI/CD milestone roadmaps.
+            Every client receives access to our private client hub to watch weekly milestone progress, test clickable prototypes, view deliverables, and communicate directly with their lead developer.
           </p>
         </div>
 
         {/* PROMINENT SIMULATION NOTICE */}
-        <div className="mb-10 p-4 rounded-2xl bg-amber-500/10 border border-amber-500/25 flex items-start gap-3.5 text-xs text-amber-200">
-          <Info className="w-5 h-5 shrink-0 text-amber-400 mt-0.5" />
+        <div className="mb-10 p-4 rounded-2xl bg-blue-500/10 border border-blue-500/25 flex items-start gap-3.5 text-xs text-blue-200">
+          <Info className="w-5 h-5 shrink-0 text-blue-400 mt-0.5" />
           <div className="space-y-1">
-            <span className="font-bold text-amber-300 block">
-              Interactive Client Portal Simulation (Demo Environment)
+            <span className="font-bold text-blue-300 block">
+              Interactive Client Portal Demonstration
             </span>
-            <span className="text-amber-200/90 leading-relaxed block">
-              This interactive simulator illustrates how active clients monitor our engineering sprints. Real client repositories, production credentials, and proprietary codebases are strictly confidential and protected behind private SSO barriers.
+            <span className="text-blue-200/90 leading-relaxed block">
+              This interactive dashboard demonstrates how active clients track their project build in real time. Real client domains, customer databases, and confidential business data are securely hosted in private client environments.
             </span>
           </div>
         </div>
@@ -96,80 +97,79 @@ export const ClientHub: React.FC = () => {
           <div className="p-4 sm:p-6 border-b border-white/10 bg-white/5 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
             <div className="flex items-center gap-3">
               <span className="w-3 h-3 rounded-full bg-emerald-400 animate-pulse" />
-              <span className="text-xs sm:text-sm font-mono font-bold text-white uppercase tracking-wider">
-                Active Client Portal ({tickets.length} Simulated Sprints)
+              <span className="text-xs sm:text-sm font-semibold text-white tracking-wider">
+                Active Client Portal ({tickets.length} Projects in Progress)
               </span>
             </div>
 
             <button
               onClick={() => setShowNewTicketForm(!showNewTicketForm)}
-              className="py-2 px-4 rounded-xl text-xs font-bold text-slate-950 flex items-center justify-center gap-2 transition-all hover:scale-102 cursor-pointer shrink-0"
+              className="py-2 px-4 rounded-xl text-xs font-bold text-white flex items-center justify-center gap-2 transition-all hover:scale-102 cursor-pointer shrink-0"
               style={{ backgroundColor: themeConfig.primaryColor }}
             >
               <Plus className="w-4 h-4" />
-              <span>Simulate Dispatching a Ticket</span>
+              <span>Simulate Adding a Project</span>
             </button>
           </div>
 
-          {/* Quick Ticket Submission Panel */}
+          {/* Quick Project Submission Panel */}
           {showNewTicketForm && (
             <div className="p-6 border-b border-white/10 bg-black/80 animate-in slide-in-from-top">
               <h3 className="text-sm font-bold text-white mb-3 flex items-center gap-2">
-                <Terminal className="w-4 h-4 text-emerald-400" />
-                Dispatch Simulated Engineering Sprint Ticket
+                <Calendar className="w-4 h-4 text-emerald-400" />
+                Add a Simulated Project to Test the Dashboard
               </h3>
               <form onSubmit={handleQuickSubmit} className="grid grid-cols-1 sm:grid-cols-4 gap-3">
                 <input
                   type="text"
                   required
-                  placeholder="Ticket Title (e.g. Stripe Webhook Reconciliation)"
+                  placeholder="Project Name (e.g. Oakridge Dental Booking System)"
                   value={newTitle}
                   onChange={(e) => setNewTitle(e.target.value)}
-                  className="bg-white/5 border border-white/15 rounded-xl px-3 py-2 text-xs text-white placeholder-slate-500 focus:outline-none focus:border-amber-400 sm:col-span-2"
+                  className="bg-white/5 border border-white/15 rounded-xl px-3 py-2 text-xs text-white placeholder-slate-500 focus:outline-none focus:border-blue-400 sm:col-span-2"
                 />
                 <input
                   type="text"
                   required
-                  placeholder="Client Name / Lead"
+                  placeholder="Your Name"
                   value={newClientName}
                   onChange={(e) => setNewClientName(e.target.value)}
-                  className="bg-white/5 border border-white/15 rounded-xl px-3 py-2 text-xs text-white placeholder-slate-500 focus:outline-none focus:border-amber-400"
+                  className="bg-white/5 border border-white/15 rounded-xl px-3 py-2 text-xs text-white placeholder-slate-500 focus:outline-none focus:border-blue-400"
                 />
                 <input
                   type="email"
                   required
-                  placeholder="Work Email"
+                  placeholder="Email Address"
                   value={newClientEmail}
                   onChange={(e) => setNewClientEmail(e.target.value)}
-                  className="bg-white/5 border border-white/15 rounded-xl px-3 py-2 text-xs text-white placeholder-slate-500 focus:outline-none focus:border-amber-400"
+                  className="bg-white/5 border border-white/15 rounded-xl px-3 py-2 text-xs text-white placeholder-slate-500 focus:outline-none focus:border-blue-400"
                 />
                 <select
                   value={newCategory}
                   onChange={(e) => setNewCategory(e.target.value as ProjectCategory)}
-                  className="bg-black/90 border border-white/15 rounded-xl px-3 py-2 text-xs text-white focus:outline-none focus:border-amber-400"
+                  className="bg-black/90 border border-white/15 rounded-xl px-3 py-2 text-xs text-white focus:outline-none focus:border-blue-400"
                 >
-                  <option value="fullstack-web">Full-Stack Web</option>
-                  <option value="mobile-app">Mobile Systems</option>
-                  <option value="internal-tooling">Internal Tooling</option>
-                  <option value="ai-systems">AI & RAG</option>
-                  <option value="interactive-engine">3D Graphics</option>
+                  <option value="growth-website">Business Growth Website</option>
+                  <option value="customer-portal">Customer Portal & Booking</option>
+                  <option value="workflow-automation">Workflow Automation</option>
+                  <option value="mobile-app">Custom Mobile App</option>
                 </select>
                 <select
                   value={newPriority}
                   onChange={(e) => setNewPriority(e.target.value as any)}
-                  className="bg-black/90 border border-white/15 rounded-xl px-3 py-2 text-xs text-white focus:outline-none focus:border-amber-400"
+                  className="bg-black/90 border border-white/15 rounded-xl px-3 py-2 text-xs text-white focus:outline-none focus:border-blue-400"
                 >
-                  <option value="standard">Standard Priority</option>
-                  <option value="high">High Priority</option>
-                  <option value="urgent">Urgent Crunch</option>
+                  <option value="standard">Standard Pace</option>
+                  <option value="high">Priority Queue</option>
+                  <option value="urgent">Express Launch</option>
                 </select>
                 <button
                   type="submit"
-                  className="py-2 px-4 rounded-xl text-xs font-bold text-slate-950 flex items-center justify-center gap-2 transition-all hover:scale-102 cursor-pointer sm:col-span-2"
+                  className="py-2 px-4 rounded-xl text-xs font-bold text-white flex items-center justify-center gap-2 transition-all hover:scale-102 cursor-pointer sm:col-span-2"
                   style={{ backgroundColor: themeConfig.primaryColor }}
                 >
                   <Sparkles className="w-3.5 h-3.5" />
-                  <span>Submit to Simulator Board</span>
+                  <span>Add Project to Simulator Board</span>
                 </button>
               </form>
               {quickFormError && (
@@ -185,7 +185,7 @@ export const ClientHub: React.FC = () => {
             {/* Left Sidebar: Tickets List */}
             <div className="lg:col-span-4 p-4 sm:p-6 space-y-3">
               <div className="text-[10px] font-mono uppercase tracking-widest text-slate-400 mb-2">
-                Simulated Sprint Backlog & Status:
+                Active Project Backlog:
               </div>
 
               {tickets.map((ticket) => {
@@ -212,7 +212,7 @@ export const ClientHub: React.FC = () => {
                           ticket.status === 'deployed'
                             ? 'bg-emerald-500/20 text-emerald-300'
                             : ticket.status === 'qa_testing'
-                            ? 'bg-purple-500/20 text-purple-300'
+                            ? 'bg-blue-500/20 text-blue-300'
                             : 'bg-amber-500/20 text-amber-300'
                         }`}
                       >
@@ -224,13 +224,13 @@ export const ClientHub: React.FC = () => {
                       {ticket.title}
                     </h4>
 
-                    <div className="flex items-center justify-between text-[11px] text-slate-400 font-mono">
+                    <div className="flex items-center justify-between text-[11px] text-slate-400">
                       <span>{ticket.company || ticket.clientName}</span>
-                      <span className="text-white font-bold">{ticket.progressPercent}% Velocity</span>
+                      <span className="text-white font-bold font-mono">{ticket.progressPercent}% Complete</span>
                     </div>
 
                     {/* Progress bar */}
-                    <div className="w-full bg-white/10 h-1 rounded-full mt-2.5 overflow-hidden">
+                    <div className="w-full bg-white/10 h-1.5 rounded-full mt-2.5 overflow-hidden">
                       <div
                         className="h-full rounded-full transition-all duration-500"
                         style={{
@@ -244,7 +244,7 @@ export const ClientHub: React.FC = () => {
               })}
             </div>
 
-            {/* Right Panel: Active Ticket Milestone & Telemetry Detail */}
+            {/* Right Panel: Active Ticket Milestone Detail */}
             {activeTicket && (
               <div className="lg:col-span-8 p-6 sm:p-8 space-y-8">
                 {/* Ticket Top Meta */}
@@ -253,27 +253,27 @@ export const ClientHub: React.FC = () => {
                     <div className="flex items-center gap-2">
                       <span className="text-xs font-mono text-slate-400">{activeTicket.ticketCode}</span>
                       <span className="text-slate-600">•</span>
-                      <span className="text-xs font-mono uppercase text-amber-400 font-bold">
+                      <span className="text-xs font-semibold text-emerald-400 uppercase">
                         {activeTicket.category.replace('-', ' ')}
                       </span>
                     </div>
-                    <h3 className="text-xl sm:text-2xl font-black text-white">
+                    <h3 className="text-xl sm:text-2xl font-bold text-white">
                       {activeTicket.title}
                     </h3>
-                    <p className="text-xs text-slate-300 max-w-xl">
+                    <p className="text-xs text-slate-300 max-w-xl leading-relaxed">
                       {activeTicket.description}
                     </p>
                   </div>
 
                   <div className="bg-white/5 border border-white/10 rounded-2xl p-3.5 sm:text-right shrink-0">
                     <div className="text-[10px] font-mono text-slate-400 uppercase">
-                      Sprint Budget
+                      Fixed Investment
                     </div>
                     <div className="text-xl font-bold font-mono text-white">
                       ${activeTicket.estimatedCost.toLocaleString()}
                     </div>
                     <div className="text-[10px] text-slate-400 font-mono">
-                      ~{activeTicket.estimatedWeeks} Weeks Cadence
+                      ~{activeTicket.estimatedWeeks} Weeks Timeline
                     </div>
                   </div>
                 </div>
@@ -281,9 +281,9 @@ export const ClientHub: React.FC = () => {
                 {/* Milestone Deliverables Checklist */}
                 <div className="space-y-4">
                   <div className="flex items-center justify-between">
-                    <h4 className="text-xs font-mono font-bold uppercase tracking-wider text-slate-300 flex items-center gap-2">
+                    <h4 className="text-xs font-semibold uppercase tracking-wider text-slate-300 flex items-center gap-2">
                       <Clock className="w-4 h-4 text-emerald-400" />
-                      Milestone Roadmap & Verifiable Artifacts
+                      Client Milestone Roadmap & Deliverables
                     </h4>
                     <span className="text-xs font-mono text-slate-400">
                       Overall Progress: {activeTicket.progressPercent}%
@@ -298,7 +298,7 @@ export const ClientHub: React.FC = () => {
                           milestone.status === 'completed'
                             ? 'bg-emerald-950/20 border-emerald-500/20'
                             : milestone.status === 'in_progress'
-                            ? 'bg-amber-950/20 border-amber-500/30'
+                            ? 'bg-blue-950/20 border-blue-500/30'
                             : 'bg-white/5 border-white/5 opacity-60'
                         }`}
                       >
@@ -307,7 +307,7 @@ export const ClientHub: React.FC = () => {
                             {milestone.status === 'completed' ? (
                               <CheckCircle2 className="w-4 h-4 text-emerald-400 shrink-0" />
                             ) : milestone.status === 'in_progress' ? (
-                              <Clock className="w-4 h-4 text-amber-400 shrink-0 animate-spin" />
+                              <Clock className="w-4 h-4 text-blue-400 shrink-0 animate-spin" />
                             ) : (
                               <div className="w-4 h-4 rounded-full border border-white/20 shrink-0" />
                             )}
@@ -325,7 +325,7 @@ export const ClientHub: React.FC = () => {
                           {milestone.deliverables.map((deliv, dIdx) => (
                             <span
                               key={dIdx}
-                              className="px-2 py-0.5 rounded text-[10px] font-mono bg-black/40 border border-white/10 text-slate-300 flex items-center gap-1"
+                              className="px-2.5 py-1 rounded-md text-[10px] font-medium bg-black/40 border border-white/10 text-slate-300 flex items-center gap-1"
                             >
                               <FileCode className="w-3 h-3 text-slate-400" />
                               <span>{deliv}</span>

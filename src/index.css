@@ -1,36 +1,36 @@
 @import "tailwindcss";
 
 :root {
-  --theme-primary: #f59e0b;
-  --theme-primary-hover: #d97706;
+  --theme-primary: #3b82f6;
+  --theme-primary-hover: #2563eb;
   --theme-accent: #10b981;
-  --theme-bg: #090d16;
-  --theme-surface: #0f1422;
-  --theme-surface-hover: #161e31;
-  --theme-card: rgba(15, 20, 34, 0.75);
+  --theme-bg: #0b1120;
+  --theme-surface: #0f172a;
+  --theme-surface-hover: #1e293b;
+  --theme-card: rgba(15, 23, 42, 0.85);
   --theme-border: rgba(255, 255, 255, 0.08);
-  --theme-border-active: #f59e0b;
+  --theme-border-active: #3b82f6;
   --theme-text: #f8fafc;
   --theme-text-muted: #94a3b8;
   --theme-font-heading: 'Inter', system-ui, -apple-system, sans-serif;
-  --theme-glow: 0 0 20px rgba(245, 158, 11, 0.15);
+  --theme-glow: 0 0 20px rgba(59, 130, 246, 0.15);
 }
 
-/* 1. OBSIDIAN SILICON (Flagship Studio Dark) */
+/* 1. CORPORATE SLATE (High-Trust Default) */
 .theme-midnight {
-  --theme-primary: #f59e0b;
-  --theme-primary-hover: #d97706;
+  --theme-primary: #3b82f6;
+  --theme-primary-hover: #2563eb;
   --theme-accent: #10b981;
-  --theme-bg: #090d16;
-  --theme-surface: #0f1422;
-  --theme-surface-hover: #171f33;
-  --theme-card: rgba(15, 20, 34, 0.85);
+  --theme-bg: #0b1120;
+  --theme-surface: #0f172a;
+  --theme-surface-hover: #1e293b;
+  --theme-card: rgba(15, 23, 42, 0.85);
   --theme-border: rgba(255, 255, 255, 0.08);
-  --theme-border-active: #f59e0b;
+  --theme-border-active: #3b82f6;
   --theme-text: #f8fafc;
   --theme-text-muted: #94a3b8;
   --theme-font-heading: 'Inter', system-ui, -apple-system, sans-serif;
-  --theme-glow: 0 0 25px rgba(245, 158, 11, 0.2);
+  --theme-glow: 0 0 25px rgba(59, 130, 246, 0.18);
 }
 
 /* 2. INDUSTRIAL SLATE (Precision Minimal) */
@@ -100,18 +100,18 @@ body {
   font-family: var(--theme-font-heading);
 }
 
-/* Precision Grid & Silicon Circuit Background */
+/* Subtle modern grid background */
 .bg-circuit-pattern {
   background-image: 
-    radial-gradient(rgba(255, 255, 255, 0.08) 1px, transparent 1px),
-    linear-gradient(to right, rgba(255, 255, 255, 0.015) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(255, 255, 255, 0.015) 1px, transparent 1px);
-  background-size: 28px 28px, 112px 112px, 112px 112px;
+    radial-gradient(rgba(255, 255, 255, 0.05) 1px, transparent 1px),
+    linear-gradient(to right, rgba(255, 255, 255, 0.012) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255, 255, 255, 0.012) 1px, transparent 1px);
+  background-size: 32px 32px, 128px 128px, 128px 128px;
 }
 
-/* Modern Linear-style Glassmorphic Container */
+/* Modern High-Trust Glassmorphic Container */
 .glass-panel {
-  background: rgba(15, 20, 34, 0.7);
+  background: rgba(15, 23, 42, 0.75);
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
   border: 1px solid rgba(255, 255, 255, 0.08);
@@ -122,7 +122,7 @@ body {
   transition: border-color 0.2s ease, box-shadow 0.2s ease;
 }
 .border-glow-hover:hover {
-  border-color: rgba(255, 255, 255, 0.2);
+  border-color: rgba(255, 255, 255, 0.18);
   box-shadow: 0 4px 20px -5px rgba(0, 0, 0, 0.5);
 }
 
@@ -132,7 +132,7 @@ body {
   height: 6px;
 }
 ::-webkit-scrollbar-track {
-  background: #090d16;
+  background: #0b1120;
 }
 ::-webkit-scrollbar-thumb {
   background: rgba(255, 255, 255, 0.15);
