@@ -48,6 +48,9 @@ export interface ServiceItem {
   techStack: string[];
   startingPrice: string;
   slaNotes?: string;
+  previewImage?: string;
+  previewUrl?: string;
+  previewBadge?: string;
 }
 
 export interface PortfolioItem {
@@ -64,6 +67,18 @@ export interface PortfolioItem {
   solutionDelivered: string;
   businessImpact: string;
   techList: string[];
+  heroStat?: {
+    value: string;
+    label: string;
+  };
+  beforeSummary?: string;
+  afterSummary?: string;
+  deliverablePreview?: {
+    domain: string;
+    title: string;
+    badge: string;
+    items: string[];
+  };
   clientQuote?: {
     quote: string;
     author: string;

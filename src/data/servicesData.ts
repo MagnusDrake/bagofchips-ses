@@ -27,7 +27,10 @@ export const SERVICES_DATA: ServiceItem[] = [
     ],
     techStack: ['React 19', 'Next.js', 'Tailwind CSS', 'TypeScript', 'Vercel / Cloudflare Edge'],
     startingPrice: '$1,200',
-    slaNotes: '95+ Google Lighthouse mobile performance guarantee, zero recurring agency licensing fees.'
+    slaNotes: '95+ Google Lighthouse mobile performance guarantee, zero recurring agency licensing fees.',
+    previewImage: 'https://images.unsplash.com/photo-1509440159596-0249088772ff?auto=format&fit=crop&w=1200&q=80',
+    previewUrl: 'sweetrisebakery.com/catering',
+    previewBadge: 'Responsive Web Experience',
   },
   {
     id: 'customer-portal',
@@ -55,7 +58,10 @@ export const SERVICES_DATA: ServiceItem[] = [
     ],
     techStack: ['Next.js', 'PostgreSQL / Supabase', 'Stripe API', 'Twilio SMS', 'Tailwind CSS'],
     startingPrice: '$2,800',
-    slaNotes: 'PCI-compliant payment architecture, 99.9% booking system uptime guarantee.'
+    slaNotes: 'PCI-compliant payment architecture, 99.9% booking system uptime guarantee.',
+    previewImage: 'https://images.unsplash.com/photo-1581092160607-ee22621dd758?auto=format&fit=crop&w=1200&q=80',
+    previewUrl: 'apex-heating-air.com/portal',
+    previewBadge: 'Customer Billing & Booking Portal',
   },
   {
     id: 'workflow-automation',
@@ -83,7 +89,10 @@ export const SERVICES_DATA: ServiceItem[] = [
     ],
     techStack: ['Node.js', 'Python', 'PostgreSQL', 'QuickBooks API', 'Google APIs', 'Twilio'],
     startingPrice: '$1,800',
-    slaNotes: 'Transactional data consistency, zero lost leads guarantee.'
+    slaNotes: 'Transactional data consistency, zero lost leads guarantee.',
+    previewImage: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=1200&q=80',
+    previewUrl: 'metrofleet.app/dispatch',
+    previewBadge: 'Operations Dispatch & Sync Console',
   },
   {
     id: 'mobile-app',
@@ -111,6 +120,9 @@ export const SERVICES_DATA: ServiceItem[] = [
     ],
     techStack: ['React Native', 'Expo', 'TypeScript', 'Supabase', 'Apple APNs', 'Firebase FCM'],
     startingPrice: '$4,500',
-    slaNotes: 'Guaranteed App Store & Google Play approval, 30 days of post-launch submission support.'
+    slaNotes: 'Guaranteed App Store & Google Play approval, 30 days of post-launch submission support.',
+    previewImage: 'https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?auto=format&fit=crop&w=1200&q=80',
+    previewUrl: 'App Store & Google Play',
+    previewBadge: 'Native iOS & Android Mobile Experience',
   }
 ];

@@ -261,9 +261,9 @@ export const ProjectConfigurator: React.FC = () => {
               </div>
             </div>
 
-            {/* STEP 2: Practical Business Addons */}
+            {/* STEP 2: Practical Business Addons: Compact Toggle Chips */}
             <div className="space-y-4 bg-white/5 border border-white/10 rounded-3xl p-6 backdrop-blur-xl">
-              <div className="flex items-center justify-between">
+              <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
                 <div className="flex items-center gap-3">
                   <span
                     className="w-7 h-7 rounded-full flex items-center justify-center text-xs font-mono font-extrabold text-white"
@@ -272,71 +272,93 @@ export const ProjectConfigurator: React.FC = () => {
                     2
                   </span>
                   <div>
-                    <h3 className="text-lg font-bold text-white">Select High-Value Business Add-ons</h3>
-                    <p className="text-xs text-slate-400">Optional features to save staff time and automate workflows</p>
+                    <h3 className="text-base sm:text-lg font-bold text-white">Select High-Value Business Add-ons</h3>
+                    <p className="text-xs text-slate-400">Click to toggle optional automated workflows & integrations</p>
                   </div>
                 </div>
-                <span className="text-xs font-mono text-slate-400">
-                  {selectedModules.length} Selected
-                </span>
+                <div className="flex items-center gap-2">
+                  <span className="text-xs font-mono text-slate-400">
+                    {selectedModules.length} Active
+                  </span>
+                </div>
               </div>
 
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 max-h-[460px] overflow-y-auto pr-1">
+              {/* Compact Interactive Toggle Chips Grid */}
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
                 {ARCHITECTURAL_MODULES.map((mod) => {
                   const isSelected = selectedModules.includes(mod.id);
                   const Icon = ICON_MAP[mod.iconName] || Sparkles;
 
                   return (
-                    <button
-                      key={mod.id}
-                      type="button"
-                      onClick={() => toggleModule(mod.id)}
-                      className={`p-3.5 rounded-2xl border text-left transition-all duration-200 flex items-start gap-3 relative cursor-pointer ${
-                        isSelected
-                          ? 'bg-white/10 border-white/30 shadow-md'
-                          : 'bg-white/5 border-white/5 hover:bg-white/10 hover:border-white/15'
-                      }`}
-                      style={{
-                        borderColor: isSelected ? themeConfig.primaryColor : undefined,
-                      }}
-                    >
-                      <div
-                        className="w-8 h-8 rounded-lg flex items-center justify-center shrink-0 mt-0.5"
-                        style={{
-                          backgroundColor: isSelected ? `${themeConfig.primaryColor}25` : 'rgba(255,255,255,0.05)',
-                        }}
-                      >
-                        <Icon
-                          className="w-4 h-4"
-                          style={{ color: isSelected ? themeConfig.primaryColor : '#94a3b8' }}
-                        />
-                      </div>
-
-                      <div className="flex-1 min-w-0">
-                        <div className="flex items-center justify-between gap-1 mb-1">
-                          <h4 className="text-xs font-bold text-white truncate">{mod.name}</h4>
-                          <span className="text-xs font-mono font-bold text-slate-200 shrink-0">
-                            +${mod.baseCost}
-                          </span>
-                        </div>
-                        <p className="text-[11px] text-slate-300 leading-snug line-clamp-2">{mod.description}</p>
-                        <div className="mt-1.5 text-[10px] font-semibold text-emerald-400 truncate">
-                          ★ {mod.businessImpact}
-                        </div>
-                      </div>
-
-                      <div
-                        className={`w-4 h-4 rounded-md border flex items-center justify-center shrink-0 mt-1 transition-all ${
-                          isSelected ? 'bg-blue-600 border-blue-600 text-white' : 'border-white/20'
+                    <div key={mod.id} className="relative group">
+                      <button
+                        type="button"
+                        onClick={() => toggleModule(mod.id)}
+                        className={`w-full p-2.5 sm:p-3 rounded-xl border text-left transition-all duration-200 flex items-center justify-between gap-2.5 cursor-pointer relative ${
+                          isSelected
+                            ? 'bg-white/15 border-white/40 shadow-lg scale-[1.01]'
+                            : 'bg-white/5 border-white/10 hover:bg-white/10 hover:border-white/20'
                         }`}
                         style={{
-                          backgroundColor: isSelected ? themeConfig.primaryColor : undefined,
                           borderColor: isSelected ? themeConfig.primaryColor : undefined,
+                          boxShadow: isSelected ? `0 0 15px ${themeConfig.primaryColor}30` : undefined,
+                          backgroundColor: isSelected ? `${themeConfig.primaryColor}18` : undefined,
                         }}
                       >
-                        {isSelected && <Check className="w-3 h-3 stroke-[3]" />}
+                        <div className="flex items-center gap-2.5 min-w-0">
+                          <div
+                            className="w-7 h-7 rounded-lg flex items-center justify-center shrink-0 border"
+                            style={{
+                              backgroundColor: isSelected ? `${themeConfig.primaryColor}30` : 'rgba(255,255,255,0.05)',
+                              borderColor: isSelected ? themeConfig.primaryColor : 'rgba(255,255,255,0.1)',
+                            }}
+                          >
+                            <Icon
+                              className="w-3.5 h-3.5"
+                              style={{ color: isSelected ? themeConfig.primaryColor : '#cbd5e1' }}
+                            />
+                          </div>
+
+                          <div className="truncate">
+                            <span className="text-xs font-bold text-white block truncate">
+                              {mod.name}
+                            </span>
+                          </div>
+                        </div>
+
+                        <div className="flex items-center gap-2 shrink-0">
+                          <span
+                            className="text-xs font-mono font-bold px-2 py-0.5 rounded-md border"
+                            style={{
+                              backgroundColor: isSelected ? `${themeConfig.primaryColor}25` : 'rgba(255,255,255,0.05)',
+                              borderColor: isSelected ? `${themeConfig.primaryColor}50` : 'rgba(255,255,255,0.1)',
+                              color: isSelected ? '#ffffff' : '#94a3b8',
+                            }}
+                          >
+                            +${mod.baseCost}
+                          </span>
+
+                          <div
+                            className={`w-4 h-4 rounded-md border flex items-center justify-center transition-all ${
+                              isSelected ? 'text-white' : 'border-white/20 opacity-40'
+                            }`}
+                            style={{
+                              backgroundColor: isSelected ? themeConfig.primaryColor : 'transparent',
+                              borderColor: isSelected ? themeConfig.primaryColor : undefined,
+                            }}
+                          >
+                            {isSelected && <Check className="w-3 h-3 stroke-[3]" />}
+                          </div>
+                        </div>
+                      </button>
+
+                      {/* Unobtrusive Contextual Tooltip */}
+                      <div className="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 hidden group-hover:block z-30 pointer-events-none w-max max-w-xs p-2 rounded-xl bg-slate-950/95 border border-white/20 shadow-2xl backdrop-blur-md text-[11px] text-slate-200 text-center animate-in fade-in zoom-in-95 duration-150">
+                        <span className="text-emerald-400 font-bold block mb-0.5">★ {mod.businessImpact}</span>
+                        <span className="text-slate-400 text-[10px] leading-tight block">{mod.description}</span>
+                        <div className="absolute top-full left-1/2 -translate-x-1/2 -mt-1 border-4 border-transparent border-t-slate-950/95" />
                       </div>
-                    </button>
+                    </div>
                   );
                 })}
               </div>

@@ -9,6 +9,18 @@ export const PORTFOLIO_DATA: PortfolioItem[] = [
     tagline: 'Tripled online catering inquiries & automated weekend order scheduling.',
     clientType: 'Retail Bakery & Regional Catering',
     tags: ['Next.js', 'Online Catering', 'Stripe Deposits', 'SMS Notifications', 'Local SEO'],
+    heroStat: {
+      value: '+310%',
+      label: 'Catering Inquiries'
+    },
+    beforeSummary: 'Manual paper order slips & 12 hrs/wk lost in phone tag',
+    afterSummary: 'Interactive custom quote builder & upfront Stripe deposits',
+    deliverablePreview: {
+      domain: 'sweetrisebakery.com/catering',
+      title: 'Interactive Platter & Cake Customizer',
+      badge: 'Active Catering Engine',
+      items: ['Custom Platter Configurator', 'Instant Stripe Deposit', 'Google Kitchen Calendar Sync']
+    },
     metrics: [
       { label: 'Catering Inquiries', value: '+310% (3x Lift)' },
       { label: 'Weekly Phone Time', value: '-12 Hours Saved' },
@@ -33,6 +45,18 @@ export const PORTFOLIO_DATA: PortfolioItem[] = [
     tagline: 'Cut invoice turnaround from 2 weeks to 24 hours with a custom client payment portal.',
     clientType: 'HVAC & Mechanical Contractor',
     tags: ['Customer Portal', 'Field Tech App', 'Online Invoicing', 'QuickBooks Sync', 'Apple Pay'],
+    heroStat: {
+      value: '14 Days → 24 Hours',
+      label: 'Invoice Collection'
+    },
+    beforeSummary: 'Manual paper work orders & 2-week billing delay',
+    afterSummary: 'Instant mobile payment & automated QuickBooks sync',
+    deliverablePreview: {
+      domain: 'apex-heating-air.com/portal',
+      title: 'Field Tech Mobile App & 1-Click Client Settlement',
+      badge: 'Production Portal',
+      items: ['Mobile Work Order Capture', 'QuickBooks 2-Way Ledger Sync', 'Apple Pay 1-Click Checkout']
+    },
     metrics: [
       { label: 'Invoice Collection', value: '14 Days → 24 Hours' },
       { label: 'Overdue Receivables', value: '-84% Reduction' },
@@ -44,7 +68,7 @@ export const PORTFOLIO_DATA: PortfolioItem[] = [
     businessImpact: 'Average invoice collection plummeted from 14 days to under 24 hours, slashing overdue receivables by 84%. In addition, customers can re-book annual furnace and AC tune-ups with a single click, increasing seasonal maintenance contracts by 65%.',
     techList: ['React 19', 'PostgreSQL', 'QuickBooks API', 'Stripe Payments', 'Twilio SMS'],
     clientQuote: {
-      quote: 'Cash flow used to keep me up at night waiting on paper checks. Now 80% of our jobs are paid before our technician even backs out of the customer’s driveway.',
+      quote: 'Cash flow used to keep me up at night waiting on paper checks. Now 80% of our jobs are paid before our technician even backs out of the driveway.',
       author: 'Mark Henderson',
       role: 'Managing Partner'
     }
@@ -57,6 +81,18 @@ export const PORTFOLIO_DATA: PortfolioItem[] = [
     tagline: 'Eliminated 15 hours/week of manual spreadsheet dispatching.',
     clientType: 'Same-Day Courier & Delivery Fleet',
     tags: ['Custom Admin Tool', 'Google Sheets Sync', 'Driver SMS Alerts', 'Proof of Delivery'],
+    heroStat: {
+      value: '-15 Hours / Wk',
+      label: 'Manual Admin Time'
+    },
+    beforeSummary: '3 messy spreadsheets, lost paper manifests & phone chaos',
+    afterSummary: 'Optimized driver route clustering & auto proof-of-delivery',
+    deliverablePreview: {
+      domain: 'metrofleet.app/dispatch',
+      title: 'Lightweight Fleet Dispatch & Route Board',
+      badge: 'Live Dispatch Tool',
+      items: ['Automated Territory Clustering', 'Driver Phone Run Sheets', 'Instant Customer Photo Proof']
+    },
     metrics: [
       { label: 'Manual Admin Time', value: '-15 Hours / Week' },
       { label: 'Lost Manifests', value: '0.0% Error Rate' },
@@ -81,6 +117,18 @@ export const PORTFOLIO_DATA: PortfolioItem[] = [
     tagline: 'Reduced missed appointments by 42% via automated 2-way SMS reminders.',
     clientType: 'Multi-Provider Healthcare Clinic',
     tags: ['Patient Portal', 'Online Scheduling', '2-Way SMS', 'Intake Forms', 'HIPAA Secure'],
+    heroStat: {
+      value: '-42% Drop',
+      label: 'Missed Appointments'
+    },
+    beforeSummary: 'Front desk voicemails & unpaid late-cancellation gaps',
+    afterSummary: 'Automated 2-way SMS reminders & digital standby fill',
+    deliverablePreview: {
+      domain: 'clearviewdental.com/book',
+      title: 'Chair Scheduling & 2-Way SMS Pipeline',
+      badge: 'HIPAA Patient Flow',
+      items: ['Online Chair Booking', 'Twilio 2-Way SMS Confirmations', 'Automated Standby Refill']
+    },
     metrics: [
       { label: 'No-Show Rate', value: '-42% Drop' },
       { label: 'Cancelled Slots Re-filled', value: '92% Filled' },
