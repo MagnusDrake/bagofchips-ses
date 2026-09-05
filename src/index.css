@@ -100,30 +100,38 @@ body {
   font-family: var(--theme-font-heading);
 }
 
-/* Subtle modern grid background */
+/* Soothing minimalist ambient background */
 .bg-circuit-pattern {
   background-image: 
-    radial-gradient(rgba(255, 255, 255, 0.05) 1px, transparent 1px),
-    linear-gradient(to right, rgba(255, 255, 255, 0.012) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(255, 255, 255, 0.012) 1px, transparent 1px);
-  background-size: 32px 32px, 128px 128px, 128px 128px;
+    radial-gradient(ellipse 80% 50% at 50% -20%, rgba(59, 130, 246, 0.07), transparent 70%),
+    radial-gradient(ellipse 60% 40% at 80% 100%, rgba(16, 185, 129, 0.03), transparent 60%);
 }
 
-/* Modern High-Trust Glassmorphic Container */
+/* Minimalist Silky Glassmorphic Container */
 .glass-panel {
-  background: rgba(15, 23, 42, 0.75);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
-  border: 1px solid rgba(255, 255, 255, 0.08);
+  background: rgba(15, 23, 42, 0.4);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+/* Zen Ambient Celestial Glow */
+.zen-ambient-glow {
+  position: absolute;
+  pointer-events: none;
+  border-radius: 9999px;
+  filter: blur(80px);
+  opacity: 0.15;
+  transition: opacity 0.5s ease;
 }
 
 /* Subtle border highlight on hover */
 .border-glow-hover {
-  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+  transition: border-color 0.3s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.3s cubic-bezier(0.16, 1, 0.3, 1), transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
 }
 .border-glow-hover:hover {
-  border-color: rgba(255, 255, 255, 0.18);
-  box-shadow: 0 4px 20px -5px rgba(0, 0, 0, 0.5);
+  border-color: rgba(255, 255, 255, 0.14);
+  box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.6);
 }
 
 /* Custom sleek scrollbar */

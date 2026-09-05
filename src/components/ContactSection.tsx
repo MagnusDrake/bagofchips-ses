@@ -1,15 +1,6 @@
 import React, { useState } from 'react';
 import { useStudio } from '../context/StudioContext';
-import {
-  HelpCircle,
-  Send,
-  ShieldCheck,
-  ChevronDown,
-  CheckCircle2,
-  Clock,
-  PhoneCall,
-  HeartHandshake
-} from 'lucide-react';
+import { ChevronDown, Send, CheckCircle2, ArrowRight } from 'lucide-react';
 
 export const ContactSection: React.FC = () => {
   const { themeConfig } = useStudio();
@@ -19,31 +10,25 @@ export const ContactSection: React.FC = () => {
   // Form State
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
-  const [company, setCompany] = useState('');
-  const [category, setCategory] = useState('growth-website');
-  const [budget, setBudget] = useState('1200-2500');
+  const [interest, setInterest] = useState('growth-website');
   const [message, setMessage] = useState('');
 
   const faqs = [
     {
-      q: 'Do I own my website, code, and domain name 100%?',
-      a: 'Yes, 100%. You own all design files, source code, database accounts, and domain names outright. Unlike closed website builders (such as Wix or Squarespace), there are zero recurring platform lock-in fees. If you ever want to move or change providers, everything belongs completely to you.'
+      q: 'Do I own the source code and assets outright?',
+      a: 'Yes, 100%. All repository code, design assets, database accounts, and domain names belong completely to you. Unlike closed platforms, there are zero recurring platform lock-in fees.'
     },
     {
-      q: 'Can our staff easily update text, photos, and services?',
-      a: 'Absolutely. Every website and portal we deliver includes an easy-to-use, visual content manager. You and your team can update photos, menu items, prices, business hours, and announcements in minutes without writing any code.'
+      q: 'Can our staff make updates without coding?',
+      a: 'Yes. Every project includes an intuitive visual management interface. Your team can update text, photos, service rates, and announcements in seconds.'
     },
     {
-      q: 'How long does a typical project take from start to finish?',
-      a: 'Most Business Growth Websites launch within 2 to 3 weeks. Customer Portals and Workflow Automations typically take 3 to 5 weeks. We provide clear weekly milestones and staging links so you always see working progress.'
+      q: 'Are there hidden monthly fees or required retainers?',
+      a: 'Zero. We deploy on modern cloud infrastructure (such as Vercel and Supabase) where standard business hosting typically runs $0 to $20/month at direct cost, with no agency markup.'
     },
     {
-      q: 'Are there any hidden monthly fees or required contracts?',
-      a: 'No hidden fees or recurring agency retainers. We deploy on modern, high-speed cloud infrastructure (like Vercel and Supabase) where standard business hosting typically costs $0 to $20/month at direct cost. You pay directly with zero agency markup.'
-    },
-    {
-      q: 'What happens after launch if we need help or changes?',
-      a: 'Every project includes 30 days of complimentary post-launch support and recorded video training for your staff. If you need new features or adjustments later, we are always available on a simple, transparent hourly or milestone basis.'
+      q: 'What warranty is included after we launch?',
+      a: 'Every deployment includes 30 days of complimentary post-launch warranty, bug resolution, and personalized video walkthroughs for your team.'
     }
   ];
 
@@ -53,182 +38,148 @@ export const ContactSection: React.FC = () => {
     setTimeout(() => {
       setName('');
       setEmail('');
-      setCompany('');
       setMessage('');
     }, 1000);
   };
 
   return (
-    <section id="contact" className="py-24 relative overflow-hidden bg-circuit-pattern">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12">
-          {/* Left Column: Direct Consultation Form */}
-          <div className="lg:col-span-6 space-y-6">
-            <div className="space-y-3">
-              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full border bg-white/5 backdrop-blur-md">
-                <PhoneCall className="w-3.5 h-3.5" style={{ color: themeConfig.primaryColor }} />
-                <span className="text-xs font-semibold tracking-wider uppercase text-slate-300">
-                  Free Strategy Consultation
-                </span>
-              </div>
+    <section id="contact" className="py-28 sm:py-36 relative border-t border-white/[0.04]">
+      {/* Subtle Ambient Light */}
+      <div
+        className="absolute top-1/2 right-1/4 -translate-y-1/2 w-96 h-96 rounded-full blur-3xl pointer-events-none opacity-10"
+        style={{ background: themeConfig.primaryColor }}
+      />
 
-              <h2 className="text-3xl sm:text-4xl font-black text-white tracking-tight theme-font-title">
-                Schedule a free <span style={{ color: themeConfig.primaryColor }}>discovery call.</span>
+      <div className="max-w-7xl mx-auto px-6 lg:px-8 relative z-10">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-start">
+          {/* Left Column: Direct Consultation Form */}
+          <div className="lg:col-span-6 space-y-8">
+            <div className="space-y-3">
+              <span className="text-[11px] font-mono uppercase tracking-widest text-slate-400 block">
+                Initiate
+              </span>
+              <h2 className="text-3xl sm:text-5xl font-light tracking-tight text-white theme-font-title">
+                Start a <span className="font-semibold" style={{ color: themeConfig.primaryColor }}>conversation.</span>
               </h2>
-              <p className="text-slate-300 text-sm sm:text-base leading-relaxed">
-                Ready to launch a new website, build a client booking portal, or automate daily admin tasks? Send us a quick note. We respond within 4 hours with transparent ideas and availability.
+              <p className="text-slate-400 text-sm sm:text-base leading-relaxed">
+                Tell us about the software or website you want to build. We review every note personally and reply within 4 hours with clear recommendations.
               </p>
             </div>
 
-            {/* Consultation Card */}
-            <div
-              className="p-6 sm:p-8 rounded-3xl border backdrop-blur-2xl transition-all duration-500 shadow-2xl relative glass-panel"
-              style={{
-                borderColor: 'rgba(255, 255, 255, 0.12)',
-              }}
-            >
+            {/* Clean Form Card */}
+            <div className="p-8 sm:p-10 rounded-3xl border border-white/[0.08] bg-slate-950/60 backdrop-blur-2xl shadow-2xl">
               {formSubmitted ? (
-                <div className="text-center py-10 space-y-3">
+                <div className="text-center py-12 space-y-4">
                   <div
-                    className="w-14 h-14 rounded-full mx-auto flex items-center justify-center text-white shadow-lg bg-emerald-500"
+                    className="w-12 h-12 rounded-full mx-auto flex items-center justify-center text-white"
+                    style={{ backgroundColor: themeConfig.primaryColor }}
                   >
-                    <CheckCircle2 className="w-8 h-8" />
+                    <CheckCircle2 className="w-6 h-6" />
                   </div>
-                  <h3 className="text-xl font-bold text-white">Inquiry Received!</h3>
-                  <p className="text-xs text-slate-300 max-w-sm mx-auto leading-relaxed">
-                    Thank you! Our lead developer will review your request and reach out within 4 hours with a preliminary timeline and call schedule.
+                  <h3 className="text-xl font-light text-white">Note Received</h3>
+                  <p className="text-xs text-slate-400 max-w-xs mx-auto leading-relaxed">
+                    Thank you. A senior engineer will review your requirements and respond within 4 hours.
                   </p>
                   <button
                     onClick={() => setFormSubmitted(false)}
-                    className="text-xs font-semibold text-blue-300 underline pt-2 cursor-pointer"
+                    className="text-xs text-slate-400 hover:text-white underline transition-colors cursor-pointer pt-2"
                   >
-                    Send another message
+                    Send another note
                   </button>
                 </div>
               ) : (
                 <form onSubmit={handleSubmit} className="space-y-4">
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                    <div className="space-y-1.5">
-                      <label className="text-xs font-semibold text-slate-300">Your Name *</label>
+                    <div className="space-y-1">
+                      <label className="text-[11px] font-mono uppercase tracking-wider text-slate-400">
+                        Your Name
+                      </label>
                       <input
                         type="text"
                         required
                         value={name}
                         onChange={(e) => setName(e.target.value)}
-                        placeholder="Sarah Jenkins"
-                        className="w-full bg-black/50 border border-white/15 rounded-xl px-3.5 py-2.5 text-xs text-white placeholder:text-slate-400/60 focus:outline-none focus:border-blue-400"
+                        placeholder="Elena Vance"
+                        className="w-full bg-white/[0.03] border border-white/[0.08] rounded-xl px-3.5 py-2.5 text-xs text-white placeholder:text-slate-500 focus:outline-none focus:border-white/30 transition-colors"
                       />
                     </div>
 
-                    <div className="space-y-1.5">
-                      <label className="text-xs font-semibold text-slate-300">Email Address *</label>
+                    <div className="space-y-1">
+                      <label className="text-[11px] font-mono uppercase tracking-wider text-slate-400">
+                        Email Address
+                      </label>
                       <input
                         type="email"
                         required
                         value={email}
                         onChange={(e) => setEmail(e.target.value)}
-                        placeholder="sarah@business.com"
-                        className="w-full bg-black/50 border border-white/15 rounded-xl px-3.5 py-2.5 text-xs text-white placeholder:text-slate-400/60 focus:outline-none focus:border-blue-400"
+                        placeholder="elena@company.com"
+                        className="w-full bg-white/[0.03] border border-white/[0.08] rounded-xl px-3.5 py-2.5 text-xs text-white placeholder:text-slate-500 focus:outline-none focus:border-white/30 transition-colors"
                       />
                     </div>
                   </div>
 
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                    <div className="space-y-1.5">
-                      <label className="text-xs font-semibold text-slate-300">Business / Company Name</label>
-                      <input
-                        type="text"
-                        value={company}
-                        onChange={(e) => setCompany(e.target.value)}
-                        placeholder="Jenkins Plumbing & Heating"
-                        className="w-full bg-black/50 border border-white/15 rounded-xl px-3.5 py-2.5 text-xs text-white placeholder:text-slate-400/60 focus:outline-none focus:border-blue-400"
-                      />
-                    </div>
-
-                    <div className="space-y-1.5">
-                      <label className="text-xs font-semibold text-slate-300">Solution Needed</label>
-                      <select
-                        value={category}
-                        onChange={(e) => setCategory(e.target.value)}
-                        className="w-full bg-black/80 border border-white/15 rounded-xl px-3 py-2.5 text-xs text-white focus:outline-none focus:border-blue-400"
-                      >
-                        <option value="growth-website">Business Growth Website ($1,200 – $1,800)</option>
-                        <option value="customer-portal">Customer Portal & Online Booking ($2,800 – $4,500)</option>
-                        <option value="workflow-automation">Workflow Automation & Custom Tools ($1,800 – $3,200)</option>
-                        <option value="mobile-app">Custom Mobile App ($4,500 – $8,000+)</option>
-                      </select>
-                    </div>
-                  </div>
-
-                  <div className="space-y-1.5">
-                    <label className="text-xs font-semibold text-slate-300">Target Investment Range</label>
+                  <div className="space-y-1">
+                    <label className="text-[11px] font-mono uppercase tracking-wider text-slate-400">
+                      Discipline of Interest
+                    </label>
                     <select
-                      value={budget}
-                      onChange={(e) => setBudget(e.target.value)}
-                      className="w-full bg-black/80 border border-white/15 rounded-xl px-3 py-2.5 text-xs text-white focus:outline-none focus:border-blue-400"
+                      value={interest}
+                      onChange={(e) => setInterest(e.target.value)}
+                      className="w-full bg-slate-900 border border-white/[0.08] rounded-xl px-3.5 py-2.5 text-xs text-white focus:outline-none focus:border-white/30 transition-colors"
                     >
-                      <option value="1200-2500">$1,200 – $2,500 (Growth Website / Core Launch)</option>
-                      <option value="2500-5000">$2,500 – $5,000 (Customer Portal / Online Booking)</option>
-                      <option value="5000-10000">$5,000 – $10,000+ (Mobile App / Multi-Tool Automation)</option>
-                      <option value="custom">I need guidance on the best approach</option>
+                      <option value="growth-website">High-Performance Website</option>
+                      <option value="customer-portal">Client Booking & Accounts Portal</option>
+                      <option value="workflow-automation">Workflow & Dispatch Automation</option>
+                      <option value="mobile-app">Bespoke Mobile Application</option>
+                      <option value="other">General Software Consultation</option>
                     </select>
                   </div>
 
-                  <div className="space-y-1.5">
-                    <label className="text-xs font-semibold text-slate-300">What would you like to achieve? *</label>
+                  <div className="space-y-1">
+                    <label className="text-[11px] font-mono uppercase tracking-wider text-slate-400">
+                      Project Vision
+                    </label>
                     <textarea
                       required
                       rows={3}
                       value={message}
                       onChange={(e) => setMessage(e.target.value)}
-                      placeholder="Tell us about your business, current website or tools, and what you would like to improve..."
-                      className="w-full bg-black/50 border border-white/15 rounded-xl px-3.5 py-2.5 text-xs text-white placeholder:text-slate-400/60 focus:outline-none focus:border-blue-400 resize-none"
+                      placeholder="Briefly describe your objectives, current bottleneck, or target launch date..."
+                      className="w-full bg-white/[0.03] border border-white/[0.08] rounded-xl px-3.5 py-2.5 text-xs text-white placeholder:text-slate-500 focus:outline-none focus:border-white/30 resize-none transition-colors"
                     />
                   </div>
 
                   <button
                     type="submit"
-                    className="w-full py-3.5 px-6 rounded-2xl text-xs font-bold text-white flex items-center justify-center gap-2 shadow-lg hover:scale-102 active:scale-98 transition-all cursor-pointer"
+                    className="w-full py-3.5 px-6 rounded-xl text-xs font-semibold text-white flex items-center justify-center gap-2 transition-all cursor-pointer shadow-lg hover:brightness-110 active:scale-98"
                     style={{
                       backgroundColor: themeConfig.primaryColor,
-                      boxShadow: `0 0 20px ${themeConfig.primaryColor}40`,
                     }}
                   >
-                    <Send className="w-4 h-4" />
-                    <span>Send Request for Free Strategy Review</span>
+                    <span>Send Message</span>
+                    <Send className="w-3 h-3" />
                   </button>
+
+                  <div className="pt-2 text-center text-[11px] text-slate-400 font-light">
+                    Direct reply from our technical director within 4 hours. No sales pitches.
+                  </div>
                 </form>
               )}
-
-              {/* Guarantees */}
-              <div className="mt-6 pt-4 border-t border-white/10 flex flex-col sm:flex-row items-center justify-between gap-3 text-[11px] text-slate-300">
-                <div className="flex items-center gap-1.5">
-                  <ShieldCheck className="w-4 h-4 text-emerald-400" />
-                  <span>100% Code & Domain Ownership</span>
-                </div>
-                <div className="flex items-center gap-1.5">
-                  <Clock className="w-4 h-4 text-blue-400" />
-                  <span>Senior developer response within 4 hours</span>
-                </div>
-              </div>
             </div>
           </div>
 
           {/* Right Column: FAQ Accordion */}
-          <div className="lg:col-span-6 space-y-6">
+          <div className="lg:col-span-6 space-y-8">
             <div className="space-y-3">
-              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full border bg-white/5 backdrop-blur-md">
-                <HelpCircle className="w-3.5 h-3.5" style={{ color: themeConfig.primaryColor }} />
-                <span className="text-xs font-semibold tracking-wider uppercase text-slate-300">
-                  Frequently Asked Questions
-                </span>
-              </div>
-
-              <h2 className="text-3xl sm:text-4xl font-black text-white tracking-tight theme-font-title">
-                Honest answers, <span style={{ color: themeConfig.primaryColor }}>zero sales fluff.</span>
+              <span className="text-[11px] font-mono uppercase tracking-widest text-slate-400 block">
+                Clarity
+              </span>
+              <h2 className="text-3xl sm:text-5xl font-light tracking-tight text-white theme-font-title">
+                Common <span className="font-semibold" style={{ color: themeConfig.primaryColor }}>questions.</span>
               </h2>
-              <p className="text-slate-300 text-sm sm:text-base leading-relaxed">
-                Everything you need to know about how we work, code ownership, ongoing costs, and support.
+              <p className="text-slate-400 text-sm sm:text-base leading-relaxed">
+                Everything you need to know about code sovereignty, delivery cadence, and post-launch maintenance.
               </p>
             </div>
 
@@ -238,30 +189,26 @@ export const ContactSection: React.FC = () => {
                 return (
                   <div
                     key={idx}
-                    className={`rounded-2xl border transition-all duration-200 overflow-hidden ${
+                    className={`rounded-2xl border transition-all duration-300 overflow-hidden ${
                       isOpen
-                        ? 'bg-white/10 border-white/30 shadow-lg'
-                        : 'bg-white/5 border-white/10 hover:border-white/20'
+                        ? 'bg-white/[0.04] border-white/20'
+                        : 'bg-white/[0.015] border-white/[0.05] hover:border-white/[0.1]'
                     }`}
-                    style={{
-                      borderColor: isOpen ? themeConfig.primaryColor : undefined,
-                    }}
                   >
                     <button
                       onClick={() => setOpenFaq(isOpen ? null : idx)}
-                      className="w-full px-5 py-4 text-left flex items-center justify-between gap-4 cursor-pointer"
+                      className="w-full px-6 py-4 text-left flex items-center justify-between gap-4 cursor-pointer"
                     >
-                      <span className="text-sm font-bold text-white">{faq.q}</span>
+                      <span className="text-sm font-medium text-white">{faq.q}</span>
                       <ChevronDown
                         className={`w-4 h-4 text-slate-400 shrink-0 transition-transform duration-300 ${
                           isOpen ? 'rotate-180 text-white' : ''
                         }`}
-                        style={{ color: isOpen ? themeConfig.primaryColor : undefined }}
                       />
                     </button>
 
                     {isOpen && (
-                      <div className="px-5 pb-5 pt-1 text-xs sm:text-sm text-slate-300 leading-relaxed border-t border-white/5">
+                      <div className="px-6 pb-5 pt-1 text-xs sm:text-sm text-slate-400 leading-relaxed font-light border-t border-white/[0.04]">
                         {faq.a}
                       </div>
                     )}
@@ -270,9 +217,17 @@ export const ContactSection: React.FC = () => {
               })}
             </div>
 
-            <div className="p-4 rounded-2xl bg-white/5 border border-white/10 flex items-center gap-3 text-xs text-slate-300">
-              <HeartHandshake className="w-5 h-5 text-emerald-400 shrink-0" />
-              <span>Have a specific question not listed here? Mention it in your message and our engineer will answer directly.</span>
+            <div className="p-6 rounded-2xl border border-white/[0.06] bg-white/[0.015] flex items-center justify-between gap-4">
+              <div className="text-xs text-slate-400 font-light">
+                Looking for a tailored architecture assessment?
+              </div>
+              <a
+                href="#configurator"
+                className="text-xs text-white font-medium hover:underline inline-flex items-center gap-1 shrink-0"
+              >
+                <span>Scope your build</span>
+                <ArrowRight className="w-3 h-3" />
+              </a>
             </div>
           </div>
         </div>

@@ -2,37 +2,30 @@ import React from 'react';
 import { useStudio } from '../context/StudioContext';
 import { THEMES } from '../data/themesData';
 import type { ThemeId } from '../types';
-import { Sliders, Check, Sparkles } from 'lucide-react';
+import { Check } from 'lucide-react';
 
 export const DesignTokensPlayground: React.FC = () => {
   const { theme, themeConfig, setTheme } = useStudio();
 
   return (
-    <section id="design-tokens" className="py-20 relative bg-black/80 border-t border-white/5">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+    <section id="design-tokens" className="py-28 sm:py-36 relative border-t border-white/[0.04]">
+      <div className="max-w-7xl mx-auto px-6 lg:px-8 relative z-10">
         {/* Header */}
-        <div className="flex flex-col md:flex-row md:items-end justify-between mb-10 gap-6">
-          <div className="space-y-3 max-w-2xl">
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full border bg-white/5 backdrop-blur-md">
-              <Sliders className="w-3.5 h-3.5" style={{ color: themeConfig.primaryColor }} />
-              <span className="text-xs font-mono font-bold tracking-wider uppercase text-slate-300">
-                Design System Adaptability
+        <div className="flex flex-col md:flex-row md:items-end justify-between mb-14 gap-6">
+          <div className="space-y-3 max-w-xl">
+            <span className="text-[11px] font-mono uppercase tracking-widest text-slate-400 block">
+              Aesthetic Adaptability
+            </span>
+            <h2 className="text-3xl sm:text-5xl font-light tracking-tight text-white theme-font-title">
+              One architecture.{' '}
+              <span className="font-semibold" style={{ color: themeConfig.primaryColor }}>
+                Distinct identities.
               </span>
-            </div>
-
-            <h2 className="text-2xl sm:text-4xl font-extrabold text-white tracking-tight theme-font-title">
-              One codebase.{' '}
-              <span style={{ color: themeConfig.primaryColor }}>Any brand identity.</span>
             </h2>
-            <p className="text-xs sm:text-sm text-slate-300 leading-relaxed">
-              Experience how our bespoke design systems allow your web application or portal to seamlessly morph color palettes, typography scales, and surface styling with zero page reloads.
-            </p>
           </div>
 
-          <div className="flex items-center gap-2 text-xs font-mono text-slate-400">
-            <Sparkles className="w-4 h-4 text-emerald-400" />
-            <span>Active Aesthetic: </span>
-            <span className="text-white font-bold px-2 py-0.5 rounded bg-white/10">{themeConfig.name}</span>
+          <div className="text-xs font-mono text-slate-400">
+            Active: <span className="text-white font-medium">{themeConfig.name}</span>
           </div>
         </div>
 
@@ -44,43 +37,43 @@ export const DesignTokensPlayground: React.FC = () => {
               <button
                 key={t.id}
                 onClick={() => setTheme(t.id as ThemeId)}
-                className={`p-4 rounded-2xl border text-left transition-all duration-300 relative group cursor-pointer ${
+                className={`p-4 rounded-2xl border text-left transition-all duration-300 relative cursor-pointer group ${
                   isSelected
-                    ? 'bg-white/10 border-white/40 shadow-xl scale-[1.02]'
-                    : 'bg-white/5 border-white/10 hover:bg-white/10 hover:border-white/20'
+                    ? 'bg-white/[0.08] border-white/30 shadow-xl'
+                    : 'bg-white/[0.015] border-white/[0.06] hover:bg-white/[0.04] hover:border-white/[0.12]'
                 }`}
                 style={{
                   borderColor: isSelected ? t.primaryColor : undefined,
                 }}
               >
                 {/* Thumbnail Preview */}
-                <div className="relative aspect-[16/9] rounded-xl overflow-hidden mb-3 border border-white/10">
+                <div className="relative aspect-[16/10] rounded-xl overflow-hidden mb-3 border border-white/[0.08]">
                   <img
                     src={t.image}
                     alt={t.name}
-                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 opacity-80 group-hover:opacity-100"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent" />
-                  <div className="absolute bottom-2 left-2 flex items-center gap-1.5">
-                    <span className="w-2.5 h-2.5 rounded-full shadow" style={{ backgroundColor: t.primaryColor }} />
-                    <span className="w-2.5 h-2.5 rounded-full shadow" style={{ backgroundColor: t.accentColor }} />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
+                  <div className="absolute bottom-2.5 left-2.5 flex items-center gap-1.5">
+                    <span className="w-2 h-2 rounded-full" style={{ backgroundColor: t.primaryColor }} />
+                    <span className="w-2 h-2 rounded-full" style={{ backgroundColor: t.accentColor }} />
                   </div>
                   {isSelected && (
                     <div
-                      className="absolute top-2 right-2 w-5 h-5 rounded-full flex items-center justify-center text-black shadow-md"
+                      className="absolute top-2.5 right-2.5 w-5 h-5 rounded-full flex items-center justify-center text-white shadow-md"
                       style={{ backgroundColor: t.primaryColor }}
                     >
-                      <Check className="w-3 h-3 stroke-[3]" />
+                      <Check className="w-3 h-3 stroke-[2.5]" />
                     </div>
                   )}
                 </div>
 
                 <div className="space-y-1">
                   <div className="flex items-center justify-between">
-                    <h4 className="text-sm font-bold text-white">{t.name}</h4>
-                    <span className="text-[9px] font-mono text-slate-400 uppercase">{t.id}</span>
+                    <h3 className="text-sm font-semibold text-white">{t.name}</h3>
+                    <span className="text-[10px] font-mono text-slate-400 uppercase">{t.id}</span>
                   </div>
-                  <p className="text-[11px] text-slate-400 line-clamp-2 leading-snug">{t.tagline}</p>
+                  <p className="text-xs text-slate-400 font-light line-clamp-1">{t.tagline}</p>
                 </div>
               </button>
             );
