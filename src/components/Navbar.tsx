@@ -42,14 +42,27 @@ export const Navbar: React.FC = () => {
               : 'bg-slate-950/60 border-white/8 shadow-black/30'
           }`}
         >
-          {/* Logo */}
-          <a href="#" className="flex items-center gap-2 group">
-            <div
-              className="w-2.5 h-2.5 rounded-full transition-transform group-hover:scale-125"
-              style={{ backgroundColor: themeConfig.primaryColor }}
-            />
-            <span className="font-bold text-sm tracking-tight text-white">
-              bagOfchips <span className="font-mono text-xs font-semibold" style={{ color: themeConfig.primaryColor }}>SES</span>
+          {/* Logo with bagOfchips SES Icon */}
+          <a href="#" className="flex items-center gap-2.5 group">
+            <div className="relative w-8 h-8 rounded-xl overflow-hidden border border-white/15 bg-slate-900 shadow-md group-hover:scale-105 group-hover:border-white/30 transition-all duration-300 shrink-0">
+              <img
+                src="/bagofchips-icon.png"
+                alt="bagOfchips SES"
+                className="w-full h-full object-cover"
+              />
+              <div
+                className="absolute inset-0 opacity-0 group-hover:opacity-20 transition-opacity pointer-events-none rounded-xl"
+                style={{ backgroundColor: themeConfig.primaryColor }}
+              />
+            </div>
+            <span className="font-bold text-sm tracking-tight text-white flex items-center gap-1.5">
+              <span>bagOfchips</span>
+              <span
+                className="font-mono text-xs font-semibold px-1.5 py-0.5 rounded border border-white/10 bg-white/5"
+                style={{ color: themeConfig.primaryColor }}
+              >
+                SES
+              </span>
             </span>
           </a>
 

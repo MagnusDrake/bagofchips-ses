@@ -16,7 +16,13 @@ export const Footer: React.FC = () => {
           {/* Studio Brand */}
           <div className="lg:col-span-5 space-y-4">
             <div className="flex items-center gap-2.5">
-              <span className="w-2 h-2 rounded-full" style={{ backgroundColor: themeConfig.primaryColor }} />
+              <div className="w-7 h-7 rounded-lg overflow-hidden border border-white/10 bg-slate-900 shrink-0">
+                <img
+                  src="/bagofchips-icon.png"
+                  alt="bagOfchips SES"
+                  className="w-full h-full object-cover"
+                />
+              </div>
               <span className="text-sm font-semibold tracking-tight text-white">
                 bagOfchips <span className="font-mono text-xs font-semibold" style={{ color: themeConfig.primaryColor }}>SES</span>
               </span>
