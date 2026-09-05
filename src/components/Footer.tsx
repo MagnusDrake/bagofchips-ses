@@ -26,8 +26,9 @@ export const Footer: React.FC = () => {
               Software engineering studio for business growth websites, custom customer portals, and workflow automations. Built with quiet craft and full intellectual property transfer.
             </p>
 
-            <div className="text-[11px] text-slate-400 font-mono">
-              Austin, TX · Remote Worldwide
+            <div className="text-[11px] text-slate-400 font-mono flex items-center gap-2">
+              <span className="w-1.5 h-1.5 rounded-full bg-emerald-400" />
+              <span>Remote-First · Everywhere Worldwide</span>
             </div>
           </div>
 
