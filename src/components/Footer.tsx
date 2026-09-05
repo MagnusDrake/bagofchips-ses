@@ -18,7 +18,7 @@ export const Footer: React.FC = () => {
             <div className="flex items-center gap-2.5">
               <span className="w-2 h-2 rounded-full" style={{ backgroundColor: themeConfig.primaryColor }} />
               <span className="text-sm font-semibold tracking-tight text-white">
-                bag<span style={{ color: themeConfig.primaryColor }}>Of</span>chips Studio
+                bagOfchips <span className="font-mono text-xs font-semibold" style={{ color: themeConfig.primaryColor }}>SES</span>
               </span>
             </div>
 

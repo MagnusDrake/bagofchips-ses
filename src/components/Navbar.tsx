@@ -49,7 +49,7 @@ export const Navbar: React.FC = () => {
               style={{ backgroundColor: themeConfig.primaryColor }}
             />
             <span className="font-bold text-sm tracking-tight text-white">
-              bagOfchips<span className="text-slate-400 font-normal ml-1 text-xs">studio</span>
+              bagOfchips <span className="font-mono text-xs font-semibold" style={{ color: themeConfig.primaryColor }}>SES</span>
             </span>
           </a>
 
