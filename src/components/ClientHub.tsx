@@ -12,9 +12,53 @@ import {
   Calendar
 } from 'lucide-react';
 
+interface SmbPreset {
+  title: string;
+  clientName: string;
+  clientEmail: string;
+  company: string;
+  category: ProjectCategory;
+  description: string;
+  estimatedCost: number;
+  estimatedWeeks: number;
+}
+
+const SMB_SIMULATION_PRESETS: SmbPreset[] = [
+  {
+    title: 'BOC-7730 • Dental Patient Booking & Intake Flow',
+    clientName: 'Dr. Aris Thorne',
+    clientEmail: 'dr.thorne@oakridgedental.com',
+    company: 'Oakridge Family Dental',
+    category: 'customer-portal',
+    description: 'HIPAA-conscious online patient registration, digital health intake forms, and automated 2-way SMS appointment confirmations.',
+    estimatedCost: 2900,
+    estimatedWeeks: 3,
+  },
+  {
+    title: 'BOC-4412 • Commercial Roofing Quote Calculator',
+    clientName: 'Jason Miller',
+    clientEmail: 'jason@apexroofingexteriors.com',
+    company: 'Apex Roofing & Exteriors',
+    category: 'workflow-automation',
+    description: 'Instant satellite square-footage estimator, material tier pricing calculator, and automated lead capture with calendar booking.',
+    estimatedCost: 2200,
+    estimatedWeeks: 2,
+  },
+  {
+    title: 'BOC-9031 • Regional Freight Dispatch Board',
+    clientName: 'Dave Vance',
+    clientEmail: 'dave@cascadelogistics.com',
+    company: 'Cascade Regional Logistics',
+    category: 'workflow-automation',
+    description: 'Real-time driver dispatch calendar, multi-stop route optimization, and live automated customer SMS shipment tracking.',
+    estimatedCost: 3600,
+    estimatedWeeks: 4,
+  },
+];
+
 export const ClientHub: React.FC = () => {
   const { themeConfig, tickets, addTicket } = useStudio();
-  const [selectedTicketId, setSelectedTicketId] = useState<string>(tickets[0]?.id || 'demo-1');
+  const [selectedTicketId, setSelectedTicketId] = useState<string>(tickets[0]?.id || 'boc-8104');
   const [showNewTicketForm, setShowNewTicketForm] = useState(false);
 
   // New ticket quick form
@@ -23,10 +67,39 @@ export const ClientHub: React.FC = () => {
   const [newPriority, setNewPriority] = useState<'standard' | 'high' | 'urgent'>('standard');
   const [newClientName, setNewClientName] = useState('');
   const [newClientEmail, setNewClientEmail] = useState('');
+  const [newCompany, setNewCompany] = useState('');
   const [newDescription, setNewDescription] = useState('');
   const [quickFormError, setQuickFormError] = useState<string | null>(null);
 
   const activeTicket = tickets.find((t) => t.id === selectedTicketId) || tickets[0];
+
+  const applyPreset = (preset: SmbPreset) => {
+    setNewTitle(preset.title);
+    setNewClientName(preset.clientName);
+    setNewClientEmail(preset.clientEmail);
+    setNewCompany(preset.company);
+    setNewCategory(preset.category);
+    setNewDescription(preset.description);
+    setShowNewTicketForm(true);
+  };
+
+  const handle1ClickAddPreset = (preset: SmbPreset) => {
+    const created = addTicket({
+      title: preset.title,
+      category: preset.category,
+      priority: 'high',
+      clientName: preset.clientName,
+      clientEmail: preset.clientEmail,
+      company: preset.company,
+      description: preset.description,
+      selectedModules: ['sms-reminders', 'accounting-sync'],
+      estimatedCost: preset.estimatedCost,
+      estimatedWeeks: preset.estimatedWeeks,
+    });
+
+    setSelectedTicketId(created.id);
+    setShowNewTicketForm(false);
+  };
 
   const handleQuickSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -42,15 +115,19 @@ export const ClientHub: React.FC = () => {
       priority: newPriority,
       clientName: newClientName.trim(),
       clientEmail: newClientEmail.trim(),
+      company: newCompany.trim() || undefined,
       description: newDescription.trim() || 'Simulated project milestone tracker created via client portal demo.',
       selectedModules: ['sms-reminders', 'accounting-sync'],
-      estimatedCost: newCategory === 'growth-website' ? 1500 : newCategory === 'customer-portal' ? 3200 : 2400,
+      estimatedCost: newCategory === 'growth-website' ? 1600 : newCategory === 'customer-portal' ? 3400 : 2800,
       estimatedWeeks: newCategory === 'growth-website' ? 2 : 3,
     });
 
     setSelectedTicketId(created.id);
     setShowNewTicketForm(false);
     setNewTitle('');
+    setNewClientName('');
+    setNewClientEmail('');
+    setNewCompany('');
     setNewDescription('');
   };
 
@@ -115,10 +192,59 @@ export const ClientHub: React.FC = () => {
           {/* Quick Project Submission Panel */}
           {showNewTicketForm && (
             <div className="p-6 border-b border-white/10 bg-black/80 animate-in slide-in-from-top">
-              <h3 className="text-sm font-bold text-white mb-3 flex items-center gap-2">
-                <Calendar className="w-4 h-4 text-emerald-400" />
-                Add a Simulated Project to Test the Dashboard
-              </h3>
+              <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-4">
+                <h3 className="text-sm font-bold text-white flex items-center gap-2">
+                  <Calendar className="w-4 h-4 text-emerald-400" />
+                  Simulate Adding an SMB Project to Test the Dashboard
+                </h3>
+                <span className="text-[11px] text-slate-400">
+                  Select a realistic business scenario or fill in custom details
+                </span>
+              </div>
+
+              {/* 1-Click SMB Presets */}
+              <div className="mb-5 p-3.5 rounded-2xl bg-white/5 border border-white/10 space-y-2">
+                <div className="text-[11px] font-semibold text-slate-300">
+                  Load Realistic Small Business Scenarios:
+                </div>
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-2.5">
+                  {SMB_SIMULATION_PRESETS.map((preset, idx) => (
+                    <div
+                      key={idx}
+                      className="p-3 rounded-xl border border-white/10 bg-slate-900/80 hover:bg-slate-900 transition-all flex flex-col justify-between gap-2.5 text-left"
+                    >
+                      <div>
+                        <div className="text-xs font-bold text-white line-clamp-1">
+                          {preset.title.split('• ')[1] || preset.title}
+                        </div>
+                        <div className="text-[11px] text-slate-400 mt-0.5">
+                          {preset.company} · ${preset.estimatedCost.toLocaleString()}
+                        </div>
+                        <p className="text-[10px] text-slate-400 line-clamp-2 mt-1">
+                          {preset.description}
+                        </p>
+                      </div>
+                      <div className="flex items-center gap-2 pt-1 border-t border-white/10">
+                        <button
+                          type="button"
+                          onClick={() => applyPreset(preset)}
+                          className="flex-1 px-2.5 py-1.5 rounded-lg text-[10px] font-semibold bg-white/10 hover:bg-white/20 text-slate-200 transition-colors text-center cursor-pointer"
+                        >
+                          Autofill
+                        </button>
+                        <button
+                          type="button"
+                          onClick={() => handle1ClickAddPreset(preset)}
+                          className="px-3 py-1.5 rounded-lg text-[10px] font-bold text-white bg-blue-600 hover:bg-blue-500 transition-colors text-center cursor-pointer"
+                        >
+                          + Instant Add
+                        </button>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+
               <form onSubmit={handleQuickSubmit} className="grid grid-cols-1 sm:grid-cols-4 gap-3">
                 <input
                   type="text"
@@ -126,23 +252,30 @@ export const ClientHub: React.FC = () => {
                   placeholder="Project Name (e.g. Oakridge Dental Booking System)"
                   value={newTitle}
                   onChange={(e) => setNewTitle(e.target.value)}
-                  className="bg-white/5 border border-white/15 rounded-xl px-3 py-2 text-xs text-white placeholder-slate-500 focus:outline-none focus:border-blue-400 sm:col-span-2"
+                  className="bg-white/5 border border-white/15 rounded-xl px-3 py-2 text-xs text-white placeholder:text-slate-500 focus:outline-none focus:border-blue-400 sm:col-span-2"
                 />
                 <input
                   type="text"
                   required
-                  placeholder="Your Name"
+                  placeholder="Your Name (e.g. Dr. Aris Thorne)"
                   value={newClientName}
                   onChange={(e) => setNewClientName(e.target.value)}
-                  className="bg-white/5 border border-white/15 rounded-xl px-3 py-2 text-xs text-white placeholder-slate-500 focus:outline-none focus:border-blue-400"
+                  className="bg-white/5 border border-white/15 rounded-xl px-3 py-2 text-xs text-white placeholder:text-slate-500 focus:outline-none focus:border-blue-400"
                 />
                 <input
                   type="email"
                   required
-                  placeholder="Email Address"
+                  placeholder="Email Address (e.g. aris@oakridgedental.com)"
                   value={newClientEmail}
                   onChange={(e) => setNewClientEmail(e.target.value)}
-                  className="bg-white/5 border border-white/15 rounded-xl px-3 py-2 text-xs text-white placeholder-slate-500 focus:outline-none focus:border-blue-400"
+                  className="bg-white/5 border border-white/15 rounded-xl px-3 py-2 text-xs text-white placeholder:text-slate-500 focus:outline-none focus:border-blue-400"
+                />
+                <input
+                  type="text"
+                  placeholder="Company Name (e.g. Oakridge Family Dental)"
+                  value={newCompany}
+                  onChange={(e) => setNewCompany(e.target.value)}
+                  className="bg-white/5 border border-white/15 rounded-xl px-3 py-2 text-xs text-white placeholder:text-slate-500 focus:outline-none focus:border-blue-400 sm:col-span-2"
                 />
                 <select
                   value={newCategory}
@@ -159,17 +292,17 @@ export const ClientHub: React.FC = () => {
                   onChange={(e) => setNewPriority(e.target.value as any)}
                   className="bg-black/90 border border-white/15 rounded-xl px-3 py-2 text-xs text-white focus:outline-none focus:border-blue-400"
                 >
-                  <option value="standard">Standard Pace</option>
-                  <option value="high">Priority Queue</option>
-                  <option value="urgent">Express Launch</option>
+                  <option value="standard">Standard Pace (~3 Wks)</option>
+                  <option value="high">Priority Queue (~2 Wks)</option>
+                  <option value="urgent">Express Launch (~10 Days)</option>
                 </select>
                 <button
                   type="submit"
-                  className="py-2 px-4 rounded-xl text-xs font-bold text-white flex items-center justify-center gap-2 transition-all hover:scale-102 cursor-pointer sm:col-span-2"
+                  className="py-2.5 px-4 rounded-xl text-xs font-bold text-white flex items-center justify-center gap-2 transition-all hover:scale-102 cursor-pointer sm:col-span-4"
                   style={{ backgroundColor: themeConfig.primaryColor }}
                 >
                   <Sparkles className="w-3.5 h-3.5" />
-                  <span>Add Project to Simulator Board</span>
+                  <span>Add Custom Project to Simulator Board</span>
                 </button>
               </form>
               {quickFormError && (

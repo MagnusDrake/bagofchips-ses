@@ -25,49 +25,50 @@ interface StudioContextType {
 
 const INITIAL_DEMO_TICKETS: ClientTicket[] = [
   {
-    id: 'demo-1',
-    ticketCode: 'BOC-4921',
-    title: 'Apex Heating & Air — Client Invoicing & Payment Portal',
+    id: 'boc-8104',
+    ticketCode: 'BOC-8104',
+    title: 'BOC-8104 • Apex HVAC Dispatch & Customer Invoicing Portal',
     category: 'customer-portal',
     status: 'in_sprint',
     priority: 'high',
     clientName: 'Mark Henderson',
     clientEmail: 'mark@apexheatingair.com',
     company: 'Apex Heating & Air Specialists',
-    description: 'Field technician mobile work order app and customer self-service billing portal with instant Apple Pay and QuickBooks sync.',
+    description: 'Customer portal with online service dispatch, QuickBooks sync, and 1-click mobile invoice settlement.',
     selectedModules: ['accounting-sync', 'sms-reminders', 'client-vault'],
-    estimatedCost: 3800,
+    estimatedCost: 3400,
     estimatedWeeks: 3,
-    submittedAt: '2026-08-20',
-    progressPercent: 75,
+    submittedAt: '2026-08-18',
+    progressPercent: 85,
     milestones: [
-      { id: 'm1', title: 'Scope Discovery & Interactive Prototype', status: 'completed', date: 'Aug 22', deliverables: ['Clickable Prototype', 'Invoice Data Flow'] },
-      { id: 'm2', title: 'Field Tech Mobile Entry Form', status: 'completed', date: 'Aug 29', deliverables: ['Technician Web App', 'Photo Attachment Support'] },
-      { id: 'm3', title: 'Stripe & QuickBooks Accounting Integration', status: 'in_progress', date: 'Sep 04', deliverables: ['Stripe Invoicing Pipeline', 'QuickBooks 2-Way Sync'] },
-      { id: 'm4', title: 'Testing & Launch with 30 Days Free Support', status: 'upcoming', date: 'Sep 11', deliverables: ['Domain Cutover', 'Staff Training Video', '100% IP Code Handover'] }
+      { id: 'm1', title: 'Schema & Work Order Data Model', status: 'completed', date: 'Aug 18', deliverables: ['Work Order Data Model', 'Clickable Prototype'] },
+      { id: 'm2', title: 'QuickBooks & Stripe Payment Sync', status: 'completed', date: 'Aug 24', deliverables: ['Stripe Invoicing Pipeline', 'QuickBooks 2-Way Sync'] },
+      { id: 'm3', title: 'Field Tech Mobile Console & Dispatch Routing', status: 'completed', date: 'Aug 28', deliverables: ['Technician Mobile Console', 'Route Dispatch Mapping'] },
+      { id: 'm4', title: 'Automated 2-Way SMS Reminders & QA', status: 'in_progress', date: 'Sep 03', deliverables: ['Twilio 2-Way SMS Gateway', 'End-to-End Test Suite'] },
+      { id: 'm5', title: 'Staff Training & Production Launch', status: 'upcoming', date: 'Sep 08', deliverables: ['Staff Training Video', 'Domain SSL Cutover', '30 Days Free Support'] }
     ]
   },
   {
-    id: 'demo-2',
-    ticketCode: 'BOC-3108',
-    title: 'SweetRise Bakery — Online Catering Configurator & Local SEO',
+    id: 'boc-5290',
+    ticketCode: 'BOC-5290',
+    title: 'BOC-5290 • SweetRise Bakery Catering & Ordering Engine',
     category: 'growth-website',
-    status: 'qa_testing',
+    status: 'in_sprint',
     priority: 'standard',
     clientName: 'Elena Rostova',
     clientEmail: 'elena@sweetrisebakery.com',
     company: 'SweetRise Artisan Bakery',
-    description: 'High-converting bakery website with interactive catering platter builder, deposit checkout, and automated Google review requests.',
-    selectedModules: ['review-collector', 'sms-reminders'],
-    estimatedCost: 1550,
+    description: 'Custom cake quote builder, deposit engine, and kitchen calendar sync.',
+    selectedModules: ['review-collector', 'sms-reminders', 'calendar-sync'],
+    estimatedCost: 1800,
     estimatedWeeks: 2,
     submittedAt: '2026-08-25',
-    progressPercent: 90,
+    progressPercent: 45,
     milestones: [
-      { id: 'm1', title: 'Menu Discovery & Mobile Design Approval', status: 'completed', date: 'Aug 27', deliverables: ['Brand Color Palette', 'Platter Customizer Prototype'] },
-      { id: 'm2', title: 'Catering Engine & Deposit Checkout', status: 'completed', date: 'Sep 01', deliverables: ['Online Ordering Portal', 'Stripe Deposit Gateway'] },
-      { id: 'm3', title: 'Google Maps SEO & SMS Notifications', status: 'completed', date: 'Sep 04', deliverables: ['Google Schema Setup', 'Twilio Kitchen Alerts'] },
-      { id: 'm4', title: 'Staff Training & Live Launch', status: 'in_progress', date: 'Sep 08', deliverables: ['Staff CMS Walkthrough', '30-Day Support Warranty'] }
+      { id: 'm1', title: 'Menu Discovery & Mobile Design Approval', status: 'completed', date: 'Aug 26', deliverables: ['Brand Color Palette', 'Platter Customizer Prototype'] },
+      { id: 'm2', title: 'Custom Cake Quote Builder & Calendar Sync', status: 'completed', date: 'Sep 01', deliverables: ['Interactive Quote Calculator', 'Google Kitchen Calendar Sync'] },
+      { id: 'm3', title: 'Stripe Deposit Processing & Email Alerts', status: 'in_progress', date: 'Sep 05', deliverables: ['50% Deposit Gateway', 'Automated SMS Alerts'] },
+      { id: 'm4', title: 'Final Testing & Staff Training', status: 'upcoming', date: 'Sep 10', deliverables: ['Local SEO Setup', 'Staff Handover Walkthrough', '30 Days Free Support'] }
     ]
   }
 ];
@@ -87,8 +88,22 @@ export const StudioProvider: React.FC<{ children: React.ReactNode }> = ({ childr
 
   const [tickets, setTickets] = useState<ClientTicket[]>(() => {
     try {
-      const saved = localStorage.getItem('bagofchips_tickets');
-      return saved ? JSON.parse(saved) : INITIAL_DEMO_TICKETS;
+      const saved = localStorage.getItem('bagofchips_tickets_v3');
+      if (saved) {
+        const parsed = JSON.parse(saved);
+        // Clear any old tickets or legacy titles if found
+        const hasLegacy = parsed.some((t: any) =>
+          t.title?.includes('PulseSync') ||
+          t.title?.includes('HyperSpeed') ||
+          t.title?.includes('ChipCrush') ||
+          t.id === 'demo-1' ||
+          t.id === 'demo-2'
+        );
+        if (!hasLegacy && Array.isArray(parsed) && parsed.length > 0) {
+          return parsed;
+        }
+      }
+      return INITIAL_DEMO_TICKETS;
     } catch {
       return INITIAL_DEMO_TICKETS;
     }
@@ -102,7 +117,14 @@ export const StudioProvider: React.FC<{ children: React.ReactNode }> = ({ childr
   }, [theme]);
 
   useEffect(() => {
-    localStorage.setItem('bagofchips_tickets', JSON.stringify(tickets));
+    localStorage.setItem('bagofchips_tickets_v3', JSON.stringify(tickets));
+    // Clean up outdated legacy keys
+    try {
+      localStorage.removeItem('bagofchips_tickets');
+      localStorage.removeItem('bagofchips_tickets_v2');
+    } catch {
+      // Ignore
+    }
   }, [tickets]);
 
   const setTheme = (newTheme: ThemeId) => {

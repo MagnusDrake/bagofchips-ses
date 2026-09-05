@@ -116,7 +116,7 @@ export const ContactSection: React.FC = () => {
                         value={name}
                         onChange={(e) => setName(e.target.value)}
                         placeholder="Sarah Jenkins"
-                        className="w-full bg-black/50 border border-white/15 rounded-xl px-3.5 py-2.5 text-xs text-white placeholder-slate-500 focus:outline-none focus:border-blue-400"
+                        className="w-full bg-black/50 border border-white/15 rounded-xl px-3.5 py-2.5 text-xs text-white placeholder:text-slate-400/60 focus:outline-none focus:border-blue-400"
                       />
                     </div>
 
@@ -128,7 +128,7 @@ export const ContactSection: React.FC = () => {
                         value={email}
                         onChange={(e) => setEmail(e.target.value)}
                         placeholder="sarah@business.com"
-                        className="w-full bg-black/50 border border-white/15 rounded-xl px-3.5 py-2.5 text-xs text-white placeholder-slate-500 focus:outline-none focus:border-blue-400"
+                        className="w-full bg-black/50 border border-white/15 rounded-xl px-3.5 py-2.5 text-xs text-white placeholder:text-slate-400/60 focus:outline-none focus:border-blue-400"
                       />
                     </div>
                   </div>
@@ -141,7 +141,7 @@ export const ContactSection: React.FC = () => {
                         value={company}
                         onChange={(e) => setCompany(e.target.value)}
                         placeholder="Jenkins Plumbing & Heating"
-                        className="w-full bg-black/50 border border-white/15 rounded-xl px-3.5 py-2.5 text-xs text-white placeholder-slate-500 focus:outline-none focus:border-blue-400"
+                        className="w-full bg-black/50 border border-white/15 rounded-xl px-3.5 py-2.5 text-xs text-white placeholder:text-slate-400/60 focus:outline-none focus:border-blue-400"
                       />
                     </div>
 
@@ -182,7 +182,7 @@ export const ContactSection: React.FC = () => {
                       value={message}
                       onChange={(e) => setMessage(e.target.value)}
                       placeholder="Tell us about your business, current website or tools, and what you would like to improve..."
-                      className="w-full bg-black/50 border border-white/15 rounded-xl px-3.5 py-2.5 text-xs text-white placeholder-slate-500 focus:outline-none focus:border-blue-400 resize-none"
+                      className="w-full bg-black/50 border border-white/15 rounded-xl px-3.5 py-2.5 text-xs text-white placeholder:text-slate-400/60 focus:outline-none focus:border-blue-400 resize-none"
                     />
                   </div>
 

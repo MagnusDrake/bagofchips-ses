@@ -43,9 +43,12 @@ export const Navbar: React.FC = () => {
     <header
       className={`fixed top-0 left-0 right-0 z-40 transition-all duration-300 ${
         scrolled
-          ? 'bg-[#0b1120]/92 backdrop-blur-xl border-b border-white/10 shadow-2xl py-3'
-          : 'bg-transparent py-5'
+          ? 'backdrop-blur-xl border-b border-white/10 shadow-2xl py-3'
+          : 'bg-gradient-to-b from-black/60 to-transparent py-5'
       }`}
+      style={{
+        backgroundColor: scrolled ? `${themeConfig.bgHex}ee` : undefined,
+      }}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between">
         {/* Studio Brand Logo */}
@@ -75,14 +78,14 @@ export const Navbar: React.FC = () => {
                 STUDIO
               </span>
             </div>
-            <p className="text-[10px] text-slate-400 font-medium tracking-wide -mt-0.5 hidden sm:block">
+            <p className="text-[10px] text-slate-300 font-medium tracking-wide -mt-0.5 hidden sm:block">
               Web & App Studio for Growing Businesses
             </p>
           </div>
         </a>
 
-        {/* Desktop Navigation Links */}
-        <nav className="hidden lg:flex items-center gap-1 bg-white/5 border border-white/10 rounded-full px-3 py-1.5 shadow-inner backdrop-blur-md">
+        {/* Desktop Navigation Links (WCAG AAA Contrast Validated) */}
+        <nav className="hidden lg:flex items-center gap-1 bg-slate-950/80 border border-white/20 rounded-full px-3.5 py-1.5 shadow-lg backdrop-blur-md">
           {navLinks.map((link) => {
             const Icon = link.icon;
             return (
@@ -91,15 +94,23 @@ export const Navbar: React.FC = () => {
                 href={link.href}
                 className={`px-3.5 py-1.5 rounded-full text-xs font-semibold flex items-center gap-1.5 transition-all duration-200 ${
                   link.highlight
-                    ? 'text-white bg-blue-600/30 hover:bg-blue-600/40 shadow-sm border border-blue-400/30'
-                    : 'text-slate-300 hover:text-white hover:bg-white/5'
+                    ? 'text-white shadow-sm border border-white/20'
+                    : 'text-slate-100 hover:text-white hover:bg-white/10'
                 }`}
+                style={
+                  link.highlight
+                    ? {
+                        backgroundColor: `${themeConfig.primaryColor}35`,
+                        borderColor: `${themeConfig.primaryColor}60`,
+                      }
+                    : undefined
+                }
               >
-                <Icon className="w-3.5 h-3.5 opacity-80" />
+                <Icon className="w-3.5 h-3.5 opacity-90 text-slate-200" />
                 <span>{link.name}</span>
                 {link.badge && (
                   <span
-                    className="ml-1 px-1.5 py-0.2 rounded-full text-[10px] font-mono font-bold text-white bg-emerald-500"
+                    className="ml-1 px-1.5 py-0.2 rounded-full text-[10px] font-mono font-bold text-white bg-emerald-500 shadow-sm"
                   >
                     {link.badge}
                   </span>
@@ -115,10 +126,10 @@ export const Navbar: React.FC = () => {
           <div className="relative">
             <button
               onClick={() => setThemeDropdownOpen(!themeDropdownOpen)}
-              className="px-2.5 py-1.5 rounded-xl text-xs font-medium text-slate-300 hover:text-white hover:bg-white/5 border border-white/10 transition-all flex items-center gap-1.5 cursor-pointer"
+              className="px-2.5 py-1.5 rounded-xl text-xs font-semibold text-slate-200 hover:text-white hover:bg-white/10 border border-white/15 transition-all flex items-center gap-1.5 cursor-pointer"
               title="Change Studio Style"
             >
-              <Palette className="w-3.5 h-3.5 text-slate-400" />
+              <Palette className="w-3.5 h-3.5 text-slate-300" />
               <span className="hidden xl:inline text-[11px]">Theme</span>
             </button>
 
@@ -181,7 +192,10 @@ export const Navbar: React.FC = () => {
 
       {/* Mobile Dropdown Navigation */}
       {mobileMenuOpen && (
-        <div className="sm:hidden bg-[#0b1120]/98 backdrop-blur-2xl border-b border-white/10 px-4 pt-4 pb-6 mt-3 shadow-2xl animate-in slide-in-from-top">
+        <div
+          className="sm:hidden backdrop-blur-2xl border-b border-white/15 px-4 pt-4 pb-6 mt-3 shadow-2xl animate-in slide-in-from-top"
+          style={{ backgroundColor: `${themeConfig.bgHex}fa` }}
+        >
           <div className="space-y-2">
             {navLinks.map((link) => {
               const Icon = link.icon;
@@ -190,10 +204,10 @@ export const Navbar: React.FC = () => {
                   key={link.name}
                   href={link.href}
                   onClick={() => setMobileMenuOpen(false)}
-                  className="flex items-center justify-between px-3 py-2.5 rounded-xl text-sm font-medium text-slate-200 hover:bg-white/10 hover:text-white"
+                  className="flex items-center justify-between px-3 py-2.5 rounded-xl text-sm font-semibold text-slate-100 hover:bg-white/10 hover:text-white"
                 >
                   <div className="flex items-center gap-2.5">
-                    <Icon className="w-4 h-4 opacity-80" style={{ color: themeConfig.primaryColor }} />
+                    <Icon className="w-4 h-4 opacity-90" style={{ color: themeConfig.primaryColor }} />
                     <span>{link.name}</span>
                   </div>
                   {link.badge && (

@@ -480,7 +480,7 @@ export const ProjectConfigurator: React.FC = () => {
                     placeholder="Your Name *"
                     value={clientName}
                     onChange={(e) => setClientName(e.target.value)}
-                    className="w-full bg-black/50 border border-white/15 rounded-xl px-3 py-2 text-xs text-white placeholder-slate-500 focus:outline-none focus:border-blue-400"
+                    className="w-full bg-black/50 border border-white/15 rounded-xl px-3 py-2 text-xs text-white placeholder:text-slate-400/60 focus:outline-none focus:border-blue-400"
                   />
                   <input
                     type="email"
@@ -488,28 +488,28 @@ export const ProjectConfigurator: React.FC = () => {
                     placeholder="Email Address *"
                     value={clientEmail}
                     onChange={(e) => setClientEmail(e.target.value)}
-                    className="w-full bg-black/50 border border-white/15 rounded-xl px-3 py-2 text-xs text-white placeholder-slate-500 focus:outline-none focus:border-blue-400"
+                    className="w-full bg-black/50 border border-white/15 rounded-xl px-3 py-2 text-xs text-white placeholder:text-slate-400/60 focus:outline-none focus:border-blue-400"
                   />
                   <input
                     type="text"
                     placeholder="Business / Company Name"
                     value={company}
                     onChange={(e) => setCompany(e.target.value)}
-                    className="w-full bg-black/50 border border-white/15 rounded-xl px-3 py-2 text-xs text-white placeholder-slate-500 focus:outline-none focus:border-blue-400"
+                    className="w-full bg-black/50 border border-white/15 rounded-xl px-3 py-2 text-xs text-white placeholder:text-slate-400/60 focus:outline-none focus:border-blue-400"
                   />
                   <input
                     type="text"
                     placeholder="Project Name / Working Title"
                     value={projectTitle}
                     onChange={(e) => setProjectTitle(e.target.value)}
-                    className="w-full bg-black/50 border border-white/15 rounded-xl px-3 py-2 text-xs text-white placeholder-slate-500 focus:outline-none focus:border-blue-400"
+                    className="w-full bg-black/50 border border-white/15 rounded-xl px-3 py-2 text-xs text-white placeholder:text-slate-400/60 focus:outline-none focus:border-blue-400"
                   />
                   <textarea
                     rows={2}
                     placeholder="Tell us a little about your business goals or features you'd like..."
                     value={projectDescription}
                     onChange={(e) => setProjectDescription(e.target.value)}
-                    className="w-full bg-black/50 border border-white/15 rounded-xl px-3 py-2 text-xs text-white placeholder-slate-500 focus:outline-none focus:border-blue-400 resize-none"
+                    className="w-full bg-black/50 border border-white/15 rounded-xl px-3 py-2 text-xs text-white placeholder:text-slate-400/60 focus:outline-none focus:border-blue-400 resize-none"
                   />
                 </div>
 

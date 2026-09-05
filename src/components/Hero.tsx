@@ -4,7 +4,6 @@ import {
   Sparkles,
   ArrowRight,
   ShieldCheck,
-  CheckCircle2,
   Calendar,
   CreditCard,
   Star,
@@ -59,43 +58,8 @@ export const Hero: React.FC = () => {
               </p>
             </div>
 
-            {/* 4 Core Pillars for SMBs */}
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5 pt-1 max-w-xl mx-auto lg:mx-0 text-left">
-              <div className="flex items-start gap-2.5 text-xs sm:text-sm text-slate-200">
-                <CheckCircle2 className="w-4 h-4 shrink-0 mt-0.5 text-emerald-400" />
-                <div>
-                  <span className="font-bold text-white block">100% Code & Domain Ownership</span>
-                  <span className="text-slate-400 text-xs">You own your website and accounts outright. Zero recurring lock-in fees.</span>
-                </div>
-              </div>
-
-              <div className="flex items-start gap-2.5 text-xs sm:text-sm text-slate-200">
-                <CheckCircle2 className="w-4 h-4 shrink-0 mt-0.5" style={{ color: themeConfig.primaryColor }} />
-                <div>
-                  <span className="font-bold text-white block">Direct Lead Engineer Access</span>
-                  <span className="text-slate-400 text-xs">Work directly with the builder. No non-technical account managers.</span>
-                </div>
-              </div>
-
-              <div className="flex items-start gap-2.5 text-xs sm:text-sm text-slate-200">
-                <CheckCircle2 className="w-4 h-4 shrink-0 mt-0.5 text-emerald-400" />
-                <div>
-                  <span className="font-bold text-white block">30 Days Free Support & Training</span>
-                  <span className="text-slate-400 text-xs">Staff training walkthroughs and guaranteed bug-free warranty included.</span>
-                </div>
-              </div>
-
-              <div className="flex items-start gap-2.5 text-xs sm:text-sm text-slate-200">
-                <CheckCircle2 className="w-4 h-4 shrink-0 mt-0.5" style={{ color: themeConfig.primaryColor }} />
-                <div>
-                  <span className="font-bold text-white block">Delivered in 2 to 4 Weeks</span>
-                  <span className="text-slate-400 text-xs">Fixed-price milestone packages with clear timelines and zero surprise bills.</span>
-                </div>
-              </div>
-            </div>
-
             {/* Action CTA Buttons */}
-            <div className="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4 pt-3">
+            <div className="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-3.5 pt-2">
               <a
                 href="#configurator"
                 className="w-full sm:w-auto inline-flex items-center justify-center gap-3 px-8 py-4 rounded-2xl text-sm font-bold text-white shadow-xl transition-all duration-200 hover:scale-102 active:scale-98 group cursor-pointer"
@@ -117,8 +81,43 @@ export const Hero: React.FC = () => {
               </a>
             </div>
 
+            {/* Streamlined 4 Guarantees Micro-Grid Directly Beneath CTA */}
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5 pt-2 max-w-xl mx-auto lg:mx-0 text-left">
+              <div className="p-2.5 rounded-xl bg-white/5 border border-white/10 flex items-start gap-2.5">
+                <span className="text-emerald-400 font-bold text-sm leading-none shrink-0 mt-0.5">✓</span>
+                <div>
+                  <span className="text-xs font-bold text-white block">100% Code & Domain Ownership</span>
+                  <span className="text-[11px] text-slate-400 block">Zero recurring platform fees</span>
+                </div>
+              </div>
+
+              <div className="p-2.5 rounded-xl bg-white/5 border border-white/10 flex items-start gap-2.5">
+                <span className="text-blue-400 font-bold text-sm leading-none shrink-0 mt-0.5">✓</span>
+                <div>
+                  <span className="text-xs font-bold text-white block">Direct Lead Engineer Access</span>
+                  <span className="text-[11px] text-slate-400 block">No account manager runaround</span>
+                </div>
+              </div>
+
+              <div className="p-2.5 rounded-xl bg-white/5 border border-white/10 flex items-start gap-2.5">
+                <span className="text-emerald-400 font-bold text-sm leading-none shrink-0 mt-0.5">✓</span>
+                <div>
+                  <span className="text-xs font-bold text-white block">30 Days Free Support</span>
+                  <span className="text-[11px] text-slate-400 block">Bug-free warranty & staff training</span>
+                </div>
+              </div>
+
+              <div className="p-2.5 rounded-xl bg-white/5 border border-white/10 flex items-start gap-2.5">
+                <span className="text-blue-400 font-bold text-sm leading-none shrink-0 mt-0.5">✓</span>
+                <div>
+                  <span className="text-xs font-bold text-white block">2 to 4 Week Delivery</span>
+                  <span className="text-[11px] text-slate-400 block">Fixed price, clear milestones</span>
+                </div>
+              </div>
+            </div>
+
             {/* Brand Narrative Footnote */}
-            <div className="pt-4 border-t border-white/10 flex items-center gap-2.5 justify-center lg:justify-start text-xs text-slate-400">
+            <div className="pt-2 border-t border-white/10 flex items-center gap-2 justify-center lg:justify-start text-xs text-slate-400">
               <ShieldCheck className="w-4 h-4 text-emerald-400 shrink-0" />
               <span>
                 <span className="text-slate-200 font-semibold">The bagOfchips Promise: </span>
