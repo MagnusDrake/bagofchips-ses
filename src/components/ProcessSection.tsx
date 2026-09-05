@@ -1,6 +1,6 @@
 import React from 'react';
 import { useStudio } from '../context/StudioContext';
-import { Workflow, CheckCircle2, MessageSquare, Laptop, ThumbsUp, Rocket } from 'lucide-react';
+import { Workflow, CheckCircle2, Terminal, Code2, Rocket, ShieldCheck } from 'lucide-react';
 
 export const ProcessSection: React.FC = () => {
   const { themeConfig } = useStudio();
@@ -8,50 +8,50 @@ export const ProcessSection: React.FC = () => {
   const steps = [
     {
       step: '01',
-      title: 'Tell Us What You Need',
-      badge: 'QUICK & SIMPLE',
-      icon: MessageSquare,
-      desc: 'Fill out our quick 2-minute builder or send us a message. We’ll give you a clear, fixed price quote within 24 hours with zero technical jargon.',
+      title: 'Architectural RFC & Discovery',
+      badge: 'SYSTEM DESIGN',
+      icon: Terminal,
+      desc: 'We define the technical blueprint before writing code: database entity models, API contract specifications, security threat modeling, and milestone timelines.',
       points: [
-        'Plain English, zero confusing tech talk',
-        'Guaranteed fixed price (no hidden bills)',
-        'Clear delivery date before we start'
+        'Detailed Architecture RFC & schema specs',
+        'Transparent fixed sprint investment scope',
+        'Zero vendor lock-in or proprietary dependencies'
       ]
     },
     {
       step: '02',
-      title: 'We Build It & Check In',
-      badge: 'WEEKLY DEMOS',
-      icon: Laptop,
-      desc: 'We start building immediately. You get private access and video check-ins every week so you always see exactly how your project is coming along.',
+      title: 'High-Velocity Sprints',
+      badge: 'RAPID CADENCE',
+      icon: Code2,
+      desc: 'Senior engineers build your system in bi-weekly sprint cycles. Continuous staging deploys on AWS/GCP and direct Slack/Discord channels ensure total visibility.',
       points: [
-        'Clickable preview links you can test on your phone',
-        'Direct text / email / WhatsApp communication',
-        'Live progress bar tracking every milestone'
+        'Interactive preview staging builds every week',
+        'Direct asynchronous communication with senior engineers',
+        'Continuous integration with automated test validation'
       ]
     },
     {
       step: '03',
-      title: 'You Test & We Polish',
-      badge: 'MADE JUST FOR YOU',
-      icon: ThumbsUp,
-      desc: 'You test the website or app, tell us what you like, and we tweak colors, words, and features until you are 100% happy with how it looks and works.',
+      title: 'QA, Hardening & Benchmarking',
+      badge: 'PERFORMANCE SLAs',
+      icon: ShieldCheck,
+      desc: 'We stress-test concurrency, audit database query plans, and run automated Playwright and Vitest regression suites against strict sub-100ms latency budgets.',
       points: [
-        'Stress-tested on iPhones, Androids, and laptops',
-        'Fast loading with zero annoying lag',
-        'Included revision rounds to get it perfect'
+        'Automated end-to-end regression testing suite',
+        'OWASP security audit & penetration resistance',
+        'Sub-100ms p95 latency verification'
       ]
     },
     {
       step: '04',
-      title: 'We Launch It For You',
+      title: 'Production Handover & Full IP',
       badge: '100% YOURS',
       icon: Rocket,
-      desc: 'We connect your custom domain (.com), launch your website or submit your app to the App Stores, hand you the full keys, and give you 30 days of support.',
+      desc: 'Smooth DNS cutover and zero-downtime production deployment. We transfer 100% intellectual property, full Git repository rights, and include 30 days of hypercare.',
       points: [
-        'You own 100% of everything (no hostage fees)',
-        'We connect your .com and professional email',
-        '30-day post-launch warranty & free support'
+        'Complete source code & Git repo ownership transfer',
+        'Terraform / Docker cloud infrastructure as code',
+        '30-day post-launch engineering SLA & hypercare'
       ]
     }
   ];
@@ -60,19 +60,19 @@ export const ProcessSection: React.FC = () => {
     <section id="process" className="py-24 relative overflow-hidden bg-circuit-pattern">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         {/* Section Header */}
-        <div className="text-center max-w-3xl mx-auto mb-16 space-y-4">
+        <div className="max-w-3xl mb-16 space-y-4">
           <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full border bg-white/5 backdrop-blur-md">
             <Workflow className="w-3.5 h-3.5" style={{ color: themeConfig.primaryColor }} />
             <span className="text-xs font-mono font-bold tracking-wider uppercase text-slate-300">
-              How It Works
+              The Engineering Cadence
             </span>
           </div>
 
           <h2 className="text-3xl sm:text-5xl font-black text-white tracking-tight theme-font-title">
-            From idea to launched in <span style={{ color: themeConfig.primaryColor }}>4 simple steps.</span>
+            From technical RFC to <span style={{ color: themeConfig.primaryColor }}>production scale.</span>
           </h2>
-          <p className="text-slate-300 text-base sm:text-lg">
-            No endless boring meetings. No surprise invoices. Just straightforward, reliable software built right.
+          <p className="text-slate-300 text-base sm:text-lg leading-relaxed">
+            We removed bureaucratic agency layers and endless meetings. Just focused engineering velocity, rigorous code quality, and transparent deliverables.
           </p>
         </div>
 
@@ -83,12 +83,12 @@ export const ProcessSection: React.FC = () => {
             return (
               <div
                 key={idx}
-                className="relative rounded-3xl border bg-white/5 backdrop-blur-xl p-6 sm:p-7 flex flex-col justify-between hover:bg-white/10 transition-all duration-300 group hover:-translate-y-1"
+                className="relative rounded-3xl border bg-white/5 backdrop-blur-xl p-6 sm:p-7 flex flex-col justify-between hover:bg-white/10 transition-all duration-300 group hover:-translate-y-1 border-glow-hover"
                 style={{
-                  borderColor: 'rgba(255,255,255,0.1)',
+                  borderColor: 'rgba(255,255,255,0.08)',
                 }}
               >
-                {/* Step Number Background Watermark */}
+                {/* Step Number Watermark */}
                 <div className="absolute top-4 right-5 text-4xl font-mono font-black text-white/5 select-none group-hover:text-white/10 transition-colors">
                   {item.step}
                 </div>
@@ -96,10 +96,10 @@ export const ProcessSection: React.FC = () => {
                 <div className="space-y-4">
                   {/* Step Icon */}
                   <div
-                    className="w-12 h-12 rounded-2xl flex items-center justify-center border shadow-lg transition-transform group-hover:scale-110"
+                    className="w-12 h-12 rounded-2xl flex items-center justify-center border shadow-lg transition-transform group-hover:scale-105"
                     style={{
-                      backgroundColor: `${themeConfig.primaryColor}22`,
-                      borderColor: themeConfig.primaryColor,
+                      backgroundColor: `${themeConfig.primaryColor}15`,
+                      borderColor: `${themeConfig.primaryColor}35`,
                     }}
                   >
                     <Icon className="w-6 h-6" style={{ color: themeConfig.primaryColor }} />
@@ -115,7 +115,7 @@ export const ProcessSection: React.FC = () => {
                     >
                       {item.badge}
                     </span>
-                    <h3 className="text-xl font-bold text-white mt-2 mb-1">{item.title}</h3>
+                    <h3 className="text-lg font-bold text-white mt-2 mb-1">{item.title}</h3>
                     <p className="text-xs text-slate-300 leading-relaxed">{item.desc}</p>
                   </div>
                 </div>
@@ -123,9 +123,9 @@ export const ProcessSection: React.FC = () => {
                 {/* Point Checkmarks */}
                 <div className="mt-6 pt-4 border-t border-white/10 space-y-2">
                   {item.points.map((p, pIdx) => (
-                    <div key={pIdx} className="flex items-center gap-2 text-xs text-slate-300">
+                    <div key={pIdx} className="flex items-start gap-2 text-xs text-slate-300">
                       <CheckCircle2
-                        className="w-3.5 h-3.5 shrink-0"
+                        className="w-3.5 h-3.5 shrink-0 mt-0.5"
                         style={{ color: themeConfig.accentColor }}
                       />
                       <span className="leading-tight">{p}</span>

@@ -3,13 +3,14 @@ import { StudioProvider } from './context/StudioContext';
 import { Navbar } from './components/Navbar';
 import { Hero } from './components/Hero';
 import { ServicesSection } from './components/ServicesSection';
-import { ProjectConfigurator } from './components/ProjectConfigurator';
+import { TechStackSection } from './components/TechStackSection';
 import { PortfolioSection } from './components/PortfolioSection';
+import { ProjectConfigurator } from './components/ProjectConfigurator';
 import { ProcessSection } from './components/ProcessSection';
 import { ClientHub } from './components/ClientHub';
 import { ContactSection } from './components/ContactSection';
+import { DesignTokensPlayground } from './components/DesignTokensPlayground';
 import { Footer } from './components/Footer';
-import { ThemeSwitcher } from './components/ThemeSwitcher';
 
 export const AppContent: React.FC = () => {
   return (
@@ -21,18 +22,17 @@ export const AppContent: React.FC = () => {
       <main className="flex-grow">
         <Hero />
         <ServicesSection />
-        <ProjectConfigurator />
+        <TechStackSection />
         <PortfolioSection />
+        <ProjectConfigurator />
         <ProcessSection />
         <ClientHub />
         <ContactSection />
+        <DesignTokensPlayground />
       </main>
 
       {/* Footer */}
       <Footer />
-
-      {/* Floating Theme Flavor Switcher for immediate visitor interaction */}
-      <ThemeSwitcher variant="floating" />
     </div>
   );
 };

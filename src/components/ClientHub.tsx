@@ -1,35 +1,37 @@
 import React, { useState } from 'react';
 import { useStudio } from '../context/StudioContext';
-import type { ClientTicket, ProjectCategory } from '../types';
+import type { ProjectCategory } from '../types';
 import {
   Activity,
-  Plus,
+  CheckCircle2,
   Clock,
   FileCode,
-  Sparkles
+  Sparkles,
+  Plus,
+  Info,
+  Terminal
 } from 'lucide-react';
 
 export const ClientHub: React.FC = () => {
   const { themeConfig, tickets, addTicket } = useStudio();
-  const [selectedTicketId, setSelectedTicketId] = useState<string>(tickets[0]?.id || '');
+  const [selectedTicketId, setSelectedTicketId] = useState<string>(tickets[0]?.id || 'demo-1');
   const [showNewTicketForm, setShowNewTicketForm] = useState(false);
 
-  // Quick ticket creation form state
+  // New ticket quick form
   const [newTitle, setNewTitle] = useState('');
-  const [newCategory, setNewCategory] = useState<ProjectCategory>('web');
+  const [newCategory, setNewCategory] = useState<ProjectCategory>('fullstack-web');
   const [newPriority, setNewPriority] = useState<'standard' | 'high' | 'urgent'>('high');
   const [newClientName, setNewClientName] = useState('');
   const [newClientEmail, setNewClientEmail] = useState('');
   const [newDescription, setNewDescription] = useState('');
+  const [quickFormError, setQuickFormError] = useState<string | null>(null);
 
   const activeTicket = tickets.find((t) => t.id === selectedTicketId) || tickets[0];
-
-  const [quickFormError, setQuickFormError] = useState<string | null>(null);
 
   const handleQuickSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     if (!newTitle.trim() || !newClientName.trim() || !newClientEmail.trim()) {
-      setQuickFormError('Please fill in project title, your name, and email.');
+      setQuickFormError('Please enter project title, client name, and work email.');
       return;
     }
     setQuickFormError(null);
@@ -40,9 +42,9 @@ export const ClientHub: React.FC = () => {
       priority: newPriority,
       clientName: newClientName.trim(),
       clientEmail: newClientEmail.trim(),
-      description: newDescription.trim() || 'Direct software engineering request via Client Hub.',
-      selectedFeatures: ['auth', 'database', 'responsive-ui'],
-      estimatedCost: 3200,
+      description: newDescription.trim() || 'Simulated engineering sprint ticket created via client portal demo.',
+      selectedModules: ['auth-rbac', 'relational-db', 'ci-cd-cloud'],
+      estimatedCost: 4500,
       estimatedWeeks: 3,
     });
 
@@ -52,129 +54,122 @@ export const ClientHub: React.FC = () => {
     setNewDescription('');
   };
 
-  const getStatusBadge = (status: ClientTicket['status']) => {
-    switch (status) {
-      case 'scoping':
-        return { label: 'Scoping & Architecture', color: 'bg-sky-500/20 text-sky-400 border-sky-500/30' };
-      case 'in_sprint':
-        return { label: 'In Active Sprint', color: 'bg-amber-500/20 text-amber-400 border-amber-500/30' };
-      case 'qa_testing':
-        return { label: 'QA & Stress Testing', color: 'bg-purple-500/20 text-purple-400 border-purple-500/30' };
-      case 'deployed':
-        return { label: 'Deployed / Live', color: 'bg-emerald-500/20 text-emerald-400 border-emerald-500/30' };
-      default:
-        return { label: 'Active', color: 'bg-white/10 text-white' };
-    }
-  };
-
   return (
-    <section id="client-hub" className="py-24 relative bg-black/60 border-t border-b border-white/5">
+    <section id="client-hub" className="py-24 relative overflow-hidden bg-circuit-pattern">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         {/* Section Header */}
-        <div className="text-center max-w-3xl mx-auto mb-16 space-y-4">
+        <div className="max-w-3xl mb-10 space-y-4">
           <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full border bg-white/5 backdrop-blur-md">
             <Activity className="w-3.5 h-3.5" style={{ color: themeConfig.primaryColor }} />
             <span className="text-xs font-mono font-bold tracking-wider uppercase text-slate-300">
-              Real-Time Client Hub
+              Interactive Sprint Simulator
             </span>
           </div>
 
           <h2 className="text-3xl sm:text-5xl font-black text-white tracking-tight theme-font-title">
-            Track your sprints <span style={{ color: themeConfig.primaryColor }}>live & transparently.</span>
+            Transparent sprints. <span style={{ color: themeConfig.primaryColor }}>Live telemetry.</span>
           </h2>
-          <p className="text-slate-300 text-base sm:text-lg">
-            Every customer gets a dedicated live tracker showing sprint velocity, deliverables, test builds, and milestone roadmaps.
+          <p className="text-slate-300 text-base sm:text-lg leading-relaxed">
+            Every client gets a dedicated engineering dashboard showing real-time sprint velocity, verifiable test builds, code staging links, and automated CI/CD milestone roadmaps.
           </p>
         </div>
 
-        {/* Client Hub Main Container */}
+        {/* PROMINENT SIMULATION NOTICE */}
+        <div className="mb-10 p-4 rounded-2xl bg-amber-500/10 border border-amber-500/25 flex items-start gap-3.5 text-xs text-amber-200">
+          <Info className="w-5 h-5 shrink-0 text-amber-400 mt-0.5" />
+          <div className="space-y-1">
+            <span className="font-bold text-amber-300 block">
+              Interactive Client Portal Simulation (Demo Environment)
+            </span>
+            <span className="text-amber-200/90 leading-relaxed block">
+              This interactive simulator illustrates how active clients monitor our engineering sprints. Real client repositories, production credentials, and proprietary codebases are strictly confidential and protected behind private SSO barriers.
+            </span>
+          </div>
+        </div>
+
+        {/* Dashboard Frame */}
         <div
-          className="rounded-3xl border backdrop-blur-2xl shadow-2xl overflow-hidden"
-          style={{
-            backgroundColor: `${themeConfig.bgHex}EE`,
-            borderColor: themeConfig.primaryColor,
-          }}
+          className="rounded-3xl border bg-black/60 backdrop-blur-2xl shadow-2xl overflow-hidden glass-panel"
+          style={{ borderColor: 'rgba(255, 255, 255, 0.1)' }}
         >
-          {/* Top Hub Bar */}
-          <div className="p-4 sm:p-6 border-b border-white/10 flex flex-wrap items-center justify-between gap-4 bg-black/40">
+          {/* Top Command Bar */}
+          <div className="p-4 sm:p-6 border-b border-white/10 bg-white/5 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
             <div className="flex items-center gap-3">
-              <div
-                className="w-3 h-3 rounded-full animate-ping"
-                style={{ backgroundColor: themeConfig.primaryColor }}
-              />
-              <span className="text-sm font-bold text-white font-mono">
-                Active Client Portal ({tickets.length} Projects)
+              <span className="w-3 h-3 rounded-full bg-emerald-400 animate-pulse" />
+              <span className="text-xs sm:text-sm font-mono font-bold text-white uppercase tracking-wider">
+                Active Client Portal ({tickets.length} Simulated Sprints)
               </span>
             </div>
 
-            <div className="flex items-center gap-2">
-              <button
-                onClick={() => setShowNewTicketForm(!showNewTicketForm)}
-                className="px-4 py-2 rounded-xl text-xs font-extrabold text-slate-950 flex items-center gap-2 transition-all hover:scale-105"
-                style={{ backgroundColor: themeConfig.primaryColor }}
-              >
-                <Plus className="w-4 h-4" />
-                <span>Submit New Engineering Ticket</span>
-              </button>
-            </div>
+            <button
+              onClick={() => setShowNewTicketForm(!showNewTicketForm)}
+              className="py-2 px-4 rounded-xl text-xs font-bold text-slate-950 flex items-center justify-center gap-2 transition-all hover:scale-102 cursor-pointer shrink-0"
+              style={{ backgroundColor: themeConfig.primaryColor }}
+            >
+              <Plus className="w-4 h-4" />
+              <span>Simulate Dispatching a Ticket</span>
+            </button>
           </div>
 
-          {/* New Ticket Form (Collapsible) */}
+          {/* Quick Ticket Submission Panel */}
           {showNewTicketForm && (
-            <div className="p-6 border-b border-white/10 bg-white/5 animate-in slide-in-from-top duration-300">
-              <h3 className="text-base font-bold text-white mb-3">Direct Software Request Intake</h3>
-              <form onSubmit={handleQuickSubmit} className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+            <div className="p-6 border-b border-white/10 bg-black/80 animate-in slide-in-from-top">
+              <h3 className="text-sm font-bold text-white mb-3 flex items-center gap-2">
+                <Terminal className="w-4 h-4 text-emerald-400" />
+                Dispatch Simulated Engineering Sprint Ticket
+              </h3>
+              <form onSubmit={handleQuickSubmit} className="grid grid-cols-1 sm:grid-cols-4 gap-3">
                 <input
                   type="text"
                   required
-                  placeholder="Project or Feature Title *"
+                  placeholder="Ticket Title (e.g. Stripe Webhook Reconciliation)"
                   value={newTitle}
                   onChange={(e) => setNewTitle(e.target.value)}
-                  className="bg-black/50 border border-white/15 rounded-xl px-3.5 py-2 text-xs text-white placeholder-slate-500 focus:outline-none focus:border-amber-400"
+                  className="bg-white/5 border border-white/15 rounded-xl px-3 py-2 text-xs text-white placeholder-slate-500 focus:outline-none focus:border-amber-400 sm:col-span-2"
                 />
                 <input
                   type="text"
                   required
-                  placeholder="Your Name *"
+                  placeholder="Client Name / Lead"
                   value={newClientName}
                   onChange={(e) => setNewClientName(e.target.value)}
-                  className="bg-black/50 border border-white/15 rounded-xl px-3.5 py-2 text-xs text-white placeholder-slate-500 focus:outline-none focus:border-amber-400"
+                  className="bg-white/5 border border-white/15 rounded-xl px-3 py-2 text-xs text-white placeholder-slate-500 focus:outline-none focus:border-amber-400"
                 />
                 <input
                   type="email"
                   required
-                  placeholder="Your Email *"
+                  placeholder="Work Email"
                   value={newClientEmail}
                   onChange={(e) => setNewClientEmail(e.target.value)}
-                  className="bg-black/50 border border-white/15 rounded-xl px-3.5 py-2 text-xs text-white placeholder-slate-500 focus:outline-none focus:border-amber-400"
+                  className="bg-white/5 border border-white/15 rounded-xl px-3 py-2 text-xs text-white placeholder-slate-500 focus:outline-none focus:border-amber-400"
                 />
                 <select
                   value={newCategory}
                   onChange={(e) => setNewCategory(e.target.value as ProjectCategory)}
-                  className="bg-black/50 border border-white/15 rounded-xl px-3.5 py-2 text-xs text-white focus:outline-none focus:border-amber-400"
+                  className="bg-black/90 border border-white/15 rounded-xl px-3 py-2 text-xs text-white focus:outline-none focus:border-amber-400"
                 >
-                  <option value="web">Web Application / SaaS</option>
-                  <option value="mobile">Mobile App (iOS/Android)</option>
-                  <option value="game">Interactive 3D Game</option>
-                  <option value="custom">Custom Tool / Automation</option>
-                  <option value="ai">AI System / Workflow</option>
+                  <option value="fullstack-web">Full-Stack Web</option>
+                  <option value="mobile-app">Mobile Systems</option>
+                  <option value="internal-tooling">Internal Tooling</option>
+                  <option value="ai-systems">AI & RAG</option>
+                  <option value="interactive-engine">3D Graphics</option>
                 </select>
                 <select
                   value={newPriority}
                   onChange={(e) => setNewPriority(e.target.value as any)}
-                  className="bg-black/50 border border-white/15 rounded-xl px-3.5 py-2 text-xs text-white focus:outline-none focus:border-amber-400"
+                  className="bg-black/90 border border-white/15 rounded-xl px-3 py-2 text-xs text-white focus:outline-none focus:border-amber-400"
                 >
                   <option value="standard">Standard Priority</option>
                   <option value="high">High Priority</option>
-                  <option value="urgent">Urgent Sprint (Turbo)</option>
+                  <option value="urgent">Urgent Crunch</option>
                 </select>
                 <button
                   type="submit"
-                  className="py-2 px-4 rounded-xl text-xs font-bold text-slate-950 flex items-center justify-center gap-2 transition-all hover:scale-102 cursor-pointer"
+                  className="py-2 px-4 rounded-xl text-xs font-bold text-slate-950 flex items-center justify-center gap-2 transition-all hover:scale-102 cursor-pointer sm:col-span-2"
                   style={{ backgroundColor: themeConfig.primaryColor }}
                 >
                   <Sparkles className="w-3.5 h-3.5" />
-                  <span>Dispatch Request</span>
+                  <span>Submit to Simulator Board</span>
                 </button>
               </form>
               {quickFormError && (
@@ -185,99 +180,110 @@ export const ClientHub: React.FC = () => {
             </div>
           )}
 
-          {/* Hub Workspace Layout */}
-          <div className="grid grid-cols-1 lg:grid-cols-12">
+          {/* Main Workspace Body */}
+          <div className="grid grid-cols-1 lg:grid-cols-12 divide-y lg:divide-y-0 lg:divide-x divide-white/10">
             {/* Left Sidebar: Tickets List */}
-            <div className="lg:col-span-4 border-r border-white/10 p-4 sm:p-6 space-y-3 bg-black/20">
-              <span className="text-xs font-mono uppercase tracking-wider text-slate-400">
-                Your Projects & Tickets:
-              </span>
-
-              <div className="space-y-2.5 max-h-[500px] overflow-y-auto pr-1">
-                {tickets.map((t) => {
-                  const isSelected = (activeTicket && activeTicket.id === t.id);
-                  const statusInfo = getStatusBadge(t.status);
-
-                  return (
-                    <button
-                      key={t.id}
-                      onClick={() => setSelectedTicketId(t.id)}
-                      className={`w-full text-left p-3.5 rounded-2xl border transition-all duration-200 ${
-                        isSelected
-                          ? 'bg-white/15 border-white/40 shadow-lg'
-                          : 'bg-white/5 border-white/5 hover:bg-white/10 hover:border-white/15'
-                      }`}
-                      style={{
-                        borderColor: isSelected ? themeConfig.primaryColor : undefined,
-                      }}
-                    >
-                      <div className="flex items-center justify-between gap-1 mb-1">
-                        <span className="text-[10px] font-mono font-bold text-slate-400">
-                          {t.ticketCode}
-                        </span>
-                        <span
-                          className={`text-[9px] font-mono uppercase font-bold px-2 py-0.5 rounded-full border ${statusInfo.color}`}
-                        >
-                          {statusInfo.label}
-                        </span>
-                      </div>
-
-                      <h4 className="text-xs sm:text-sm font-bold text-white truncate">{t.title}</h4>
-                      <div className="flex items-center justify-between text-[11px] text-slate-400 mt-2">
-                        <span>Client: {t.clientName}</span>
-                        <span className="font-mono font-bold text-white">{t.progressPercent}% Done</span>
-                      </div>
-
-                      {/* Progress mini bar */}
-                      <div className="w-full bg-white/10 h-1.5 rounded-full mt-2 overflow-hidden">
-                        <div
-                          className="h-full transition-all duration-500 rounded-full"
-                          style={{
-                            width: `${t.progressPercent}%`,
-                            backgroundColor: themeConfig.primaryColor,
-                          }}
-                        />
-                      </div>
-                    </button>
-                  );
-                })}
+            <div className="lg:col-span-4 p-4 sm:p-6 space-y-3">
+              <div className="text-[10px] font-mono uppercase tracking-widest text-slate-400 mb-2">
+                Simulated Sprint Backlog & Status:
               </div>
+
+              {tickets.map((ticket) => {
+                const isSelected = activeTicket && activeTicket.id === ticket.id;
+                return (
+                  <button
+                    key={ticket.id}
+                    onClick={() => setSelectedTicketId(ticket.id)}
+                    className={`w-full p-4 rounded-2xl border text-left transition-all cursor-pointer ${
+                      isSelected
+                        ? 'bg-white/15 border-white/30 shadow-lg'
+                        : 'bg-white/5 border-white/5 hover:bg-white/10 hover:border-white/10'
+                    }`}
+                    style={{
+                      borderColor: isSelected ? themeConfig.primaryColor : undefined,
+                    }}
+                  >
+                    <div className="flex items-center justify-between gap-2 mb-1.5">
+                      <span className="text-[10px] font-mono text-slate-400">
+                        {ticket.ticketCode}
+                      </span>
+                      <span
+                        className={`text-[9px] font-mono font-bold uppercase px-2 py-0.5 rounded ${
+                          ticket.status === 'deployed'
+                            ? 'bg-emerald-500/20 text-emerald-300'
+                            : ticket.status === 'qa_testing'
+                            ? 'bg-purple-500/20 text-purple-300'
+                            : 'bg-amber-500/20 text-amber-300'
+                        }`}
+                      >
+                        {ticket.status.replace('_', ' ')}
+                      </span>
+                    </div>
+
+                    <h4 className="text-xs font-bold text-white line-clamp-1 mb-1">
+                      {ticket.title}
+                    </h4>
+
+                    <div className="flex items-center justify-between text-[11px] text-slate-400 font-mono">
+                      <span>{ticket.company || ticket.clientName}</span>
+                      <span className="text-white font-bold">{ticket.progressPercent}% Velocity</span>
+                    </div>
+
+                    {/* Progress bar */}
+                    <div className="w-full bg-white/10 h-1 rounded-full mt-2.5 overflow-hidden">
+                      <div
+                        className="h-full rounded-full transition-all duration-500"
+                        style={{
+                          width: `${ticket.progressPercent}%`,
+                          backgroundColor: themeConfig.primaryColor,
+                        }}
+                      />
+                    </div>
+                  </button>
+                );
+              })}
             </div>
 
-            {/* Right Area: Selected Ticket Live Milestone Board */}
+            {/* Right Panel: Active Ticket Milestone & Telemetry Detail */}
             {activeTicket && (
               <div className="lg:col-span-8 p-6 sm:p-8 space-y-8">
-                {/* Active Ticket Header */}
+                {/* Ticket Top Meta */}
                 <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-6 border-b border-white/10">
                   <div className="space-y-1">
                     <div className="flex items-center gap-2">
-                      <span className="text-xs font-mono font-bold text-slate-400">
-                        {activeTicket.ticketCode}
-                      </span>
-                      <span className="text-slate-500">•</span>
-                      <span className="text-xs font-mono uppercase text-amber-400">
-                        {activeTicket.category.toUpperCase()} BUILD
+                      <span className="text-xs font-mono text-slate-400">{activeTicket.ticketCode}</span>
+                      <span className="text-slate-600">•</span>
+                      <span className="text-xs font-mono uppercase text-amber-400 font-bold">
+                        {activeTicket.category.replace('-', ' ')}
                       </span>
                     </div>
-                    <h3 className="text-xl sm:text-2xl font-black text-white">{activeTicket.title}</h3>
-                    <p className="text-xs text-slate-300 max-w-2xl">{activeTicket.description}</p>
+                    <h3 className="text-xl sm:text-2xl font-black text-white">
+                      {activeTicket.title}
+                    </h3>
+                    <p className="text-xs text-slate-300 max-w-xl">
+                      {activeTicket.description}
+                    </p>
                   </div>
 
-                  <div className="bg-white/5 border border-white/10 rounded-2xl p-3 sm:text-right shrink-0">
-                    <div className="text-xs text-slate-400 font-mono">Target Investment</div>
-                    <div className="text-lg sm:text-xl font-bold text-white font-mono">
-                      ${activeTicket.estimatedCost?.toLocaleString() || '3,500'}
+                  <div className="bg-white/5 border border-white/10 rounded-2xl p-3.5 sm:text-right shrink-0">
+                    <div className="text-[10px] font-mono text-slate-400 uppercase">
+                      Sprint Budget
                     </div>
-                    <div className="text-[10px] text-slate-400">~{activeTicket.estimatedWeeks || 4} Weeks Sprint</div>
+                    <div className="text-xl font-bold font-mono text-white">
+                      ${activeTicket.estimatedCost.toLocaleString()}
+                    </div>
+                    <div className="text-[10px] text-slate-400 font-mono">
+                      ~{activeTicket.estimatedWeeks} Weeks Cadence
+                    </div>
                   </div>
                 </div>
 
-                {/* Live Milestone Timeline */}
+                {/* Milestone Deliverables Checklist */}
                 <div className="space-y-4">
                   <div className="flex items-center justify-between">
                     <h4 className="text-xs font-mono font-bold uppercase tracking-wider text-slate-300 flex items-center gap-2">
-                      <Clock className="w-4 h-4" style={{ color: themeConfig.primaryColor }} />
-                      Sprint Milestones & Deliverables Roadmap:
+                      <Clock className="w-4 h-4 text-emerald-400" />
+                      Milestone Roadmap & Verifiable Artifacts
                     </h4>
                     <span className="text-xs font-mono text-slate-400">
                       Overall Progress: {activeTicket.progressPercent}%
@@ -285,67 +291,49 @@ export const ClientHub: React.FC = () => {
                   </div>
 
                   <div className="space-y-3">
-                    {activeTicket.milestones.map((m, idx) => {
-                      const isDone = m.status === 'completed';
-                      const isInProgress = m.status === 'in_progress';
-
-                      return (
-                        <div
-                          key={m.id}
-                          className={`p-4 rounded-2xl border transition-all ${
-                            isDone
-                              ? 'bg-emerald-950/20 border-emerald-500/30 text-slate-200'
-                              : isInProgress
-                              ? 'bg-amber-950/20 border-amber-500/40 text-white shadow-md'
-                              : 'bg-white/5 border-white/10 text-slate-400'
-                          }`}
-                        >
-                          <div className="flex items-start justify-between gap-2">
-                            <div className="flex items-start gap-3">
-                              <div
-                                className={`w-6 h-6 rounded-full flex items-center justify-center shrink-0 mt-0.5 text-xs font-mono font-bold ${
-                                  isDone
-                                    ? 'bg-emerald-500 text-black'
-                                    : isInProgress
-                                    ? 'bg-amber-500 text-black animate-pulse'
-                                    : 'bg-white/10 text-slate-400'
-                                }`}
-                              >
-                                {isDone ? '✓' : idx + 1}
-                              </div>
-
-                              <div>
-                                <h5 className="text-xs sm:text-sm font-bold text-white flex items-center gap-2">
-                                  {m.title}
-                                  {isInProgress && (
-                                    <span className="px-2 py-0.2 rounded-full text-[9px] font-mono font-bold bg-amber-500/20 text-amber-300 border border-amber-500/30">
-                                      CURRENT FOCUS
-                                    </span>
-                                  )}
-                                </h5>
-
-                                {/* Deliverable Tags */}
-                                <div className="flex flex-wrap gap-1.5 mt-2">
-                                  {m.deliverables.map((del, dIdx) => (
-                                    <span
-                                      key={dIdx}
-                                      className="px-2 py-0.5 rounded text-[10px] font-mono bg-black/40 border border-white/10 text-slate-300 flex items-center gap-1"
-                                    >
-                                      <FileCode className="w-2.5 h-2.5 opacity-70" />
-                                      {del}
-                                    </span>
-                                  ))}
-                                </div>
-                              </div>
-                            </div>
-
-                            <span className="text-[11px] font-mono text-slate-400 shrink-0">
-                              {m.date}
-                            </span>
+                    {activeTicket.milestones.map((milestone) => (
+                      <div
+                        key={milestone.id}
+                        className={`p-4 rounded-2xl border transition-all ${
+                          milestone.status === 'completed'
+                            ? 'bg-emerald-950/20 border-emerald-500/20'
+                            : milestone.status === 'in_progress'
+                            ? 'bg-amber-950/20 border-amber-500/30'
+                            : 'bg-white/5 border-white/5 opacity-60'
+                        }`}
+                      >
+                        <div className="flex items-center justify-between gap-2 mb-2">
+                          <div className="flex items-center gap-2.5">
+                            {milestone.status === 'completed' ? (
+                              <CheckCircle2 className="w-4 h-4 text-emerald-400 shrink-0" />
+                            ) : milestone.status === 'in_progress' ? (
+                              <Clock className="w-4 h-4 text-amber-400 shrink-0 animate-spin" />
+                            ) : (
+                              <div className="w-4 h-4 rounded-full border border-white/20 shrink-0" />
+                            )}
+                            <h5 className="text-xs sm:text-sm font-bold text-white">
+                              {milestone.title}
+                            </h5>
                           </div>
+                          <span className="text-[10px] font-mono text-slate-400">
+                            {milestone.date}
+                          </span>
                         </div>
-                      );
-                    })}
+
+                        {/* Deliverable Pills */}
+                        <div className="flex flex-wrap gap-2 ml-6.5">
+                          {milestone.deliverables.map((deliv, dIdx) => (
+                            <span
+                              key={dIdx}
+                              className="px-2 py-0.5 rounded text-[10px] font-mono bg-black/40 border border-white/10 text-slate-300 flex items-center gap-1"
+                            >
+                              <FileCode className="w-3 h-3 text-slate-400" />
+                              <span>{deliv}</span>
+                            </span>
+                          ))}
+                        </div>
+                      </div>
+                    ))}
                   </div>
                 </div>
               </div>

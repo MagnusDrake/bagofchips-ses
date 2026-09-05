@@ -3,7 +3,7 @@ import { useStudio } from '../context/StudioContext';
 import { PORTFOLIO_DATA } from '../data/portfolioData';
 import type { PortfolioItem } from '../types';
 import { ProjectDetailModal } from './ProjectDetailModal';
-import { FolderKanban, ArrowUpRight } from 'lucide-react';
+import { ArrowUpRight, Terminal } from 'lucide-react';
 
 export const PortfolioSection: React.FC = () => {
   const { themeConfig } = useStudio();
@@ -11,12 +11,12 @@ export const PortfolioSection: React.FC = () => {
   const [activeModalItem, setActiveModalItem] = useState<PortfolioItem | null>(null);
 
   const filterTabs = [
-    { id: 'all', label: 'All Projects' },
-    { id: 'starter-web', label: 'Simple Business Sites' },
-    { id: 'web', label: 'Web Apps & Portals' },
-    { id: 'mobile', label: 'Mobile Apps' },
-    { id: 'custom', label: 'Business Automation' },
-    { id: 'game', label: 'Playable Games' },
+    { id: 'all', label: 'All Project Spotlights' },
+    { id: 'fullstack-web', label: 'Full-Stack Web' },
+    { id: 'mobile-app', label: 'Mobile Systems' },
+    { id: 'internal-tooling', label: 'Internal Tooling & Automation' },
+    { id: 'ai-systems', label: 'AI & Production RAG' },
+    { id: 'interactive-engine', label: 'Interactive 3D Engines' },
   ];
 
   const filteredItems = activeFilter === 'all'
@@ -24,27 +24,27 @@ export const PortfolioSection: React.FC = () => {
     : PORTFOLIO_DATA.filter((item) => item.category === activeFilter);
 
   return (
-    <section id="portfolio" className="py-24 relative bg-black/50 border-t border-b border-white/5">
+    <section id="portfolio" className="py-24 relative bg-black/60 border-t border-b border-white/5">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         {/* Section Header */}
-        <div className="text-center max-w-3xl mx-auto mb-14 space-y-4">
+        <div className="max-w-3xl mb-14 space-y-4">
           <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full border bg-white/5 backdrop-blur-md">
-            <FolderKanban className="w-3.5 h-3.5" style={{ color: themeConfig.primaryColor }} />
+            <Terminal className="w-3.5 h-3.5" style={{ color: themeConfig.primaryColor }} />
             <span className="text-xs font-mono font-bold tracking-wider uppercase text-slate-300">
-              Real Work & Results
+              Technical Project Spotlights
             </span>
           </div>
 
           <h2 className="text-3xl sm:text-5xl font-black text-white tracking-tight theme-font-title">
-            Simple websites to custom apps — <span style={{ color: themeConfig.primaryColor }}>see our work.</span>
+            Complex challenges. <span style={{ color: themeConfig.primaryColor }}>High-impact engineering.</span>
           </h2>
-          <p className="text-slate-300 text-base sm:text-lg">
-            See how we help local business owners, startups, and creators get software that solves real problems.
+          <p className="text-slate-300 text-base sm:text-lg leading-relaxed">
+            Detailed breakdowns of our production builds: the architectural bottlenecks we solved, the exact technology stacks we deployed, and the verifiable telemetry results.
           </p>
         </div>
 
         {/* Filter Pills */}
-        <div className="flex flex-wrap items-center justify-center gap-2 mb-12">
+        <div className="flex flex-wrap items-center gap-2 mb-12 pb-2 border-b border-white/10">
           {filterTabs.map((tab) => {
             const isSelected = activeFilter === tab.id;
             return (
@@ -53,12 +53,11 @@ export const PortfolioSection: React.FC = () => {
                 onClick={() => setActiveFilter(tab.id)}
                 className={`px-4 py-2 rounded-xl text-xs font-bold transition-all duration-200 border cursor-pointer ${
                   isSelected
-                    ? 'bg-white/20 text-white border-white/40 shadow-md scale-105'
-                    : 'bg-white/5 text-slate-400 border-white/10 hover:text-white hover:bg-white/10'
+                    ? 'bg-white/15 text-white border-white/30 shadow-md scale-102'
+                    : 'bg-white/5 text-slate-400 border-white/5 hover:text-white hover:bg-white/10'
                 }`}
                 style={{
                   borderColor: isSelected ? themeConfig.primaryColor : undefined,
-                  color: isSelected ? '#ffffff' : undefined,
                 }}
               >
                 {tab.label}
@@ -73,20 +72,20 @@ export const PortfolioSection: React.FC = () => {
             <div
               key={item.id}
               onClick={() => setActiveModalItem(item)}
-              className="group cursor-pointer rounded-3xl border bg-white/5 hover:bg-white/10 backdrop-blur-xl overflow-hidden transition-all duration-300 hover:-translate-y-1.5 hover:shadow-2xl flex flex-col justify-between"
+              className="group cursor-pointer rounded-3xl border bg-white/5 hover:bg-white/10 backdrop-blur-xl overflow-hidden transition-all duration-300 hover:-translate-y-1 hover:shadow-2xl flex flex-col justify-between border-glow-hover"
               style={{
-                borderColor: 'rgba(255,255,255,0.1)',
+                borderColor: 'rgba(255,255,255,0.08)',
               }}
             >
               <div>
                 {/* Thumbnail Image */}
-                <div className="relative aspect-[16/10] overflow-hidden">
+                <div className="relative aspect-[16/10] overflow-hidden border-b border-white/10">
                   <img
                     src={item.image}
                     alt={item.title}
                     className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/30 to-transparent" />
 
                   {/* Category Pill */}
                   <div className="absolute top-3 left-3 bg-black/80 backdrop-blur-md px-2.5 py-1 rounded-lg border border-white/15 text-[10px] font-mono font-bold uppercase tracking-wider text-slate-200">
@@ -100,7 +99,7 @@ export const PortfolioSection: React.FC = () => {
                     <ArrowUpRight className="w-4 h-4" />
                   </div>
 
-                  {/* Main Metric on Image */}
+                  {/* Top Metric Overlay */}
                   <div className="absolute bottom-3 left-3 right-3 flex items-center justify-between">
                     <span className="text-xs text-slate-300 font-mono">{item.clientType}</span>
                     <span
@@ -113,23 +112,30 @@ export const PortfolioSection: React.FC = () => {
                 </div>
 
                 {/* Card Text Content */}
-                <div className="p-6 space-y-3">
+                <div className="p-6 space-y-4">
                   <h3 className="text-lg font-bold text-white group-hover:text-amber-300 transition-colors">
                     {item.title}
                   </h3>
-                  <p className="text-xs text-slate-300 leading-relaxed line-clamp-2">
-                    {item.description}
-                  </p>
+
+                  {/* Technical Challenge Snippet */}
+                  <div className="space-y-1">
+                    <div className="text-[10px] font-mono uppercase tracking-wider text-rose-400 font-bold">
+                      Challenge Solved:
+                    </div>
+                    <p className="text-xs text-slate-300 leading-relaxed line-clamp-2">
+                      {item.technicalChallenge}
+                    </p>
+                  </div>
                 </div>
               </div>
 
-              {/* Tags & Action Link */}
-              <div className="px-6 pb-6 pt-2 border-t border-white/5 flex items-center justify-between">
-                <div className="flex flex-wrap gap-1.5">
-                  {item.tags.slice(0, 2).map((t) => (
+              {/* Stack Chips & Action Link */}
+              <div className="px-6 pb-6 pt-3 border-t border-white/5 flex items-center justify-between gap-2">
+                <div className="flex flex-wrap gap-1.5 overflow-hidden max-h-6">
+                  {item.techList.slice(0, 3).map((t) => (
                     <span
                       key={t}
-                      className="text-[10px] font-mono px-2 py-0.5 rounded bg-white/5 border border-white/10 text-slate-400"
+                      className="text-[10px] font-mono px-2 py-0.5 rounded bg-white/5 border border-white/10 text-slate-400 truncate"
                     >
                       {t}
                     </span>
@@ -137,10 +143,10 @@ export const PortfolioSection: React.FC = () => {
                 </div>
 
                 <span
-                  className="text-xs font-bold flex items-center gap-1 group-hover:translate-x-1 transition-transform"
+                  className="text-xs font-bold font-mono flex items-center gap-1 group-hover:translate-x-1 transition-transform shrink-0"
                   style={{ color: themeConfig.primaryColor }}
                 >
-                  See Story →
+                  Deep-Dive →
                 </span>
               </div>
             </div>

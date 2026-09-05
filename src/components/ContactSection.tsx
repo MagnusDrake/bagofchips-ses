@@ -1,6 +1,14 @@
 import React, { useState } from 'react';
 import { useStudio } from '../context/StudioContext';
-import { HelpCircle, Send, ShieldCheck, ChevronDown, CheckCircle2, Clock, Mail } from 'lucide-react';
+import {
+  HelpCircle,
+  Send,
+  ShieldCheck,
+  ChevronDown,
+  CheckCircle2,
+  Clock,
+  Mail
+} from 'lucide-react';
 
 export const ContactSection: React.FC = () => {
   const { themeConfig } = useStudio();
@@ -10,30 +18,31 @@ export const ContactSection: React.FC = () => {
   // Form State
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
-  const [category, setCategory] = useState('starter-web');
-  const [budget, setBudget] = useState('490-1200');
+  const [company, setCompany] = useState('');
+  const [category, setCategory] = useState('fullstack-web');
+  const [budget, setBudget] = useState('3500-7500');
   const [message, setMessage] = useState('');
 
   const faqs = [
     {
-      q: 'Do I really own 100% of my website or software?',
-      a: 'Yes, 100%. Once your project is completed, all code, designs, and domain assets belong entirely to you. We never charge recurring proprietary license fees or hold your website hostage.'
+      q: 'How is intellectual property (IP) and source code handled?',
+      a: 'You own 100% of all intellectual property, source code, Git commit history, Dockerfiles, Terraform infrastructure configurations, and database schemas from day one. Upon milestone completion, full repository ownership is transferred directly to your organization. We never charge recurring proprietary licensing fees or hold code hostage.'
     },
     {
-      q: 'How much does a simple business website cost and how fast is it?',
-      a: 'Our simple business websites start at just $490 and are typically completed and launched in 3 to 5 business days. This includes mobile responsiveness, Google Maps location setup, WhatsApp/email contact buttons, and custom domain connection.'
+      q: 'What is your typical sprint velocity and delivery cadence?',
+      a: 'Core platforms, MVPs, and internal automation tools typically deploy to production within 2 to 4 weeks. We work in disciplined two-week sprint cycles with private staging builds, weekly async or video check-ins, and continuous deployment so you always see working software.'
     },
     {
-      q: 'What if I am not technical? Will I be able to manage things?',
-      a: 'Don’t worry at all! We set everything up so you don’t need to touch a line of code. We can provide an easy admin panel or handle all future updates for you with our friendly support.'
+      q: 'How do you guarantee code quality and system performance?',
+      a: 'Every build enforces strict TypeScript boundaries from database schema to UI components, automated Vitest unit tests, Playwright end-to-end user regression tests, and sub-100ms API response targets. We optimize database indexing and connection pooling to ensure your system can scale 10x without architectural rewrites.'
     },
     {
-      q: 'How do payments and milestones work?',
-      a: 'We work on transparent, fixed-price milestones (usually a 50% deposit to begin and 50% upon your final review and launch). You always know the exact price upfront with zero hidden surprises.'
+      q: 'Can bagOfchips SES audit, modernize, or refactor an existing codebase?',
+      a: 'Yes. We regularly conduct deep architectural and security audits on existing applications, identify database and query bottlenecks, resolve critical technical debt, and migrate legacy monoliths to modern Next.js/TypeScript/PostgreSQL microservices.'
     },
     {
-      q: 'Can you fix, improve, or take over an existing website or app?',
-      a: 'Yes! If you have an existing website or messy codebase that needs bug fixes, speed optimization, redesign, or new features, we can audit it and get it running smoothly.'
+      q: 'What post-launch engineering support and SLAs do you provide?',
+      a: 'Every production deployment includes 30 days of complimentary engineering hypercare, automated Sentry exception monitoring, and bug triage. After launch, we offer dedicated monthly engineering retainers and SLA-backed maintenance contracts for continuous feature scaling.'
     }
   ];
 
@@ -43,6 +52,7 @@ export const ContactSection: React.FC = () => {
     setTimeout(() => {
       setName('');
       setEmail('');
+      setCompany('');
       setMessage('');
     }, 1000);
   };
@@ -57,24 +67,23 @@ export const ContactSection: React.FC = () => {
               <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full border bg-white/5 backdrop-blur-md">
                 <Mail className="w-3.5 h-3.5" style={{ color: themeConfig.primaryColor }} />
                 <span className="text-xs font-mono font-bold tracking-wider uppercase text-slate-300">
-                  Friendly Consultation
+                  Technical Discovery Consultation
                 </span>
               </div>
 
               <h2 className="text-3xl sm:text-4xl font-black text-white tracking-tight theme-font-title">
-                Let’s talk about your <span style={{ color: themeConfig.primaryColor }}>next project.</span>
+                Schedule an <span style={{ color: themeConfig.primaryColor }}>architectural review.</span>
               </h2>
               <p className="text-slate-300 text-sm sm:text-base leading-relaxed">
-                Have a question or want to discuss what you need built? Send us a quick note and our lead engineer will reply in under 4 hours.
+                Have a platform to build, an MVP to launch, or an architecture challenge to resolve? Send our engineering leads your specifications. We respond with a preliminary technical assessment within 4 hours.
               </p>
             </div>
 
             {/* Consultation Card */}
             <div
-              className="p-6 sm:p-8 rounded-3xl border backdrop-blur-2xl transition-all duration-500 shadow-2xl relative"
+              className="p-6 sm:p-8 rounded-3xl border backdrop-blur-2xl transition-all duration-500 shadow-2xl relative glass-panel"
               style={{
-                backgroundColor: `${themeConfig.bgHex}F2`,
-                borderColor: themeConfig.primaryColor,
+                borderColor: 'rgba(255, 255, 255, 0.12)',
               }}
             >
               {formSubmitted ? (
@@ -85,15 +94,15 @@ export const ContactSection: React.FC = () => {
                   >
                     <CheckCircle2 className="w-8 h-8" />
                   </div>
-                  <h3 className="text-xl font-bold text-white">Message Received!</h3>
-                  <p className="text-xs text-slate-300 max-w-sm mx-auto">
-                    Thanks for reaching out! We’re reviewing your project and will email you back within 4 hours with recommendations.
+                  <h3 className="text-xl font-bold text-white">Technical Inquiry Received</h3>
+                  <p className="text-xs text-slate-300 max-w-sm mx-auto leading-relaxed">
+                    Our lead software architect is reviewing your specifications and will respond within 4 hours with an initial technical assessment and sprint availability.
                   </p>
                   <button
                     onClick={() => setFormSubmitted(false)}
                     className="text-xs font-mono font-bold text-amber-300 underline pt-2 cursor-pointer"
                   >
-                    Send another inquiry
+                    Send additional project details
                   </button>
                 </div>
               ) : (
@@ -106,78 +115,88 @@ export const ContactSection: React.FC = () => {
                         required
                         value={name}
                         onChange={(e) => setName(e.target.value)}
-                        placeholder="e.g. John Doe"
-                        className="w-full bg-black/40 border border-white/15 rounded-xl px-3.5 py-2.5 text-xs text-white placeholder-slate-500 focus:outline-none focus:border-amber-400"
+                        placeholder="Alex Vance"
+                        className="w-full bg-black/50 border border-white/15 rounded-xl px-3.5 py-2.5 text-xs text-white placeholder-slate-500 focus:outline-none focus:border-amber-400"
                       />
                     </div>
 
                     <div className="space-y-1.5">
-                      <label className="text-xs font-mono text-slate-300">Email Address *</label>
+                      <label className="text-xs font-mono text-slate-300">Work Email Address *</label>
                       <input
                         type="email"
                         required
                         value={email}
                         onChange={(e) => setEmail(e.target.value)}
-                        placeholder="john@example.com"
-                        className="w-full bg-black/40 border border-white/15 rounded-xl px-3.5 py-2.5 text-xs text-white placeholder-slate-500 focus:outline-none focus:border-amber-400"
+                        placeholder="alex@company.com"
+                        className="w-full bg-black/50 border border-white/15 rounded-xl px-3.5 py-2.5 text-xs text-white placeholder-slate-500 focus:outline-none focus:border-amber-400"
                       />
                     </div>
                   </div>
 
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                     <div className="space-y-1.5">
-                      <label className="text-xs font-mono text-slate-300">What are you looking for?</label>
+                      <label className="text-xs font-mono text-slate-300">Company / Organization</label>
+                      <input
+                        type="text"
+                        value={company}
+                        onChange={(e) => setCompany(e.target.value)}
+                        placeholder="Vance Technologies Inc."
+                        className="w-full bg-black/50 border border-white/15 rounded-xl px-3.5 py-2.5 text-xs text-white placeholder-slate-500 focus:outline-none focus:border-amber-400"
+                      />
+                    </div>
+
+                    <div className="space-y-1.5">
+                      <label className="text-xs font-mono text-slate-300">Primary Domain / Service</label>
                       <select
                         value={category}
                         onChange={(e) => setCategory(e.target.value)}
                         className="w-full bg-black/80 border border-white/15 rounded-xl px-3 py-2.5 text-xs text-white focus:outline-none focus:border-amber-400"
                       >
-                        <option value="starter-web">Simple Business Website ($490+)</option>
-                        <option value="web">Web App / Client Portal ($1,890+)</option>
-                        <option value="mobile">iPhone & Android Mobile App ($2,990+)</option>
-                        <option value="custom">Business Automation & Tools ($1,450+)</option>
-                        <option value="ai">Smart AI Chatbot ($1,650+)</option>
-                        <option value="game">Playable Web Game ($3,200+)</option>
-                      </select>
-                    </div>
-
-                    <div className="space-y-1.5">
-                      <label className="text-xs font-mono text-slate-300">Target Budget</label>
-                      <select
-                        value={budget}
-                        onChange={(e) => setBudget(e.target.value)}
-                        className="w-full bg-black/80 border border-white/15 rounded-xl px-3 py-2.5 text-xs text-white focus:outline-none focus:border-amber-400"
-                      >
-                        <option value="490-1200">$490 – $1,200 (Simple Starter Site)</option>
-                        <option value="1200-3000">$1,200 – $3,000 (Growth Site / Automation)</option>
-                        <option value="3000-6000">$3,000 – $6,000 (Custom Web/Mobile App)</option>
-                        <option value="6000+">$6,000+ (Full Platform / Game)</option>
+                        <option value="fullstack-web">Full-Stack Web Platform / MVP</option>
+                        <option value="mobile-app">Cross-Platform Mobile Application</option>
+                        <option value="internal-tooling">Internal Tooling & Workflow Automation</option>
+                        <option value="ai-systems">Custom AI & Production RAG System</option>
+                        <option value="interactive-engine">High-Performance 3D Simulation</option>
                       </select>
                     </div>
                   </div>
 
                   <div className="space-y-1.5">
-                    <label className="text-xs font-mono text-slate-300">Tell us what you want to achieve *</label>
+                    <label className="text-xs font-mono text-slate-300">Target Sprint Investment Range</label>
+                    <select
+                      value={budget}
+                      onChange={(e) => setBudget(e.target.value)}
+                      className="w-full bg-black/80 border border-white/15 rounded-xl px-3 py-2.5 text-xs text-white focus:outline-none focus:border-amber-400"
+                    >
+                      <option value="3500-7500">$3,500 – $7,500 (Core MVP Sprint / Feature Build)</option>
+                      <option value="7500-15000">$7,500 – $15,000 (Full-Stack Platform / Mobile App)</option>
+                      <option value="15000-30000">$15,000 – $30,000+ (Enterprise Architecture / Custom AI)</option>
+                      <option value="custom">Technical Discovery & Scoping Retainer</option>
+                    </select>
+                  </div>
+
+                  <div className="space-y-1.5">
+                    <label className="text-xs font-mono text-slate-300">Technical Scope & Requirements *</label>
                     <textarea
                       required
                       rows={3}
                       value={message}
                       onChange={(e) => setMessage(e.target.value)}
-                      placeholder="Tell us a little about your business or the problem you're trying to solve..."
-                      className="w-full bg-black/40 border border-white/15 rounded-xl px-3.5 py-2.5 text-xs text-white placeholder-slate-500 focus:outline-none focus:border-amber-400 resize-none"
+                      placeholder="Outline your application goals, target tech stack, timeline urgency, or architectural challenges..."
+                      className="w-full bg-black/50 border border-white/15 rounded-xl px-3.5 py-2.5 text-xs text-white placeholder-slate-500 focus:outline-none focus:border-amber-400 resize-none"
                     />
                   </div>
 
                   <button
                     type="submit"
-                    className="w-full py-3.5 px-6 rounded-2xl text-xs font-extrabold text-slate-950 flex items-center justify-center gap-2 shadow-xl hover:scale-102 active:scale-98 transition-all cursor-pointer"
+                    className="w-full py-3.5 px-6 rounded-2xl text-xs font-bold text-slate-950 flex items-center justify-center gap-2 shadow-lg hover:scale-102 active:scale-98 transition-all cursor-pointer"
                     style={{
                       backgroundColor: themeConfig.primaryColor,
-                      boxShadow: `0 0 25px ${themeConfig.primaryColor}55`,
+                      boxShadow: `0 0 20px ${themeConfig.primaryColor}40`,
                     }}
                   >
                     <Send className="w-4 h-4" />
-                    <span>Send Message & Get Blueprint</span>
+                    <span>Submit Specifications for Architectural Review</span>
                   </button>
                 </form>
               )}
@@ -186,11 +205,11 @@ export const ContactSection: React.FC = () => {
               <div className="mt-6 pt-4 border-t border-white/10 flex flex-col sm:flex-row items-center justify-between gap-3 text-[11px] text-slate-300">
                 <div className="flex items-center gap-1.5">
                   <ShieldCheck className="w-4 h-4 text-emerald-400" />
-                  <span>100% Confidential & No Spam</span>
+                  <span>Strict NDA Protection & Confidentiality</span>
                 </div>
                 <div className="flex items-center gap-1.5">
                   <Clock className="w-4 h-4 text-amber-400" />
-                  <span>Reply in under 4 hours</span>
+                  <span>Senior engineer review within 4 hours</span>
                 </div>
               </div>
             </div>
@@ -202,15 +221,15 @@ export const ContactSection: React.FC = () => {
               <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full border bg-white/5 backdrop-blur-md">
                 <HelpCircle className="w-3.5 h-3.5" style={{ color: themeConfig.primaryColor }} />
                 <span className="text-xs font-mono font-bold tracking-wider uppercase text-slate-300">
-                  Frequently Asked Questions
+                  Engineering FAQ & SLAs
                 </span>
               </div>
 
               <h2 className="text-3xl sm:text-4xl font-black text-white tracking-tight theme-font-title">
-                Straight answers, <span style={{ color: themeConfig.primaryColor }}>zero fluff.</span>
+                Architectural answers, <span style={{ color: themeConfig.primaryColor }}>zero ambiguity.</span>
               </h2>
               <p className="text-slate-300 text-sm sm:text-base leading-relaxed">
-                Everything you need to know about working with bagOfchips Software Engineering Studio.
+                Everything you need to know about our engineering standards, IP ownership, sprint velocity, and technical handover.
               </p>
             </div>
 

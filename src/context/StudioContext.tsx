@@ -27,48 +27,48 @@ const INITIAL_DEMO_TICKETS: ClientTicket[] = [
   {
     id: 'demo-1',
     ticketCode: 'BOC-9481',
-    title: 'PulseSync Mobile Health Companion',
-    category: 'mobile',
+    title: 'PulseSync Sensor Stream & Offline CRDT Engine',
+    category: 'mobile-app',
     status: 'qa_testing',
     priority: 'high',
-    clientName: 'Sarah Lin',
-    clientEmail: 'sarah@healthsync.io',
-    company: 'HealthSync Labs',
-    description: '120fps React Native health companion with Apple HealthKit & on-device AI readiness score.',
-    selectedFeatures: ['auth', 'offline-sync', 'push-notifications', 'app-store-launch'],
-    estimatedCost: 5200,
+    clientName: 'Engineering Lead (Sports Science Lab)',
+    clientEmail: 'lead@healthsync.io',
+    company: 'HealthSync Technologies',
+    description: 'Continuous biometric sensor sync pipeline across Apple HealthKit & BLE with offline SQLite CRDT local store.',
+    selectedModules: ['auth-rbac', 'offline-crdt', 'push-engine', 'app-store-deploy'],
+    estimatedCost: 6950,
     estimatedWeeks: 4,
     submittedAt: '2026-08-15',
     progressPercent: 85,
     milestones: [
-      { id: 'm1', title: 'Architecture & UX Wireframes', status: 'completed', date: 'Aug 18', deliverables: ['Figma Prototype', 'Data Model'] },
-      { id: 'm2', title: 'HealthKit & BLE Sensor Sync', status: 'completed', date: 'Aug 24', deliverables: ['Sync Engine', 'SQLite DB'] },
-      { id: 'm3', title: 'On-Device AI Recommendation Engine', status: 'completed', date: 'Aug 28', deliverables: ['Readiness Model'] },
-      { id: 'm4', title: 'QA Stress Testing & TestFlight Build', status: 'in_progress', date: 'Sep 03', deliverables: ['TestFlight v0.9.4', 'Bug Triage'] },
-      { id: 'm5', title: 'App Store & Google Play Launch', status: 'upcoming', date: 'Sep 08', deliverables: ['Store Assets', 'Prod Deployment'] }
+      { id: 'm1', title: 'Architecture RFC & Data Model Schema', status: 'completed', date: 'Aug 18', deliverables: ['Architecture RFC v1.2', 'Prisma & SQLite Schemas'] },
+      { id: 'm2', title: 'BLE Sensor Ingestion & HealthKit Bridge', status: 'completed', date: 'Aug 24', deliverables: ['Hardware Bridge Module', 'Binary Parser'] },
+      { id: 'm3', title: 'Offline-First CRDT Sync & Edge Functions', status: 'completed', date: 'Aug 28', deliverables: ['CRDT Vector Clocks', 'Supabase Edge Handler'] },
+      { id: 'm4', title: 'Performance Profiling & TestFlight Staging', status: 'in_progress', date: 'Sep 03', deliverables: ['TestFlight v0.9.4 Build', 'Vitest 94% Coverage'] },
+      { id: 'm5', title: 'Production App Store Handover', status: 'upcoming', date: 'Sep 10', deliverables: ['Store Production Assets', '100% IP Code Handover'] }
     ]
   },
   {
     id: 'demo-2',
-    ticketCode: 'BOC-7320',
-    title: 'HyperSpeed 3D WebGL Brand Arcade',
-    category: 'game',
+    ticketCode: 'BOC-8210',
+    title: 'OrbitOps Telemetry Gateway & Real-Time Dispatch Engine',
+    category: 'internal-tooling',
     status: 'in_sprint',
     priority: 'urgent',
-    clientName: 'Marcus Vance',
-    clientEmail: 'marcus@nexushardware.com',
-    company: 'Nexus Silicon',
-    description: 'Browser 3D racing game showcasing next-gen semiconductor speed with global multiplayer leaderboards.',
-    selectedFeatures: ['physics-engine', 'leaderboard', 'spatial-audio', '3d-shaders'],
-    estimatedCost: 6300,
-    estimatedWeeks: 5,
+    clientName: 'VP of Engineering (Logistics Fleet)',
+    clientEmail: 'vpe@orbitlogistics.net',
+    company: 'Orbit Logistics Global',
+    description: 'High-throughput Go microservices with Redis Pub/Sub, TimescaleDB time-series ingestion, and WebSocket broadcast.',
+    selectedModules: ['async-workers', 'relational-db', 'realtime-websockets', 'ci-cd-cloud'],
+    estimatedCost: 8150,
+    estimatedWeeks: 4,
     submittedAt: '2026-08-22',
-    progressPercent: 50,
+    progressPercent: 55,
     milestones: [
-      { id: 'm1', title: 'Core Three.js Physics Prototype', status: 'completed', date: 'Aug 25', deliverables: ['60FPS Track Demo'] },
-      { id: 'm2', title: 'Procedural Circuit Shader FX', status: 'in_progress', date: 'Sep 02', deliverables: ['GLSL Shaders', 'Audio FX'] },
-      { id: 'm3', title: 'WebSockets Multiplayer & Leaderboard', status: 'upcoming', date: 'Sep 09', deliverables: ['Redis Ranking Engine'] },
-      { id: 'm4', title: 'Live Embed & Campaign Launch', status: 'upcoming', date: 'Sep 16', deliverables: ['Viral Landing Page'] }
+      { id: 'm1', title: 'Go Ingestion Protocol & Redis Pub/Sub', status: 'completed', date: 'Aug 25', deliverables: ['Go Gateway Binary', 'Redis Queue Broker'] },
+      { id: 'm2', title: 'TimescaleDB Hyper-Tables & Compression', status: 'in_progress', date: 'Sep 02', deliverables: ['TimescaleDB Migration', 'Aggregates API'] },
+      { id: 'm3', title: 'Real-Time WebSocket Dispatch Console', status: 'upcoming', date: 'Sep 09', deliverables: ['React Command Console', 'Sub-50ms Telemetry'] },
+      { id: 'm4', title: 'AWS ECS Multi-Region Staging & Handover', status: 'upcoming', date: 'Sep 16', deliverables: ['Terraform IaC', 'Full IP Transfer'] }
     ]
   }
 ];
@@ -118,13 +118,13 @@ export const StudioProvider: React.FC<{ children: React.ReactNode }> = ({ childr
       ticketCode: randomCode,
       submittedAt: new Date().toISOString().split('T')[0],
       status: ticketData.status || 'scoping',
-      progressPercent: 15,
+      progressPercent: 20,
       milestones: [
-        { id: 'm1', title: 'Requirements & Scope Finalization', status: 'in_progress', date: 'Within 24 Hours', deliverables: ['Detailed Architecture Spec', 'Sprint Plan'] },
-        { id: 'm2', title: 'Sprint 1: Core Foundation & UI Prototype', status: 'upcoming', date: 'Week 1', deliverables: ['Interactive Prototype', 'API Scaffolding'] },
-        { id: 'm3', title: 'Sprint 2: Logic & Integration', status: 'upcoming', date: 'Week 2', deliverables: ['Feature Complete Build'] },
-        { id: 'm4', title: 'QA Testing, Security & Optimization', status: 'upcoming', date: 'Week 3', deliverables: ['Audit Report', 'Staging Deploy'] },
-        { id: 'm5', title: 'Production Launch & Handover', status: 'upcoming', date: 'Week 4', deliverables: ['Full Source IP', 'Docs & Monitoring'] }
+        { id: 'm1', title: 'Technical Discovery & Architectural RFC', status: 'in_progress', date: 'Sprint Kickoff (Day 1-2)', deliverables: ['Architecture RFC Spec', 'Data Model & API Contracts'] },
+        { id: 'm2', title: 'Sprint 1: Core Infrastructure & Scaffold', status: 'upcoming', date: 'Week 1', deliverables: ['Containerized Staging', 'DB Migrations & Auth RBAC'] },
+        { id: 'm3', title: 'Sprint 2: Core Domain Logic & Integrations', status: 'upcoming', date: 'Week 2', deliverables: ['Feature Complete Build', 'Automated Test Suite'] },
+        { id: 'm4', title: 'Security Hardening, Optimization & Staging QA', status: 'upcoming', date: 'Week 3', deliverables: ['Penetration Audit', 'Performance Benchmark Report'] },
+        { id: 'm5', title: 'Production Deployment & 100% IP Transfer', status: 'upcoming', date: 'Week 4', deliverables: ['Complete Source Code IP', 'Infrastructure as Code & SLA'] }
       ]
     };
 

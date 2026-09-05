@@ -1,4 +1,4 @@
-export type ThemeId = 'neon' | 'graffiti' | 'matte' | 'midnight';
+export type ThemeId = 'midnight' | 'matte' | 'neon' | 'graffiti';
 
 export interface ThemeConfig {
   id: ThemeId;
@@ -14,13 +14,19 @@ export interface ThemeConfig {
   description: string;
 }
 
-export type ProjectCategory = 'starter-web' | 'web' | 'mobile' | 'game' | 'custom' | 'ai';
+export type ProjectCategory = 
+  | 'fullstack-web'
+  | 'mobile-app'
+  | 'internal-tooling'
+  | 'ai-systems'
+  | 'interactive-engine';
 
-export interface FeatureOption {
+export interface ArchitecturalModule {
   id: string;
   name: string;
-  description: string;
   category: ProjectCategory | 'all';
+  description: string;
+  technicalSpecs: string;
   baseCost: number;
   timeDays: number;
   popular?: boolean;
@@ -35,12 +41,13 @@ export interface ServiceItem {
   shortDesc: string;
   fullDesc: string;
   iconName: string;
-  features: string[];
+  architecturalHighlights: string[];
+  deliverablesIncluded: string[];
   techStack: string[];
   startingPrice: string;
   typicalTimeline: string;
-  flavorQuote: string;
-  bestFor: string;
+  idealFor: string;
+  slaNotes: string;
 }
 
 export interface PortfolioItem {
@@ -49,18 +56,15 @@ export interface PortfolioItem {
   category: ProjectCategory;
   categoryLabel: string;
   tagline: string;
-  description: string;
   clientType: string;
   tags: string[];
   metrics: { label: string; value: string }[];
   image: string;
-  themeScreenshot?: string;
-  highlights: string[];
-  problem: string;
-  solution: string;
-  impact: string;
+  technicalChallenge: string;
+  architectureAndStack: string;
+  engineeringImpact: string;
   techList: string[];
-  demoType: 'live' | 'interactive' | 'case-study';
+  architectureDiagram?: string[];
 }
 
 export interface Milestone {
@@ -82,7 +86,7 @@ export interface ClientTicket {
   clientEmail: string;
   company?: string;
   description: string;
-  selectedFeatures: string[];
+  selectedModules: string[];
   estimatedCost: number;
   estimatedWeeks: number;
   submittedAt: string;
@@ -92,12 +96,11 @@ export interface ClientTicket {
 
 export interface ConfiguratorSelection {
   category: ProjectCategory;
-  selectedFeatures: string[];
-  urgency: 'chill' | 'standard' | 'turbo';
+  selectedModules: string[];
+  velocityTier: 'standard' | 'accelerated' | 'turbo';
   title: string;
   description: string;
   clientName: string;
   clientEmail: string;
-  clientPhone?: string;
-  budgetCap?: string;
+  company?: string;
 }

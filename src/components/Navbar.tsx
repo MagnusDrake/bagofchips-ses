@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useStudio } from '../context/StudioContext';
-import { ThemeSwitcher } from './ThemeSwitcher';
-import { Cpu, Layers, Sparkles, FolderKanban, Workflow, Activity, Menu, X, ArrowRight } from 'lucide-react';
+import { Cpu, Layers, Sparkles, FolderKanban, Activity, Menu, X, ArrowRight, Terminal, Sliders } from 'lucide-react';
 
 export const Navbar: React.FC = () => {
   const { themeConfig, tickets } = useStudio();
@@ -18,29 +17,28 @@ export const Navbar: React.FC = () => {
 
   const navLinks = [
     { name: 'Services', href: '#services', icon: Layers },
-    { name: 'Portfolio', href: '#portfolio', icon: FolderKanban },
-    { name: 'Instant Price Builder', href: '#configurator', icon: Sparkles, highlight: true },
-    { name: 'How It Works', href: '#process', icon: Workflow },
-    { name: 'Client Hub', href: '#client-hub', icon: Activity, badge: tickets.length.toString() },
-    { name: 'Contact', href: '#contact', icon: Cpu },
+    { name: 'Tech Stack & Standards', href: '#tech-stack', icon: Terminal },
+    { name: 'Case Studies', href: '#portfolio', icon: FolderKanban },
+    { name: 'Sprint Simulator', href: '#client-hub', icon: Activity, badge: tickets.length.toString() },
+    { name: 'Scope & Pricing', href: '#configurator', icon: Sparkles, highlight: true },
   ];
 
   return (
     <header
       className={`fixed top-0 left-0 right-0 z-40 transition-all duration-300 ${
         scrolled
-          ? 'bg-[#0B0F19]/90 backdrop-blur-xl border-b border-white/10 shadow-2xl py-3'
+          ? 'bg-[#090d16]/90 backdrop-blur-xl border-b border-white/10 shadow-2xl py-3'
           : 'bg-transparent py-5'
       }`}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between">
-        {/* Brand Logo */}
+        {/* Studio Brand Logo */}
         <a href="#" className="flex items-center gap-3 group">
           <div
             className="w-10 h-10 rounded-xl flex items-center justify-center shadow-lg transition-transform group-hover:scale-105 border border-white/20"
             style={{
-              background: `linear-gradient(135deg, ${themeConfig.primaryColor}33, ${themeConfig.accentColor}44)`,
-              borderColor: themeConfig.primaryColor,
+              background: `linear-gradient(135deg, ${themeConfig.primaryColor}25, ${themeConfig.accentColor}30)`,
+              borderColor: `${themeConfig.primaryColor}60`,
             }}
           >
             <Cpu className="w-5 h-5 transition-transform group-hover:rotate-12" style={{ color: themeConfig.primaryColor }} />
@@ -54,7 +52,7 @@ export const Navbar: React.FC = () => {
                 className="text-[10px] uppercase font-mono font-bold px-1.5 py-0.5 rounded tracking-widest border"
                 style={{
                   color: themeConfig.primaryColor,
-                  borderColor: `${themeConfig.primaryColor}55`,
+                  borderColor: `${themeConfig.primaryColor}40`,
                   backgroundColor: `${themeConfig.primaryColor}15`,
                 }}
               >
@@ -96,29 +94,35 @@ export const Navbar: React.FC = () => {
           })}
         </nav>
 
-        {/* Theme Switcher & Actions */}
+        {/* Actions & Design Tokens Link */}
         <div className="hidden sm:flex items-center gap-3">
-          <ThemeSwitcher variant="navbar" />
+          <a
+            href="#design-tokens"
+            className="px-3 py-1.5 rounded-xl text-xs font-mono text-slate-400 hover:text-white hover:bg-white/5 border border-white/5 hover:border-white/10 transition-all flex items-center gap-1.5"
+            title="Design Token Engine"
+          >
+            <Sliders className="w-3.5 h-3.5" />
+            <span className="hidden xl:inline">Design Tokens</span>
+          </a>
 
           <a
-            href="#configurator"
-            className="group relative inline-flex items-center gap-2 px-4 py-2 rounded-xl text-xs font-bold text-slate-900 transition-all duration-200 hover:shadow-lg hover:scale-105 active:scale-95"
+            href="#contact"
+            className="group relative inline-flex items-center gap-2 px-4 py-2 rounded-xl text-xs font-bold text-slate-900 transition-all duration-200 hover:shadow-lg hover:scale-102 active:scale-98"
             style={{
               backgroundColor: themeConfig.primaryColor,
-              boxShadow: `0 0 20px ${themeConfig.primaryColor}55`,
+              boxShadow: `0 0 20px ${themeConfig.primaryColor}40`,
             }}
           >
-            <span>Start a Project</span>
+            <span>Schedule Discovery</span>
             <ArrowRight className="w-3.5 h-3.5 transition-transform group-hover:translate-x-1" />
           </a>
         </div>
 
         {/* Mobile Menu Button */}
         <div className="flex sm:hidden items-center gap-2">
-          <ThemeSwitcher variant="navbar" />
           <button
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            className="p-2 rounded-lg bg-white/10 border border-white/10 text-slate-200 hover:text-white"
+            className="p-2 rounded-lg bg-white/10 border border-white/10 text-slate-200 hover:text-white cursor-pointer"
             aria-label="Toggle menu"
           >
             {mobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
@@ -128,7 +132,7 @@ export const Navbar: React.FC = () => {
 
       {/* Mobile Dropdown Navigation */}
       {mobileMenuOpen && (
-        <div className="sm:hidden bg-[#0B0F19]/95 backdrop-blur-2xl border-b border-white/10 px-4 pt-4 pb-6 mt-3 shadow-2xl animate-in slide-in-from-top">
+        <div className="sm:hidden bg-[#090d16]/98 backdrop-blur-2xl border-b border-white/10 px-4 pt-4 pb-6 mt-3 shadow-2xl animate-in slide-in-from-top">
           <div className="space-y-2">
             {navLinks.map((link) => {
               const Icon = link.icon;
@@ -154,16 +158,24 @@ export const Navbar: React.FC = () => {
                 </a>
               );
             })}
+            <a
+              href="#design-tokens"
+              onClick={() => setMobileMenuOpen(false)}
+              className="flex items-center gap-2.5 px-3 py-2.5 rounded-xl text-sm font-medium text-slate-300 hover:bg-white/10"
+            >
+              <Sliders className="w-4 h-4 text-slate-400" />
+              <span>Design Token Engine</span>
+            </a>
           </div>
 
           <div className="mt-4 pt-4 border-t border-white/10">
             <a
-              href="#configurator"
+              href="#contact"
               onClick={() => setMobileMenuOpen(false)}
               className="w-full flex items-center justify-center gap-2 px-4 py-3 rounded-xl text-sm font-bold text-slate-900 shadow-lg text-center"
               style={{ backgroundColor: themeConfig.primaryColor }}
             >
-              <span>Build Your Project</span>
+              <span>Schedule Architecture Review</span>
               <ArrowRight className="w-4 h-4" />
             </a>
           </div>

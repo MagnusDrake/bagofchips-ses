@@ -1,305 +1,279 @@
-import type { FeatureOption, ProjectCategory } from '../types';
+import type { ArchitecturalModule, ProjectCategory } from '../types';
 
 export interface CategoryPreset {
   id: ProjectCategory;
   name: string;
   badge: string;
   tagline: string;
+  description: string;
   baseCost: number;
   baseDays: number;
   iconName: string;
-  suggestedFeatures: string[];
+  suggestedModules: string[];
 }
 
 export const CATEGORY_PRESETS: CategoryPreset[] = [
   {
-    id: 'starter-web',
-    name: 'Simple Business Website',
-    badge: 'STARTER • BEST VALUE',
-    tagline: 'Clean, fast website that looks awesome on phones and gets you customers',
-    baseCost: 490,
-    baseDays: 4,
-    iconName: 'Layout',
-    suggestedFeatures: ['contact-whatsapp', 'google-maps-seo', 'domain-email']
-  },
-  {
-    id: 'web',
-    name: 'Web App & Customer Portal',
-    badge: 'GROWTH',
-    tagline: 'Interactive website with user logins, online bookings, or client dashboards',
-    baseCost: 1890,
+    id: 'fullstack-web',
+    name: 'Full-Stack Web Platform / MVP',
+    badge: 'CORE PLATFORM',
+    tagline: 'Production-ready web application with Next.js, PostgreSQL, Auth & Cloud Deploy',
+    description: 'Investor-ready SaaS or digital product built with clean architecture, strict TypeScript validation, and scalable cloud infrastructure.',
+    baseCost: 3500,
     baseDays: 14,
     iconName: 'Globe',
-    suggestedFeatures: ['auth', 'database', 'payments', 'admin-portal']
+    suggestedModules: ['auth-rbac', 'relational-db', 'stripe-billing', 'ci-cd-cloud']
   },
   {
-    id: 'mobile',
-    name: 'Mobile App (iPhone & Android)',
-    badge: 'MOBILE',
-    tagline: 'Custom app for your customers with notifications on the App Store & Google Play',
-    baseCost: 2990,
+    id: 'mobile-app',
+    name: 'Cross-Platform Mobile App',
+    badge: 'MOBILE SYSTEMS',
+    tagline: 'Native-feel iOS & Android application built with React Native or Flutter',
+    description: 'Unified cross-platform codebase featuring offline-first data sync, hardware sensor access, biometric security, and push notifications.',
+    baseCost: 4800,
     baseDays: 21,
     iconName: 'Smartphone',
-    suggestedFeatures: ['auth', 'push-notifications', 'offline-sync', 'app-store-launch']
+    suggestedModules: ['auth-rbac', 'offline-crdt', 'push-engine', 'app-store-deploy']
   },
   {
-    id: 'custom',
-    name: 'Business Automation & Custom Tool',
-    badge: 'SAVE TIME',
-    tagline: 'Automate repetitive spreadsheet tasks, sync invoices, and save weekly hours',
-    baseCost: 1450,
-    baseDays: 10,
-    iconName: 'Cpu',
-    suggestedFeatures: ['api-integrations', 'database', 'admin-portal']
-  },
-  {
-    id: 'ai',
-    name: 'Smart AI Helper & Chatbot',
-    badge: 'AI ASSISTANT',
-    tagline: '24/7 website chatbot that answers customer questions using your business info',
-    baseCost: 1650,
-    baseDays: 10,
-    iconName: 'Sparkles',
-    suggestedFeatures: ['llm-rag', 'contact-whatsapp', 'agent-workflows']
-  },
-  {
-    id: 'game',
-    name: 'Playable Web Game / 3D Fun',
-    badge: 'INTERACTIVE',
-    tagline: '2D/3D browser game or interactive visual experience for brand marketing',
+    id: 'internal-tooling',
+    name: 'Internal Tooling & Automation Engine',
+    badge: 'WORKFLOW AUTOMATION',
+    tagline: 'Custom operational command center, automated ETL pipelines & API connectors',
+    description: 'High-reliability workflow software that replaces fragile spreadsheets and manual labor with automated queues and custom dashboards.',
     baseCost: 3200,
+    baseDays: 12,
+    iconName: 'Cpu',
+    suggestedModules: ['async-workers', 'relational-db', 'third-party-apis', 'audit-logging']
+  },
+  {
+    id: 'ai-systems',
+    name: 'Custom AI & Production RAG System',
+    badge: 'ENTERPRISE INTELLIGENCE',
+    tagline: 'Grounded intelligence engine with vector database, hybrid search & private embeddings',
+    description: 'Architected enterprise knowledge retrieval with semantic document chunking, strict hallucination guardrails, and sub-second streaming answers.',
+    baseCost: 4500,
+    baseDays: 16,
+    iconName: 'Sparkles',
+    suggestedModules: ['rag-vector-search', 'semantic-chunking', 'auth-rbac', 'observability-suite']
+  },
+  {
+    id: 'interactive-engine',
+    name: 'High-Performance 3D / Simulation Engine',
+    badge: 'GRAPHICS & COMPUTE',
+    tagline: 'Interactive 60fps WebGL/Three.js simulation with custom GLSL shaders and real-time telemetry',
+    description: 'Sub-millisecond interactive web graphics, 3D product visualizers, and physics simulations that run in any modern web browser.',
+    baseCost: 5500,
     baseDays: 24,
     iconName: 'Gamepad2',
-    suggestedFeatures: ['physics-engine', 'leaderboard', 'spatial-audio']
+    suggestedModules: ['glsl-shaders', 'realtime-websockets', 'ci-cd-cloud', 'observability-suite']
   }
 ];
 
-export const FEATURE_OPTIONS: FeatureOption[] = [
-  // Affordable Small Business Essentials
+export const ARCHITECTURAL_MODULES: ArchitecturalModule[] = [
+  // Authentication & Security Tier
   {
-    id: 'contact-whatsapp',
-    name: 'Contact Form & 1-Click WhatsApp Button',
-    description: 'Let customers call, text on WhatsApp, or send inquiries straight to your inbox.',
+    id: 'auth-rbac',
+    name: 'Enterprise Auth & Role-Based Access Control',
     category: 'all',
-    baseCost: 75,
-    timeDays: 1,
-    popular: true,
-    iconName: 'MessageSquare'
-  },
-  {
-    id: 'google-maps-seo',
-    name: 'Google Maps Location & Local SEO',
-    description: 'Interactive map and search setup so local customers can easily find you on Google.',
-    category: 'all',
-    baseCost: 95,
-    timeDays: 1,
-    popular: true,
-    iconName: 'MapPin'
-  },
-  {
-    id: 'booking-calendar',
-    name: 'Appointment & Booking Calendar',
-    description: 'Customers can pick a date and time for consultations, tables, or appointments.',
-    category: 'all',
-    baseCost: 180,
-    timeDays: 2,
-    popular: true,
-    iconName: 'Calendar'
-  },
-  {
-    id: 'reviews-testimonials',
-    name: 'Customer Reviews & Star Ratings',
-    description: 'Highlight real client testimonials, Google reviews, and build instant trust.',
-    category: 'all',
-    baseCost: 80,
-    timeDays: 1,
-    iconName: 'Star'
-  },
-  {
-    id: 'photo-gallery-menu',
-    name: 'Photo Gallery, Food Menu or Price List',
-    description: 'Beautiful image showcase or easy-to-read list of your services and prices.',
-    category: 'all',
-    baseCost: 90,
-    timeDays: 1,
-    popular: true,
-    iconName: 'Image'
-  },
-  {
-    id: 'domain-email',
-    name: 'Custom Domain (.com) & Email Connection',
-    description: 'We connect your website to your custom web address and professional email.',
-    category: 'all',
-    baseCost: 85,
-    timeDays: 1,
-    popular: true,
-    iconName: 'Globe'
-  },
-  {
-    id: 'social-feed',
-    name: 'Instagram / Social Media Feed',
-    description: 'Show your latest Instagram posts or social updates directly on your website.',
-    category: 'all',
-    baseCost: 75,
-    timeDays: 1,
-    iconName: 'Share2'
-  },
-
-  // Advanced Web & App Features
-  {
-    id: 'auth',
-    name: 'Member Accounts & Secure Login',
-    description: 'Password login, Google Sign-In, and private account pages for your customers.',
-    category: 'web',
-    baseCost: 350,
+    description: 'Multi-tenant authentication with OAuth 2.0 (Google/GitHub/SAML), magic links, JWT session rotation, and granular RBAC permissions.',
+    technicalSpecs: 'OAuth 2.0 / OpenID Connect, Argon2 hashing, stateless JWT session rotation, role & permission guards.',
+    baseCost: 650,
     timeDays: 3,
     popular: true,
     iconName: 'Lock'
   },
   {
-    id: 'payments',
-    name: 'Credit Card & Online Payments (Stripe)',
-    description: 'Accept card payments, setup recurring subscriptions, and email receipts.',
-    category: 'web',
-    baseCost: 450,
-    timeDays: 3,
-    popular: true,
-    iconName: 'CreditCard'
-  },
-  {
-    id: 'admin-portal',
-    name: 'Simple Admin Dashboard',
-    description: 'Easy control panel where you can view leads, update prices, or edit text.',
+    id: 'audit-logging',
+    name: 'Multi-Tenant Isolation & Audit Trails',
     category: 'all',
-    baseCost: 490,
+    description: 'PostgreSQL Row-Level Security (RLS) ensuring strict tenant data boundaries, accompanied by immutable audit log streams.',
+    technicalSpecs: 'PostgreSQL RLS policies, tenant UUID indexing, tamper-evident audit ledger with actor and timestamp telemetry.',
+    baseCost: 900,
+    timeDays: 4,
+    iconName: 'Shield'
+  },
+
+  // Data & Cache Architecture
+  {
+    id: 'relational-db',
+    name: 'Production Relational Data Layer',
+    category: 'all',
+    description: 'Optimized PostgreSQL architecture with Prisma or Drizzle ORM, connection pooling, automated migration runners, and indexing.',
+    technicalSpecs: 'PostgreSQL 16, pgBouncer connection pooling, foreign-key constraints, automated rollback-safe migration scripts.',
+    baseCost: 750,
     timeDays: 4,
     popular: true,
-    iconName: 'LayoutDashboard'
-  },
-  {
-    id: 'database',
-    name: 'Customer Database & Storage',
-    description: 'Organized database to keep all your customer records, files, and orders safe.',
-    category: 'all',
-    baseCost: 380,
-    timeDays: 3,
     iconName: 'Database'
   },
-
-  // Mobile App Features
   {
-    id: 'push-notifications',
-    name: 'Push Notifications (Alert Customers)',
-    description: 'Send alerts, discounts, and updates directly to your users’ phone lock screens.',
-    category: 'mobile',
-    baseCost: 320,
-    timeDays: 2,
-    popular: true,
-    iconName: 'Bell'
-  },
-  {
-    id: 'offline-sync',
-    name: 'Offline Mode (Works without WiFi)',
-    description: 'Your app stays fully functional even when internet connection drops.',
-    category: 'mobile',
-    baseCost: 450,
-    timeDays: 3,
-    iconName: 'WifiOff'
-  },
-  {
-    id: 'app-store-launch',
-    name: 'Apple App Store & Google Play Publishing',
-    description: 'We handle all the store rules, screenshots, and launch approval for you.',
-    category: 'mobile',
-    baseCost: 350,
-    timeDays: 2,
-    popular: true,
-    iconName: 'Rocket'
-  },
-
-  // AI & Automation Features
-  {
-    id: 'llm-rag',
-    name: 'AI Chatbot Trained on Your Business',
-    description: 'Answers customer questions 24/7 with 100% accurate info from your menu or docs.',
-    category: 'ai',
+    id: 'redis-cache',
+    name: 'Redis Distributed Cache & Rate Limiter',
+    category: 'all',
+    description: 'Sub-millisecond latency cache layer, distributed session storage, and sliding-window rate limiting to protect upstream services.',
+    technicalSpecs: 'Redis Cluster / Upstash, LRU eviction policies, token bucket rate limiter, Pub/Sub channel capability.',
     baseCost: 550,
-    timeDays: 4,
-    popular: true,
-    iconName: 'Bot'
-  },
-  {
-    id: 'agent-workflows',
-    name: 'Automated Tasks (Auto-Reply & Reports)',
-    description: 'Let software automatically draft emails, send quotes, or sync spreadsheets.',
-    category: 'ai',
-    baseCost: 490,
     timeDays: 3,
     iconName: 'Zap'
   },
+
+  // Payments & Commerce Architecture
   {
-    id: 'api-integrations',
-    name: 'Connect Existing Software Tools',
-    description: 'Link your website to QuickBooks, Slack, Google Sheets, Mailchimp, or Shopify.',
-    category: 'custom',
-    baseCost: 380,
-    timeDays: 3,
+    id: 'stripe-billing',
+    name: 'Stripe Subscription & Billing Engine',
+    category: 'fullstack-web',
+    description: 'Tiered recurring subscriptions, usage-based metered billing, automated invoice generation, and idempotent webhook processors.',
+    technicalSpecs: 'Stripe API v2024, webhook signature verification with idempotency keys, customer portal integration, tax calculation.',
+    baseCost: 850,
+    timeDays: 4,
+    popular: true,
+    iconName: 'CreditCard'
+  },
+
+  // Distributed Workers & Async Pipelines
+  {
+    id: 'async-workers',
+    name: 'Asynchronous Job Queue & Worker Pipeline',
+    category: 'all',
+    description: 'Background worker infrastructure for non-blocking task processing, long-running batch jobs, and automated exponential backoff retries.',
+    technicalSpecs: 'BullMQ / Celery with Redis broker, dead-letter queue (DLQ), concurrency throttling, real-time worker metrics.',
+    baseCost: 700,
+    timeDays: 4,
     popular: true,
     iconName: 'Workflow'
   },
+  {
+    id: 'third-party-apis',
+    name: 'Multi-Provider API Orchestration Layer',
+    category: 'all',
+    description: 'Resilient bi-directional synchronization connecting CRM (Salesforce/HubSpot), ERP, QuickBooks, or custom external endpoints.',
+    technicalSpecs: 'Type-safe SDK clients, rate-limit queueing, retry with jitter, circuit breaker pattern, reconciliation logging.',
+    baseCost: 800,
+    timeDays: 4,
+    iconName: 'Network'
+  },
 
-  // Interactive & Game Features
+  // Production AI & Retrieval Architecture
   {
-    id: 'physics-engine',
-    name: 'Interactive Physics & Touch Controls',
-    description: 'Smooth game mechanics, fun gravity, and responsive touch/mouse controls.',
-    category: 'game',
-    baseCost: 650,
+    id: 'rag-vector-search',
+    name: 'Production RAG & Hybrid Vector Search',
+    category: 'ai-systems',
+    description: 'Enterprise Retrieval-Augmented Generation using pgvector or Pinecone, combining dense semantic search with sparse BM25 keyword matching.',
+    technicalSpecs: 'HNSW index, 1536/3072-dim embeddings, reciprocal rank fusion (RRF), cross-encoder reranking, context boundary enforcement.',
+    baseCost: 1400,
+    timeDays: 6,
+    popular: true,
+    iconName: 'BrainCircuit'
+  },
+  {
+    id: 'semantic-chunking',
+    name: 'Document Ingestion & Semantic Chunking',
+    category: 'ai-systems',
+    description: 'Automated ingestion pipeline parsing complex PDFs, markdown, and source code into contextual chunks with metadata provenance.',
+    technicalSpecs: 'Recursive character & AST-based chunking, layout-aware PDF extraction, document change detection watchers.',
+    baseCost: 950,
+    timeDays: 4,
+    iconName: 'FileText'
+  },
+
+  // Real-Time & Mobile Systems
+  {
+    id: 'realtime-websockets',
+    name: 'Low-Latency WebSockets & Telemetry Sync',
+    category: 'all',
+    description: 'Bi-directional real-time communication channel for live collaborative dashboards, gaming telemetry, or multi-user state sync.',
+    technicalSpecs: 'Binary WebSocket frames, heartbeat ping/pong, presence channels, fallback to SSE (Server-Sent Events).',
+    baseCost: 850,
+    timeDays: 4,
+    iconName: 'Radio'
+  },
+  {
+    id: 'offline-crdt',
+    name: 'Offline-First Storage & Conflict-Free Sync',
+    category: 'mobile-app',
+    description: 'Local on-device SQLite database with optimistic UI updates and CRDT-inspired conflict-free cloud reconciliation when network restores.',
+    technicalSpecs: 'WatermelonDB / SQLite local store, vector clocks for conflict resolution, background sync worker.',
+    baseCost: 1100,
     timeDays: 5,
-    iconName: 'Gamepad2'
+    iconName: 'HardDrive'
   },
   {
-    id: 'leaderboard',
-    name: 'Player High Scores & Leaderboard',
-    description: 'Display top scores and let players compete with friends.',
-    category: 'game',
-    baseCost: 350,
-    timeDays: 2,
-    iconName: 'Trophy'
+    id: 'push-engine',
+    name: 'Multi-Platform Push Notification Microservice',
+    category: 'mobile-app',
+    description: 'High-throughput transactional push notifications for iOS and Android with segmented targeting, deep linking, and analytics.',
+    technicalSpecs: 'Apple Push Notification Service (APNs) HTTP/2 provider API, Firebase Cloud Messaging (FCM), token lifecycle manager.',
+    baseCost: 600,
+    timeDays: 3,
+    iconName: 'Bell'
   },
   {
-    id: 'spatial-audio',
-    name: 'Fun Sound Effects & Music',
-    description: 'Catchy audio, clicks, and background music that bring the experience to life.',
-    category: 'game',
-    baseCost: 280,
-    timeDays: 2,
-    iconName: 'Volume2'
+    id: 'app-store-deploy',
+    name: 'Automated App Store Release Pipeline',
+    category: 'mobile-app',
+    description: 'Continuous delivery setup using Fastlane to automate iOS TestFlight distribution, Google Play Internal Track builds, and signing credentials.',
+    technicalSpecs: 'Fastlane match certificates, automated version incrementation, screenshot generation, store metadata deployment.',
+    baseCost: 650,
+    timeDays: 3,
+    iconName: 'Rocket'
+  },
+
+  // Infrastructure & Observability
+  {
+    id: 'ci-cd-cloud',
+    name: 'Containerized Cloud CI/CD & IaC',
+    category: 'all',
+    description: 'Docker multi-stage builds, automated GitHub Actions testing and deployment pipelines, and reproducible cloud infrastructure on AWS/GCP.',
+    technicalSpecs: 'Multi-stage Dockerfile, GitHub Actions workflow with preview environments, AWS ECS / Cloud Run deployment scripts.',
+    baseCost: 750,
+    timeDays: 3,
+    popular: true,
+    iconName: 'Cloud'
+  },
+  {
+    id: 'observability-suite',
+    name: 'End-to-End Testing & Observability Suite',
+    category: 'all',
+    description: 'Automated Vitest/Jest unit tests, Playwright end-to-end user flow tests, Sentry exception tracking, and OpenTelemetry performance tracing.',
+    technicalSpecs: 'Playwright headless browser suite, Vitest coverage reporting, Sentry distributed tracing, health check probes.',
+    baseCost: 650,
+    timeDays: 3,
+    iconName: 'Activity'
+  },
+  {
+    id: 'glsl-shaders',
+    name: 'Custom GLSL Shaders & GPU Optimizations',
+    category: 'interactive-engine',
+    description: 'Hardware-accelerated vertex and fragment shaders, GPU instanced meshes, and Draco asset compression for uncompromised 60fps.',
+    technicalSpecs: 'GLSL ES 3.0 shaders, post-processing pass, Draco geometry decoding, frustum culling, memory leak audits.',
+    baseCost: 1200,
+    timeDays: 6,
+    iconName: 'Eye'
   }
 ];
 
-export const TIMELINE_URGENCIES = [
-  {
-    id: 'chill',
-    name: 'Standard Pace',
-    description: 'Steady, budget-friendly delivery.',
-    multiplier: 1.0,
-    timeMultiplier: 1.0,
-    badge: 'BEST VALUE'
-  },
+export const VELOCITY_TIERS = [
   {
     id: 'standard',
-    name: 'Priority Pace',
-    description: 'Dedicated focus with frequent demo check-ins.',
-    multiplier: 1.12,
-    timeMultiplier: 0.8,
+    name: 'Standard Engineering Sprint',
+    description: 'Balanced 2-week sprint cycle with bi-weekly deployable milestones and async standups.',
+    multiplier: 1.0,
+    timeMultiplier: 1.0,
+    badge: 'BALANCED CADENCE'
+  },
+  {
+    id: 'accelerated',
+    name: 'Accelerated Dedicated Sprint',
+    description: 'Dedicated senior engineering pairing, priority PR reviews, and bi-weekly release candidates.',
+    multiplier: 1.15,
+    timeMultiplier: 0.75,
     badge: 'RECOMMENDED'
   },
   {
     id: 'turbo',
-    name: 'Rush / Express Delivery',
-    description: 'Fast-tracked engineering for tight deadlines.',
-    multiplier: 1.25,
+    name: 'High-Throughput Crunch Sprint',
+    description: 'Fast-tracked delivery for hard launch deadlines with daily staging drops and dedicated sprint engineer.',
+    multiplier: 1.30,
     timeMultiplier: 0.55,
     badge: 'FAST TRACK'
   }

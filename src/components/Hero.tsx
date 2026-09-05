@@ -1,16 +1,26 @@
 import React from 'react';
 import { useStudio } from '../context/StudioContext';
-import { Sparkles, ArrowRight, Rocket, Layers, CheckCircle2, Tag, HeartHandshake } from 'lucide-react';
-import { THEMES } from '../data/themesData';
+import {
+  Sparkles,
+  ArrowRight,
+  ShieldCheck,
+  Cpu,
+  CheckCircle2,
+  GitBranch,
+  Terminal,
+  Server,
+  Database,
+  BrainCircuit
+} from 'lucide-react';
 
 export const Hero: React.FC = () => {
-  const { theme, themeConfig, setTheme } = useStudio();
+  const { themeConfig } = useStudio();
 
   return (
     <section className="relative pt-32 pb-20 md:pt-40 md:pb-28 overflow-hidden bg-circuit-pattern">
-      {/* Dynamic Ambient Background Glows */}
+      {/* Refined Ambient Glows - Subtle and controlled, not blinding */}
       <div
-        className="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] md:w-[900px] h-[400px] rounded-full blur-3xl opacity-20 pointer-events-none transition-all duration-700"
+        className="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] md:w-[900px] h-[350px] rounded-full blur-[120px] opacity-15 pointer-events-none transition-all duration-700"
         style={{
           background: `radial-gradient(circle, ${themeConfig.primaryColor}, ${themeConfig.accentColor})`,
         }}
@@ -18,67 +28,70 @@ export const Hero: React.FC = () => {
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-center">
-          {/* Left Column: Friendly Studio Pitch */}
+          {/* Left Column: Studio Positioning */}
           <div className="lg:col-span-7 space-y-8 text-center lg:text-left">
-            {/* Top Studio Badge */}
-            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full border bg-white/5 backdrop-blur-md shadow-sm">
-              <span className="w-2 h-2 rounded-full animate-ping" style={{ backgroundColor: themeConfig.primaryColor }} />
+            {/* Engineering Status Pill */}
+            <div className="inline-flex items-center gap-2.5 px-3.5 py-1.5 rounded-full border border-white/10 bg-white/5 backdrop-blur-md shadow-sm">
+              <span className="w-2 h-2 rounded-full animate-ping" style={{ backgroundColor: themeConfig.accentColor }} />
               <span className="text-xs font-mono font-bold tracking-wider uppercase text-slate-300">
-                {themeConfig.badge}
+                Accepting Q3 / Q4 Engineering Sprints
               </span>
               <span className="text-slate-500">•</span>
-              <span className="text-xs font-medium text-amber-300 flex items-center gap-1">
-                <Tag className="w-3 h-3" /> Starter Websites from $490
+              <span className="text-xs font-mono text-amber-400 flex items-center gap-1">
+                <ShieldCheck className="w-3.5 h-3.5" /> 100% IP Handover
               </span>
             </div>
 
             {/* Main Headline */}
             <div className="space-y-4">
               <h1 className="text-4xl sm:text-6xl xl:text-7xl font-black tracking-tight text-white leading-[1.08] theme-font-title">
-                Software solutions,{' '}
+                Production-grade{' '}
                 <span
                   className="bg-clip-text text-transparent transition-all duration-500"
                   style={{
                     backgroundImage: `linear-gradient(135deg, ${themeConfig.primaryColor}, ${themeConfig.accentColor}, #ffffff)`,
                   }}
                 >
-                  bagged & delivered.
+                  software systems.
                 </span>
               </h1>
               <p className="text-lg sm:text-xl text-slate-300 max-w-2xl mx-auto lg:mx-0 font-normal leading-relaxed">
-                Need a <span className="text-white font-semibold">simple business website</span>, an{' '}
-                <span className="text-white font-semibold">app for your customers</span>, a{' '}
-                <span className="text-white font-semibold">playable web game</span>, or a{' '}
-                <span className="text-white font-semibold">tool to automate everyday busywork</span>?
-                We make getting software easy, painless, and affordable.
+                <span className="text-white font-semibold">bagOfchips SES</span> designs, architectures, and builds scalable web platforms, cross-platform mobile apps, internal automations, and custom AI systems. We operate as your dedicated engineering partner with zero legacy bloat and complete IP ownership.
               </p>
             </div>
 
-            {/* Value Checkmarks */}
-            <div className="grid grid-cols-2 sm:grid-cols-3 gap-3 pt-2 max-w-xl mx-auto lg:mx-0">
-              <div className="flex items-center gap-2 text-xs sm:text-sm font-medium text-slate-200">
-                <CheckCircle2 className="w-4 h-4 shrink-0" style={{ color: themeConfig.primaryColor }} />
-                <span>Starter Sites from $490</span>
+            {/* Core Architectural Pillars */}
+            <div className="grid grid-cols-2 sm:grid-cols-2 gap-3.5 pt-1 max-w-xl mx-auto lg:mx-0 text-left">
+              <div className="flex items-start gap-2.5 text-xs sm:text-sm text-slate-200">
+                <CheckCircle2 className="w-4 h-4 shrink-0 mt-0.5" style={{ color: themeConfig.primaryColor }} />
+                <div>
+                  <span className="font-bold text-white block">Full IP & Source Code Transfer</span>
+                  <span className="text-slate-400 text-xs">Complete repository, IaC, and docs delivered day one.</span>
+                </div>
               </div>
-              <div className="flex items-center gap-2 text-xs sm:text-sm font-medium text-slate-200">
-                <CheckCircle2 className="w-4 h-4 shrink-0" style={{ color: themeConfig.primaryColor }} />
-                <span>Fast 3–5 Day Delivery</span>
+
+              <div className="flex items-start gap-2.5 text-xs sm:text-sm text-slate-200">
+                <CheckCircle2 className="w-4 h-4 shrink-0 mt-0.5" style={{ color: themeConfig.primaryColor }} />
+                <div>
+                  <span className="font-bold text-white block">Production Cloud Architecture</span>
+                  <span className="text-slate-400 text-xs">Dockerized services, automated CI/CD, and strict type safety.</span>
+                </div>
               </div>
-              <div className="flex items-center gap-2 text-xs sm:text-sm font-medium text-slate-200">
-                <CheckCircle2 className="w-4 h-4 shrink-0" style={{ color: themeConfig.primaryColor }} />
-                <span>100% You Own Everything</span>
+
+              <div className="flex items-start gap-2.5 text-xs sm:text-sm text-slate-200">
+                <CheckCircle2 className="w-4 h-4 shrink-0 mt-0.5" style={{ color: themeConfig.primaryColor }} />
+                <div>
+                  <span className="font-bold text-white block">Rapid Sprint Velocity</span>
+                  <span className="text-slate-400 text-xs">Bi-weekly deployable milestones and continuous staging access.</span>
+                </div>
               </div>
-              <div className="flex items-center gap-2 text-xs sm:text-sm font-medium text-slate-200">
-                <CheckCircle2 className="w-4 h-4 shrink-0" style={{ color: themeConfig.primaryColor }} />
-                <span>Zero Confusing Jargon</span>
-              </div>
-              <div className="flex items-center gap-2 text-xs sm:text-sm font-medium text-slate-200">
-                <CheckCircle2 className="w-4 h-4 shrink-0" style={{ color: themeConfig.primaryColor }} />
-                <span>Mobile & Google Maps Ready</span>
-              </div>
-              <div className="flex items-center gap-2 text-xs sm:text-sm font-medium text-slate-200">
-                <CheckCircle2 className="w-4 h-4 shrink-0" style={{ color: themeConfig.primaryColor }} />
-                <span>Friendly Human Support</span>
+
+              <div className="flex items-start gap-2.5 text-xs sm:text-sm text-slate-200">
+                <CheckCircle2 className="w-4 h-4 shrink-0 mt-0.5" style={{ color: themeConfig.primaryColor }} />
+                <div>
+                  <span className="font-bold text-white block">Sub-100ms Performance Budgets</span>
+                  <span className="text-slate-400 text-xs">Automated Vitest/Playwright tests & low-latency query plans.</span>
+                </div>
               </div>
             </div>
 
@@ -86,115 +99,115 @@ export const Hero: React.FC = () => {
             <div className="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4 pt-4">
               <a
                 href="#configurator"
-                className="w-full sm:w-auto inline-flex items-center justify-center gap-3 px-8 py-4 rounded-2xl text-base font-extrabold text-slate-950 shadow-2xl transition-all duration-300 hover:scale-105 active:scale-95 group cursor-pointer"
+                className="w-full sm:w-auto inline-flex items-center justify-center gap-3 px-8 py-4 rounded-2xl text-base font-bold text-slate-950 shadow-xl transition-all duration-200 hover:scale-102 active:scale-98 group cursor-pointer"
                 style={{
                   backgroundColor: themeConfig.primaryColor,
-                  boxShadow: `0 0 30px ${themeConfig.primaryColor}55`,
+                  boxShadow: `0 0 25px ${themeConfig.primaryColor}40`,
                 }}
               >
                 <Sparkles className="w-5 h-5 transition-transform group-hover:rotate-45" />
-                <span>Build & Price Your Project</span>
+                <span>Scope Your Engineering Sprint</span>
                 <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
               </a>
 
               <a
-                href="#portfolio"
-                className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 py-4 rounded-2xl text-sm font-bold text-slate-200 bg-white/5 hover:bg-white/10 border border-white/10 hover:border-white/25 transition-all duration-200 backdrop-blur-md cursor-pointer"
+                href="#tech-stack"
+                className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 py-4 rounded-2xl text-sm font-bold text-slate-200 bg-white/5 hover:bg-white/10 border border-white/10 hover:border-white/20 transition-all duration-200 backdrop-blur-md cursor-pointer"
               >
-                <Layers className="w-4 h-4 opacity-70" />
-                <span>See Real Examples</span>
+                <Terminal className="w-4 h-4 opacity-70" />
+                <span>Explore Architecture & Stack</span>
               </a>
             </div>
 
-            {/* Interactive Theme Flavor Switcher Pill */}
-            <div className="pt-4 border-t border-white/10 flex flex-col sm:flex-row items-center gap-3 justify-center lg:justify-start">
-              <span className="text-xs font-mono font-semibold uppercase text-slate-400">
-                Choose Studio Flavor:
+            {/* Silicon Compute Philosophy Note */}
+            <div className="pt-4 border-t border-white/10 flex items-center gap-3 justify-center lg:justify-start text-xs font-mono text-slate-400">
+              <Cpu className="w-4 h-4 text-slate-500 shrink-0" />
+              <span>
+                <span className="text-slate-300 font-bold">The Philosophy: </span>
+                Modular silicon compute—decoupled microservices, strict contracts & zero debt.
               </span>
-              <div className="flex items-center gap-1.5 p-1 bg-black/50 border border-white/10 rounded-xl backdrop-blur-md">
-                {Object.values(THEMES).map((t) => (
-                  <button
-                    key={t.id}
-                    onClick={() => setTheme(t.id)}
-                    className={`px-2.5 py-1 rounded-lg text-xs font-semibold flex items-center gap-1.5 transition-all duration-200 cursor-pointer ${
-                      theme === t.id
-                        ? 'bg-white/20 text-white shadow-md border border-white/30 scale-105'
-                        : 'text-slate-400 hover:text-slate-200 hover:bg-white/5'
-                    }`}
-                  >
-                    <span className="w-2 h-2 rounded-full" style={{ backgroundColor: t.primaryColor }} />
-                    <span>{t.name}</span>
-                  </button>
-                ))}
-              </div>
             </div>
           </div>
 
-          {/* Right Column: Hero Graphic */}
+          {/* Right Column: Architectural Command Center Graphic */}
           <div className="lg:col-span-5 flex justify-center relative">
             <div className="relative w-full max-w-md">
-              {/* Outer Glow Halo */}
+              {/* Card Container */}
               <div
-                className="absolute inset-0 rounded-3xl blur-2xl opacity-40 transition-all duration-700 animate-pulse-glow"
+                className="relative rounded-3xl p-5 border bg-black/60 backdrop-blur-2xl transition-all duration-500 shadow-2xl overflow-hidden border-glow-hover"
                 style={{
-                  background: `linear-gradient(135deg, ${themeConfig.primaryColor}, ${themeConfig.accentColor})`,
-                }}
-              />
-
-              {/* Main Packaging Artwork Card */}
-              <div
-                className="relative rounded-3xl p-3 sm:p-4 border backdrop-blur-xl transition-all duration-500 shadow-2xl overflow-hidden group"
-                style={{
-                  backgroundColor: `${themeConfig.bgHex}EE`,
-                  borderColor: themeConfig.primaryColor,
-                  boxShadow: `0 20px 50px rgba(0,0,0,0.8), 0 0 30px ${themeConfig.primaryColor}33`,
+                  borderColor: 'rgba(255, 255, 255, 0.1)',
                 }}
               >
-                {/* Visual Packaging Artwork */}
-                <div className="relative rounded-2xl overflow-hidden aspect-square border border-white/10">
+                {/* Silicon Art Header */}
+                <div className="relative rounded-2xl overflow-hidden aspect-[4/3] border border-white/10 mb-5">
                   <img
                     src={themeConfig.image}
-                    alt={`${themeConfig.name} - bagOfchips SES Packaging`}
-                    className="w-full h-full object-cover object-center transition-transform duration-700 group-hover:scale-105"
+                    alt="bagOfchips SES Silicon Architecture"
+                    className="w-full h-full object-cover object-center"
                   />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/30 to-transparent" />
 
-                  {/* Flavor Badge Overlay */}
-                  <div className="absolute top-3 left-3 bg-black/80 backdrop-blur-md px-3 py-1 rounded-full border border-white/20 flex items-center gap-1.5">
-                    <span className="w-2 h-2 rounded-full" style={{ backgroundColor: themeConfig.primaryColor }} />
-                    <span className="text-[10px] font-mono font-bold uppercase tracking-wider text-white">
-                      {themeConfig.name}
+                  {/* Top Status Bar */}
+                  <div className="absolute top-3 inset-x-3 flex items-center justify-between">
+                    <div className="bg-black/80 backdrop-blur-md px-3 py-1 rounded-full border border-white/15 flex items-center gap-1.5">
+                      <span className="w-2 h-2 rounded-full" style={{ backgroundColor: themeConfig.accentColor }} />
+                      <span className="text-[10px] font-mono font-bold uppercase tracking-wider text-white">
+                        Production Node: v2.4.0
+                      </span>
+                    </div>
+
+                    <span className="text-[10px] font-mono text-slate-400 bg-black/80 px-2 py-1 rounded-md border border-white/10">
+                      0 Errors
                     </span>
                   </div>
 
-                  {/* Tagline Footer Overlay */}
-                  <div className="absolute bottom-0 inset-x-0 bg-gradient-to-t from-black/90 via-black/60 to-transparent p-4 pt-8">
-                    <p className="text-xs font-mono text-slate-300">
-                      {themeConfig.flavor}
-                    </p>
-                    <p className="text-[11px] text-slate-400 line-clamp-1 mt-0.5">
-                      {themeConfig.tagline}
-                    </p>
+                  {/* Architecture Metrics Overlay */}
+                  <div className="absolute bottom-3 inset-x-3 grid grid-cols-3 gap-2">
+                    <div className="bg-black/80 backdrop-blur-md p-2 rounded-xl border border-white/10 text-center">
+                      <div className="text-xs font-mono font-bold text-emerald-400">99.98%</div>
+                      <div className="text-[9px] text-slate-400">Uptime Target</div>
+                    </div>
+
+                    <div className="bg-black/80 backdrop-blur-md p-2 rounded-xl border border-white/10 text-center">
+                      <div className="text-xs font-mono font-bold text-amber-300">&lt;65ms</div>
+                      <div className="text-[9px] text-slate-400">p95 Latency</div>
+                    </div>
+
+                    <div className="bg-black/80 backdrop-blur-md p-2 rounded-xl border border-white/10 text-center">
+                      <div className="text-xs font-mono font-bold text-cyan-400">100%</div>
+                      <div className="text-[9px] text-slate-400">IP Handover</div>
+                    </div>
                   </div>
                 </div>
 
-                {/* Friendly Benefits Under Graphic */}
-                <div className="grid grid-cols-3 gap-2 mt-3 pt-1">
-                  <div className="bg-white/5 border border-white/10 rounded-xl p-2.5 text-center">
-                    <Tag className="w-4 h-4 mx-auto mb-1 opacity-80" style={{ color: themeConfig.primaryColor }} />
-                    <div className="text-xs font-extrabold text-white">Fair Pricing</div>
-                    <div className="text-[9px] text-slate-400">Starts at $490</div>
+                {/* Technical Capability Badges */}
+                <div className="space-y-2.5">
+                  <div className="flex items-center justify-between text-xs font-mono text-slate-400">
+                    <span>Engineering Core</span>
+                    <span className="text-emerald-400">Active Pipeline</span>
                   </div>
 
-                  <div className="bg-white/5 border border-white/10 rounded-xl p-2.5 text-center">
-                    <Rocket className="w-4 h-4 mx-auto mb-1 opacity-80" style={{ color: themeConfig.accentColor }} />
-                    <div className="text-xs font-extrabold text-white">Fast Turnaround</div>
-                    <div className="text-[9px] text-slate-400">Days, Not Months</div>
-                  </div>
+                  <div className="grid grid-cols-2 gap-2 text-xs font-mono">
+                    <div className="p-2.5 rounded-xl bg-white/5 border border-white/5 flex items-center gap-2">
+                      <GitBranch className="w-3.5 h-3.5 text-slate-400" />
+                      <span className="text-slate-200">Next.js + TypeScript</span>
+                    </div>
 
-                  <div className="bg-white/5 border border-white/10 rounded-xl p-2.5 text-center">
-                    <HeartHandshake className="w-4 h-4 mx-auto mb-1 opacity-80" style={{ color: themeConfig.primaryColor }} />
-                    <div className="text-xs font-extrabold text-white">100% Yours</div>
-                    <div className="text-[9px] text-slate-400">Full Ownership</div>
+                    <div className="p-2.5 rounded-xl bg-white/5 border border-white/5 flex items-center gap-2">
+                      <Database className="w-3.5 h-3.5 text-slate-400" />
+                      <span className="text-slate-200">PostgreSQL + Prisma</span>
+                    </div>
+
+                    <div className="p-2.5 rounded-xl bg-white/5 border border-white/5 flex items-center gap-2">
+                      <Server className="w-3.5 h-3.5 text-slate-400" />
+                      <span className="text-slate-200">Docker + AWS Deploy</span>
+                    </div>
+
+                    <div className="p-2.5 rounded-xl bg-white/5 border border-white/5 flex items-center gap-2">
+                      <BrainCircuit className="w-3.5 h-3.5 text-slate-400" />
+                      <span className="text-slate-200">pgvector + Hybrid RAG</span>
+                    </div>
                   </div>
                 </div>
               </div>
