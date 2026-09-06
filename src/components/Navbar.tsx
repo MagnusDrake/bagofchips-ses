@@ -93,7 +93,9 @@ export const Navbar: React.FC = () => {
                 />
               </div>
               <span className="font-bold text-sm tracking-tight text-white flex items-center gap-1.5">
-                <span>bagOfchips</span>
+                <span>
+                  bag<span style={{ color: themeConfig.primaryColor }}>Of</span>chips
+                </span>
                 <span
                   className="font-mono text-xs font-semibold px-1.5 py-0.5 rounded border border-white/10 bg-white/5"
                   style={{ color: themeConfig.primaryColor }}

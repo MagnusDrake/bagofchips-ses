@@ -26,7 +26,8 @@ export const Footer: React.FC = () => {
                 />
               </div>
               <span className="text-sm font-semibold tracking-tight text-white">
-                bagOfchips <span className="font-mono text-xs font-semibold" style={{ color: themeConfig.primaryColor }}>SES</span>
+                bag<span style={{ color: themeConfig.primaryColor }}>Of</span>chips{' '}
+                <span className="font-mono text-xs font-semibold" style={{ color: themeConfig.primaryColor }}>SES</span>
               </span>
             </div>
 
@@ -95,7 +96,7 @@ export const Footer: React.FC = () => {
         {/* Bottom Bar */}
         <div className="pt-8 border-t border-white/[0.04] flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-slate-400 font-light">
           <div>
-            © {new Date().getFullYear()} bagOfchips SES. 100% Client Sovereignty & Code Ownership.
+            © {new Date().getFullYear()} bag<span style={{ color: themeConfig.primaryColor }}>Of</span>chips SES. 100% Client Sovereignty & Code Ownership.
           </div>
 
           <button
