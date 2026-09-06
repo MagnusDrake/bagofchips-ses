@@ -7,6 +7,8 @@ import {
   Wifi,
   Battery
 } from 'lucide-react';
+import { CardSpotlight } from './CardSpotlight';
+import { audioHaptics } from '../utils/audioHaptics';
 
 export const ServicesSection: React.FC = () => {
   const { openConfiguratorWithCategory } = useStudio();
@@ -37,7 +39,10 @@ export const ServicesSection: React.FC = () => {
             return (
               <button
                 key={service.id}
-                onClick={() => setSelectedService(service)}
+                onClick={() => {
+                  audioHaptics.playClick();
+                  setSelectedService(service);
+                }}
                 className={`px-5 py-2 rounded-full text-xs font-medium transition-all duration-300 cursor-pointer ${
                   isSelected
                     ? 'bg-white text-slate-950 font-semibold shadow-md'
@@ -51,7 +56,7 @@ export const ServicesSection: React.FC = () => {
         </div>
 
         {/* Spacious Showcase Card */}
-        <div className="rounded-[32px] border border-white/8 bg-slate-950/60 backdrop-blur-2xl p-8 sm:p-12 shadow-2xl">
+        <CardSpotlight className="p-8 sm:p-12 shadow-2xl">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-center">
             {/* Left: Quiet Essence & Inquiry */}
             <div className="lg:col-span-5 space-y-6">
@@ -79,7 +84,10 @@ export const ServicesSection: React.FC = () => {
 
               <div className="pt-4 flex items-center gap-4">
                 <button
-                  onClick={() => openConfiguratorWithCategory(selectedService.category as ProjectCategory)}
+                  onClick={() => {
+                    audioHaptics.playSwitch();
+                    openConfiguratorWithCategory(selectedService.category as ProjectCategory);
+                  }}
                   className="px-6 py-3 rounded-full text-xs font-semibold text-slate-950 bg-white hover:bg-slate-100 transition-all duration-300 flex items-center gap-2 cursor-pointer shadow-md"
                 >
                   <span>Scope This Solution</span>
@@ -153,7 +161,7 @@ export const ServicesSection: React.FC = () => {
               )}
             </div>
           </div>
-        </div>
+        </CardSpotlight>
       </div>
     </section>
   );

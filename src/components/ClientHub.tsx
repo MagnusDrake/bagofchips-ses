@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useStudio } from '../context/StudioContext';
 import { Check, ExternalLink, ShieldCheck, MessageSquare, Terminal } from 'lucide-react';
+import { audioHaptics } from '../utils/audioHaptics';
 
 interface ClientPreviewCase {
   id: string;
@@ -86,7 +87,10 @@ export const ClientHub: React.FC = () => {
             return (
               <button
                 key={c.id}
-                onClick={() => setActiveCaseId(c.id)}
+                onClick={() => {
+                  audioHaptics.playClick();
+                  setActiveCaseId(c.id);
+                }}
                 className={`px-4 py-2 rounded-full text-xs font-medium transition-all duration-200 shrink-0 cursor-pointer flex items-center gap-2 ${
                   isActive
                     ? 'bg-white/[0.12] text-white border border-white/20'
@@ -127,6 +131,7 @@ export const ClientHub: React.FC = () => {
               <span className="text-slate-600">•</span>
               <a
                 href="#configurator"
+                onClick={() => audioHaptics.playSwitch()}
                 className="text-slate-300 hover:text-white transition-colors flex items-center gap-1"
               >
                 <span>Live Sandbox</span>
