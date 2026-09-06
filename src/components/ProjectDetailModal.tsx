@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import type { PortfolioItem } from '../types';
 import { useStudio } from '../context/StudioContext';
-import { X, ArrowRight, Quote } from 'lucide-react';
+import { X, ArrowRight, Quote, Play } from 'lucide-react';
 
 interface ProjectDetailModalProps {
   item: PortfolioItem;
@@ -9,7 +9,7 @@ interface ProjectDetailModalProps {
 }
 
 export const ProjectDetailModal: React.FC<ProjectDetailModalProps> = ({ item, onClose }) => {
-  const { themeConfig, openConfiguratorWithCategory } = useStudio();
+  const { themeConfig, openConfiguratorWithCategory, openMockup } = useStudio();
 
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
@@ -152,17 +152,29 @@ export const ProjectDetailModal: React.FC<ProjectDetailModalProps> = ({ item, on
           <div className="text-xs text-slate-400 font-light">
             Need a similar system for your business?
           </div>
-          <button
-            onClick={() => {
-              onClose();
-              openConfiguratorWithCategory(item.category);
-            }}
-            className="w-full sm:w-auto py-2 px-4 rounded-xl text-xs font-semibold text-white flex items-center justify-center gap-2 transition-all cursor-pointer hover:brightness-110"
-            style={{ backgroundColor: themeConfig.primaryColor }}
-          >
-            <span>Configure Similar Scope</span>
-            <ArrowRight className="w-3 h-3" />
-          </button>
+          <div className="flex flex-col sm:flex-row items-center gap-2 w-full sm:w-auto">
+            <button
+              onClick={() => {
+                onClose();
+                openMockup(item.id);
+              }}
+              className="w-full sm:w-auto py-2 px-4 rounded-xl text-xs font-semibold text-slate-950 bg-white hover:bg-slate-100 flex items-center justify-center gap-2 transition-all cursor-pointer shadow-md active:scale-95"
+            >
+              <Play className="w-3 h-3 fill-slate-950 text-slate-950" />
+              <span>Test Live Mockup</span>
+            </button>
+            <button
+              onClick={() => {
+                onClose();
+                openConfiguratorWithCategory(item.category);
+              }}
+              className="w-full sm:w-auto py-2 px-4 rounded-xl text-xs font-semibold text-white flex items-center justify-center gap-2 transition-all cursor-pointer hover:brightness-110 active:scale-95"
+              style={{ backgroundColor: themeConfig.primaryColor }}
+            >
+              <span>Configure Similar Scope</span>
+              <ArrowRight className="w-3 h-3" />
+            </button>
+          </div>
         </div>
       </div>
     </div>

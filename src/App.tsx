@@ -11,6 +11,7 @@ import { ClientHub } from './components/ClientHub';
 import { ContactSection } from './components/ContactSection';
 import { DesignTokensPlayground } from './components/DesignTokensPlayground';
 import { Footer } from './components/Footer';
+import { LiveMockupStudioModal } from './components/mockups/LiveMockupStudioModal';
 
 export const AppContent: React.FC = () => {
   return (
@@ -33,6 +34,9 @@ export const AppContent: React.FC = () => {
 
       {/* Footer */}
       <Footer />
+
+      {/* Live Capability Mockups Studio Modal */}
+      <LiveMockupStudioModal />
     </div>
   );
 };

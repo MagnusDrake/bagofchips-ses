@@ -5,13 +5,14 @@ import type { ServiceItem, ProjectCategory } from '../types';
 import {
   ArrowRight,
   Wifi,
-  Battery
+  Battery,
+  Play
 } from 'lucide-react';
 import { CardSpotlight } from './CardSpotlight';
 import { audioHaptics } from '../utils/audioHaptics';
 
 export const ServicesSection: React.FC = () => {
-  const { openConfiguratorWithCategory } = useStudio();
+  const { openConfiguratorWithCategory, openMockup } = useStudio();
   const [selectedService, setSelectedService] = useState<ServiceItem>(SERVICES_DATA[0]);
 
   const isMobileApp = selectedService.category === 'mobile-app';
@@ -82,16 +83,33 @@ export const ServicesSection: React.FC = () => {
                 </div>
               </div>
 
-              <div className="pt-4 flex items-center gap-4">
+              <div className="pt-4 flex flex-wrap items-center gap-3">
                 <button
                   onClick={() => {
                     audioHaptics.playSwitch();
                     openConfiguratorWithCategory(selectedService.category as ProjectCategory);
                   }}
-                  className="px-6 py-3 rounded-full text-xs font-semibold text-slate-950 bg-white hover:bg-slate-100 transition-all duration-300 flex items-center gap-2 cursor-pointer shadow-md"
+                  className="px-6 py-3 rounded-full text-xs font-semibold text-slate-950 bg-white hover:bg-slate-100 transition-all duration-300 flex items-center gap-2 cursor-pointer shadow-md active:scale-95"
                 >
                   <span>Scope This Solution</span>
                   <ArrowRight className="w-3.5 h-3.5" />
+                </button>
+
+                <button
+                  onClick={() => {
+                    audioHaptics.playSwitch();
+                    const mockupMap: Record<string, string> = {
+                      'growth-website': 'sweetrise-bakery',
+                      'customer-portal': 'apex-heating-air',
+                      'workflow-automation': 'metrofleet-logistics',
+                      'mobile-app': 'clearview-dental'
+                    };
+                    openMockup(mockupMap[selectedService.category] || 'sweetrise-bakery');
+                  }}
+                  className="px-5 py-3 rounded-full text-xs font-medium text-white bg-white/5 hover:bg-white/10 border border-white/10 transition-all duration-300 flex items-center gap-2 cursor-pointer active:scale-95"
+                >
+                  <Play className="w-3 h-3 fill-white text-white" />
+                  <span>Test Live Prototype</span>
                 </button>
               </div>
             </div>

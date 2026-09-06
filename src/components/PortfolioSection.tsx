@@ -1,10 +1,13 @@
 import React, { useState } from 'react';
 import { PORTFOLIO_DATA } from '../data/portfolioData';
 import type { PortfolioItem } from '../types';
+import { useStudio } from '../context/StudioContext';
+import { audioHaptics } from '../utils/audioHaptics';
 import { ProjectDetailModal } from './ProjectDetailModal';
-import { ArrowUpRight } from 'lucide-react';
+import { ArrowUpRight, Play } from 'lucide-react';
 
 export const PortfolioSection: React.FC = () => {
+  const { openMockup } = useStudio();
   const [activeFilter, setActiveFilter] = useState<string>('all');
   const [activeModalItem, setActiveModalItem] = useState<PortfolioItem | null>(null);
 
@@ -90,12 +93,32 @@ export const PortfolioSection: React.FC = () => {
                     className="w-full h-full object-cover group-hover:scale-102 transition-transform duration-1000"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-transparent to-transparent opacity-80" />
+
+                  {/* Floating Action Badge on Deliverable Image */}
+                  <div className="absolute bottom-4 left-4 right-4 flex items-center justify-between">
+                    <button
+                      type="button"
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        audioHaptics.playSwitch();
+                        openMockup(item.id);
+                      }}
+                      className="px-4 py-2 rounded-full text-xs font-semibold text-slate-950 bg-white hover:bg-slate-100 transition-all flex items-center gap-2 shadow-2xl hover:scale-105 active:scale-95 cursor-pointer"
+                    >
+                      <Play className="w-3 h-3 fill-slate-950 text-slate-950" />
+                      <span>Test Live Application</span>
+                    </button>
+
+                    <span className="text-[11px] font-mono text-slate-300 hidden sm:inline-block bg-black/60 backdrop-blur-md px-3 py-1 rounded-full border border-white/10">
+                      Interactive 2027 Prototype
+                    </span>
+                  </div>
                 </div>
               </div>
 
               {/* Serene Editorial Info Under Image */}
               <div className="mt-6 flex flex-col md:flex-row md:items-start justify-between gap-4 px-2">
-                <div className="space-y-1 max-w-xl">
+                <div className="space-y-2 max-w-xl">
                   <div className="flex items-center gap-3">
                     <h3 className="text-xl sm:text-2xl font-medium text-white tracking-tight group-hover:text-slate-200 transition-colors">
                       {item.title}

@@ -16,12 +16,13 @@ interface Node {
 
 export const SiliconCanvas: React.FC = () => {
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
-  const { themeConfig } = useStudio();
+  const { themeConfig, activeMockupId, selectedPortfolio, isQuickEstimatorOpen } = useStudio();
   const mouseRef = useRef<{ x: number; y: number; active: boolean }>({ x: -1000, y: -1000, active: false });
+  const isModalOpen = Boolean(activeMockupId || selectedPortfolio || isQuickEstimatorOpen);
 
   useEffect(() => {
     const canvas = canvasRef.current;
-    if (!canvas) return;
+    if (!canvas || isModalOpen) return;
     const ctx = canvas.getContext('2d');
     if (!ctx) return;
 
@@ -105,7 +106,7 @@ export const SiliconCanvas: React.FC = () => {
 
     const render = (time: number) => {
       animId = requestAnimationFrame(render);
-      if (!isVisible) return;
+      if (!isVisible || document.hidden || document.body.style.overflow === 'hidden') return;
 
       const dt = Math.min((time - lastTime) / 1000, 0.1);
       lastTime = time;
@@ -267,7 +268,7 @@ export const SiliconCanvas: React.FC = () => {
       canvas.removeEventListener('click', handleClick);
       observer.disconnect();
     };
-  }, [themeConfig.primaryColor]);
+  }, [themeConfig.primaryColor, isModalOpen]);
 
   return (
     <canvas

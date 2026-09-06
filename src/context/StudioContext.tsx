@@ -21,6 +21,9 @@ interface StudioContextType {
   openConfiguratorWithCategory: (category: ProjectCategory) => void;
   isQuickEstimatorOpen: boolean;
   setIsQuickEstimatorOpen: (open: boolean) => void;
+  activeMockupId: string | null;
+  openMockup: (id: string) => void;
+  closeMockup: () => void;
 }
 
 const INITIAL_DEMO_TICKETS: ClientTicket[] = [
@@ -85,6 +88,40 @@ export const StudioProvider: React.FC<{ children: React.ReactNode }> = ({ childr
   const [selectedPortfolio, setSelectedPortfolio] = useState<PortfolioItem | null>(null);
   const [activeCategoryFilter, setActiveCategoryFilter] = useState<ProjectCategory | 'all'>('all');
   const [isQuickEstimatorOpen, setIsQuickEstimatorOpen] = useState<boolean>(false);
+  const [activeMockupId, setActiveMockupId] = useState<string | null>(() => {
+    if (typeof window !== 'undefined') {
+      const hash = window.location.hash;
+      if (hash.startsWith('#demo=')) {
+        return hash.replace('#demo=', '');
+      }
+    }
+    return null;
+  });
+
+  useEffect(() => {
+    const handleHashChange = () => {
+      const hash = window.location.hash;
+      if (hash.startsWith('#demo=')) {
+        setActiveMockupId(hash.replace('#demo=', ''));
+      }
+    };
+    window.addEventListener('hashchange', handleHashChange);
+    return () => window.removeEventListener('hashchange', handleHashChange);
+  }, []);
+
+  const openMockup = (id: string) => {
+    setActiveMockupId(id);
+    if (typeof window !== 'undefined') {
+      window.location.hash = `demo=${id}`;
+    }
+  };
+
+  const closeMockup = () => {
+    setActiveMockupId(null);
+    if (typeof window !== 'undefined' && window.location.hash.startsWith('#demo=')) {
+      history.pushState(null, '', window.location.pathname + window.location.search);
+    }
+  };
 
   const [tickets, setTickets] = useState<ClientTicket[]>(() => {
     try {
@@ -177,6 +214,9 @@ export const StudioProvider: React.FC<{ children: React.ReactNode }> = ({ childr
         openConfiguratorWithCategory,
         isQuickEstimatorOpen,
         setIsQuickEstimatorOpen,
+        activeMockupId,
+        openMockup,
+        closeMockup,
       }}
     >
       {children}
